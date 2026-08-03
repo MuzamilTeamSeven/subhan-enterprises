@@ -52,7 +52,7 @@ export function Hero() {
             </a>
             <a
               href="#models"
-              className="flex items-center gap-2 rounded-xl border border-border bg-card/60 px-6 py-3.5 text-sm font-semibold text-foreground transition hover:bg-card"
+              className="glass flex items-center gap-2 rounded-xl px-6 py-3.5 text-sm font-semibold text-foreground transition hover:border-primary/50"
             >
               Explore Models <ArrowRight className="h-4 w-4" />
             </a>
@@ -106,7 +106,7 @@ export function Hero() {
           {specs.map((s) => (
             <div
               key={s.title}
-              className="flex w-[150px] items-center gap-3 rounded-xl border border-border bg-card/60 px-3 py-2.5 backdrop-blur transition hover:border-primary/50"
+              className="glass flex w-[150px] items-center gap-3 rounded-xl px-3 py-2.5 transition hover:border-primary/50"
             >
               <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary/15 text-primary">
                 <s.icon className="h-4 w-4" />

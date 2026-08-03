@@ -61,7 +61,7 @@ export function SiteFooter() {
               <a
                 key={s.label}
                 href="#"
-                className="flex h-9 w-9 items-center justify-center rounded-lg border border-border text-muted-foreground transition hover:border-primary hover:text-primary"
+                className="glass flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition hover:border-primary hover:text-primary"
                 aria-label={s.label}
               >
                 <SocialIcon path={s.path} />

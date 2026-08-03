@@ -25,7 +25,7 @@ const posts = [
 export function Blog() {
   return (
     <section className="px-3 py-6 sm:px-6">
-      <div className="mx-auto max-w-7xl rounded-2xl border border-border bg-card/40 p-5 sm:p-8">
+      <div className="glass mx-auto max-w-7xl rounded-2xl p-5 sm:p-8">
         <div className="flex items-end justify-between gap-4">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">Latest Insights</p>
@@ -33,7 +33,7 @@ export function Blog() {
           </div>
           <a
             href="#"
-            className="hidden items-center gap-2 rounded-xl border border-border bg-background/60 px-4 py-2.5 text-sm font-semibold transition hover:bg-background sm:flex"
+            className="glass hidden items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition hover:border-primary/50 sm:flex"
           >
             View All Articles <ArrowRight className="h-4 w-4" />
           </a>
@@ -43,7 +43,7 @@ export function Blog() {
           {posts.map((p) => (
             <article
               key={p.title}
-              className="group overflow-hidden rounded-2xl border border-border bg-card transition hover:border-primary/50"
+              className="glass group overflow-hidden rounded-2xl transition hover:border-primary/50"
             >
               <div className="relative h-44 overflow-hidden">
                 <Image

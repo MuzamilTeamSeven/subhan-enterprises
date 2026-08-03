@@ -56,7 +56,7 @@ export function Lifestyle() {
         </div>
 
         {/* CTA card */}
-        <div className="flex flex-col justify-between gap-6 rounded-2xl border border-border bg-card/60 p-6">
+        <div className="glass flex flex-col justify-between gap-6 rounded-2xl p-6">
           <div>
             <h3 className="text-lg font-extrabold text-foreground">Ready To Ride?</h3>
             <p className="mt-2 text-sm leading-relaxed text-muted-foreground">

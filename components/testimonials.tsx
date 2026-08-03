@@ -25,7 +25,7 @@ const testimonials = [
 export function Testimonials() {
   return (
     <section className="px-3 py-6 sm:px-6">
-      <div className="mx-auto max-w-7xl rounded-2xl border border-border bg-card/40 p-5 sm:p-8">
+      <div className="glass mx-auto max-w-7xl rounded-2xl p-5 sm:p-8">
         <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-primary">What Our Riders Say</p>
         <h2 className="mt-2 text-center text-2xl font-extrabold tracking-tight sm:text-3xl">
           Trusted By Hundreds Of Adventurers
@@ -35,7 +35,7 @@ export function Testimonials() {
           {testimonials.map((t) => (
             <figure
               key={t.name}
-              className="relative rounded-2xl border border-border bg-gradient-to-b from-secondary/40 to-card p-6"
+              className="glass-strong relative rounded-2xl p-6"
             >
               <Quote className="absolute right-5 top-5 h-8 w-8 text-primary/25" />
               <div className="flex items-center gap-3">

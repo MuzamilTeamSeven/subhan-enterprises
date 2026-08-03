@@ -44,7 +44,7 @@ export function TopModels() {
 
   return (
     <section id="models" className="px-3 py-6 sm:px-6">
-      <div className="mx-auto max-w-7xl rounded-2xl border border-border bg-card/40 p-5 sm:p-8">
+      <div className="glass mx-auto max-w-7xl rounded-2xl p-5 sm:p-8">
         <div className="flex items-end justify-between gap-4">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">Our Collection</p>
@@ -52,7 +52,7 @@ export function TopModels() {
           </div>
           <a
             href="#"
-            className="hidden items-center gap-2 rounded-xl border border-border bg-background/60 px-4 py-2.5 text-sm font-semibold transition hover:bg-background sm:flex"
+            className="glass hidden items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition hover:border-primary/50 sm:flex"
           >
             View All Models <ArrowRight className="h-4 w-4" />
           </a>
@@ -74,7 +74,7 @@ export function TopModels() {
             {models.map((m) => (
               <article
                 key={m.name}
-                className="group relative w-[270px] shrink-0 snap-start overflow-hidden rounded-2xl border border-border bg-gradient-to-b from-secondary/60 to-card p-4 transition hover:border-primary/50"
+                className="glass group relative w-[270px] shrink-0 snap-start overflow-hidden rounded-2xl p-4 transition hover:border-primary/50"
               >
                 {m.tag && (
                   <span className="absolute left-4 top-4 z-10 rounded-md bg-primary px-2 py-1 text-[10px] font-bold uppercase tracking-wide text-primary-foreground">
@@ -105,7 +105,7 @@ export function TopModels() {
                 <p className="mt-3 text-lg font-extrabold text-primary">{m.price}</p>
                 <a
                   href="#"
-                  className="mt-4 flex items-center justify-between rounded-xl border border-border bg-background/60 px-4 py-2.5 text-sm font-semibold transition hover:border-primary hover:text-primary"
+                  className="glass mt-4 flex items-center justify-between rounded-xl px-4 py-2.5 text-sm font-semibold transition hover:border-primary hover:text-primary"
                 >
                   Explore <ArrowRight className="h-4 w-4" />
                 </a>

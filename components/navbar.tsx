@@ -10,7 +10,7 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 px-3 pt-3 sm:px-6">
-      <div className="mx-auto flex max-w-7xl items-center justify-between rounded-2xl border border-border bg-card/70 px-4 py-3 backdrop-blur-xl sm:px-6">
+      <div className="glass-strong mx-auto flex max-w-7xl items-center justify-between rounded-2xl px-4 py-3 sm:px-6">
         {/* Logo */}
         <a href="#" className="flex items-center gap-2">
           <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/15 text-primary">
@@ -40,7 +40,7 @@ export function Navbar() {
 
         {/* Right badges + CTA */}
         <div className="flex items-center gap-3">
-          <div className="hidden items-center gap-4 rounded-xl border border-border bg-background/60 px-4 py-2 xl:flex">
+          <div className="glass hidden items-center gap-4 rounded-xl px-4 py-2 xl:flex">
             <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
               <MapPin className="h-3.5 w-3.5 text-primary" /> Lahore, Pakistan
             </span>
@@ -67,7 +67,7 @@ export function Navbar() {
 
       {/* Mobile menu */}
       {open && (
-        <div className="mx-auto mt-2 max-w-7xl rounded-2xl border border-border bg-card/95 p-4 backdrop-blur-xl lg:hidden">
+        <div className="glass-strong mx-auto mt-2 max-w-7xl rounded-2xl p-4 lg:hidden">
           <nav className="flex flex-col gap-1">
             {navLinks.map((link, i) => (
               <a

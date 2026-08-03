@@ -11,7 +11,7 @@ const stats = [
 export function Stats() {
   return (
     <section className="px-3 py-10 sm:px-6">
-      <div className="mx-auto grid max-w-7xl grid-cols-2 gap-2 rounded-2xl border border-border bg-card/60 p-3 backdrop-blur sm:grid-cols-3 lg:grid-cols-5">
+      <div className="glass mx-auto grid max-w-7xl grid-cols-2 gap-2 rounded-2xl p-3 sm:grid-cols-3 lg:grid-cols-5">
         {stats.map((s, i) => (
           <div
             key={s.label}
