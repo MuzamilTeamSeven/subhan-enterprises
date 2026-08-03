@@ -175,7 +175,7 @@ export default function WarrantyPage() {
               href="tel:+923121234567"
               className="glass flex items-center justify-center gap-2 rounded-xl px-6 py-3 text-sm font-bold transition hover:border-primary hover:text-primary"
             >
-              <Phone className="h-4 w-4" /> +92 312 1234567
+              <Phone className="h-4 w-4" /> +92 332 4350140
             </a>
           </div>
         </div>

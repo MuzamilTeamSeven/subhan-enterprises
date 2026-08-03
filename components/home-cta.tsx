@@ -41,7 +41,7 @@ export function HomeCta() {
               </span>
               <span>
                 <span className="block text-xs">Call us</span>
-                <span className="font-semibold text-foreground">+92 312 1234567</span>
+                <span className="font-semibold text-foreground">+92 332 4350140</span>
               </span>
             </a>
             <div className="flex items-center gap-3 text-sm text-muted-foreground">
@@ -50,7 +50,7 @@ export function HomeCta() {
               </span>
               <span>
                 <span className="block text-xs">Visit us</span>
-                <span className="font-semibold text-foreground">Gulberg III, Lahore</span>
+                <span className="font-semibold text-foreground">Shop # 36, New Islamia Park, Main LOS Samnabad, Lahore</span>
               </span>
             </div>
           </div>

@@ -54,7 +54,7 @@ export function Navbar() {
         <div className="flex items-center gap-3">
           <div className="glass hidden items-center gap-4 rounded-xl px-4 py-2 xl:flex">
             <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
-              <MapPin className="h-3.5 w-3.5 text-primary" /> Lahore, Pakistan
+              <MapPin className="h-3.5 w-3.5 text-primary" /> Main LOS Samnabad, Lahore
             </span>
             <span className="h-4 w-px bg-border" />
             <span className="flex items-center gap-1.5 text-xs text-muted-foreground">

@@ -27,23 +27,23 @@ const channels = [
   {
     icon: Phone,
     title: "Call Us",
-    value: "+92 312 1234567",
+    value: "+92 332 4350140",
     note: "Mon – Sun, 10AM – 8PM",
     href: "tel:+923121234567",
   },
   {
     icon: MessageCircle,
     title: "WhatsApp",
-    value: "+92 312 1234567",
+    value: "+92 332 4350140",
     note: "Fastest response for quick queries",
     href: "https://wa.me/923121234567",
   },
   {
     icon: Mail,
     title: "Email",
-    value: "info@subhanenterprises.com",
+    value: "naeem.majeed101@gmail.com",
     note: "We reply within 24 hours",
-    href: "mailto:info@subhanenterprises.com",
+    href: "mailto:naeem.majeed101@gmail.com",
   },
 ]
 
@@ -162,7 +162,7 @@ export default function SupportPage() {
                 </li>
                 <li className="flex justify-between">
                   <span>Sunday</span>
-                  <span className="text-foreground">11AM – 6PM</span>
+                  <span className="text-foreground">Always on Call</span>
                 </li>
                 <li className="flex justify-between">
                   <span>WhatsApp</span>
@@ -176,7 +176,7 @@ export default function SupportPage() {
                 <MapPin className="h-5 w-5 text-primary" /> Visit Our Showroom
               </h3>
               <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                Subhan Enterprises, Main Boulevard, Lahore, Pakistan. Walk in to explore our full range of quad bikes
+                Subhan Enterprises, Main Boulevard, Shop # 36, New Islamia Park, Main LOS Samnabad, Lahore. Walk in to explore our full range of quad bikes
                 and speak to our team in person.
               </p>
             </div>

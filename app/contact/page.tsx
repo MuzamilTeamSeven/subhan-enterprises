@@ -15,22 +15,22 @@ const contactCards = [
   {
     icon: Phone,
     title: "Call Us",
-    lines: ["+92 312 1234567", "+92 42 35xxxxxx"],
+    lines: ["+92 332 4350140", "+92 42 35xxxxxx"],
     href: "tel:+923121234567",
     action: "Call now",
   },
   {
     icon: MessageCircle,
     title: "WhatsApp",
-    lines: ["+92 312 1234567", "Quick replies, 7 days a week"],
+    lines: ["+92 332 4350140", "Quick replies, 7 days a week"],
     href: "https://wa.me/923121234567",
     action: "Chat now",
   },
   {
     icon: Mail,
     title: "Email Us",
-    lines: ["info@subhanenterprises.com", "sales@subhanenterprises.com"],
-    href: "mailto:info@subhanenterprises.com",
+    lines: ["naeem.majeed101@gmail.com", "naeem.majeed101@gmail.com"],
+    href: "mailto:naeem.majeed101@gmail.com",
     action: "Send email",
   },
 ]
@@ -38,7 +38,7 @@ const contactCards = [
 const hours = [
   { day: "Monday - Friday", time: "10:00 AM - 8:00 PM" },
   { day: "Saturday", time: "10:00 AM - 8:00 PM" },
-  { day: "Sunday", time: "12:00 PM - 6:00 PM" },
+  { day: "Sunday", time: "Available on Call/WhatsApp" },
 ]
 
 export default function ContactPage() {
@@ -105,7 +105,7 @@ export default function ContactPage() {
                   <MapPin className="h-5 w-5 text-primary" /> Visit Our Showroom
                 </h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                  Main Boulevard, Gulberg III,
+                  Shop # 36, New Islamia Park, Main LOS Samnabad, Lahore
                   <br />
                   Lahore, Punjab, Pakistan
                 </p>
