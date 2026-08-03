@@ -1,0 +1,124 @@
+import Image from "next/image"
+import {
+  ArrowRight,
+  ChevronDown,
+  Cog,
+  Gauge,
+  Mountain,
+  Settings2,
+  ShieldCheck,
+  Star,
+  Zap,
+} from "lucide-react"
+
+const specs = [
+  { icon: Zap, title: "700cc", sub: "Powerful Engine" },
+  { icon: Settings2, title: "4x4", sub: "Drive System" },
+  { icon: Cog, title: "Automatic", sub: "Transmission" },
+  { icon: Gauge, title: "4 Stroke", sub: "Engine" },
+  { icon: Mountain, title: "Off Road", sub: "Built Tough" },
+  { icon: ShieldCheck, title: "Warranty", sub: "1 Year" },
+]
+
+export function Hero() {
+  return (
+    <section className="relative overflow-hidden px-3 pt-8 sm:px-6">
+      {/* ambient red glow */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 mx-auto h-[600px] max-w-4xl rounded-full bg-primary/10 blur-[120px]" />
+
+      <div className="mx-auto grid max-w-7xl items-center gap-8 lg:grid-cols-[1fr_1.1fr_auto]">
+        {/* Left copy */}
+        <div className="order-2 lg:order-1">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
+            Pakistan&apos;s Premium ATV Dealer
+          </p>
+          <h1 className="mt-4 text-5xl font-extrabold leading-[0.95] tracking-tight text-balance sm:text-6xl">
+            CONQUER
+            <br />
+            EVERY
+            <br />
+            <span className="text-primary">TERRAIN.</span>
+          </h1>
+          <p className="mt-5 max-w-md leading-relaxed text-muted-foreground">
+            Experience unmatched power, control, and freedom with our premium range of Quad Bikes.
+          </p>
+
+          <div className="mt-7 flex flex-wrap items-center gap-3">
+            <a
+              href="#"
+              className="flex items-center gap-2 rounded-xl bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/25 transition hover:brightness-110"
+            >
+              Get Quote Now <ArrowRight className="h-4 w-4" />
+            </a>
+            <a
+              href="#models"
+              className="flex items-center gap-2 rounded-xl border border-border bg-card/60 px-6 py-3.5 text-sm font-semibold text-foreground transition hover:bg-card"
+            >
+              Explore Models <ArrowRight className="h-4 w-4" />
+            </a>
+          </div>
+
+          <div className="mt-8 flex items-center gap-4">
+            <div className="flex -space-x-3">
+              {["usman", "hamza", "talal"].map((a) => (
+                <Image
+                  key={a}
+                  src={`/avatars/${a}.png`}
+                  alt=""
+                  width={40}
+                  height={40}
+                  className="h-10 w-10 rounded-full border-2 border-background object-cover"
+                />
+              ))}
+            </div>
+            <div>
+              <p className="text-sm font-bold text-foreground">500+ Happy Riders</p>
+              <div className="flex items-center gap-1 text-primary">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <Star key={i} className="h-3.5 w-3.5 fill-current" />
+                ))}
+                <span className="ml-1 text-xs text-muted-foreground">4.9/5</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Center image with ring */}
+        <div className="relative order-1 flex items-center justify-center lg:order-2">
+          <div className="absolute aspect-square w-[85%] rounded-full border-2 border-primary/40 shadow-[0_0_80px_-10px] shadow-primary/40" />
+          <div className="absolute aspect-square w-[70%] rounded-full bg-primary/10 blur-3xl" />
+          <Image
+            src="/atvs/hero-atv.png"
+            alt="Premium black and red ATV quad bike"
+            width={760}
+            height={620}
+            priority
+            className="relative z-10 w-full max-w-xl drop-shadow-2xl"
+          />
+          <div className="absolute -bottom-2 left-1/2 z-20 flex -translate-x-1/2 flex-col items-center text-muted-foreground">
+            <ChevronDown className="h-4 w-4 animate-bounce" />
+            <span className="text-[10px] uppercase tracking-widest">Scroll Down</span>
+          </div>
+        </div>
+
+        {/* Right spec rail */}
+        <div className="order-3 flex flex-row flex-wrap justify-center gap-2.5 lg:flex-col">
+          {specs.map((s) => (
+            <div
+              key={s.title}
+              className="flex w-[150px] items-center gap-3 rounded-xl border border-border bg-card/60 px-3 py-2.5 backdrop-blur transition hover:border-primary/50"
+            >
+              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary/15 text-primary">
+                <s.icon className="h-4 w-4" />
+              </span>
+              <span className="flex flex-col leading-tight">
+                <span className="text-sm font-bold text-foreground">{s.title}</span>
+                <span className="text-[11px] text-muted-foreground">{s.sub}</span>
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
