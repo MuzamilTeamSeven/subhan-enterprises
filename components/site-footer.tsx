@@ -1,3 +1,4 @@
+import Link from "next/link"
 import { Bike, Clock, Heart, Mail, MapPin, Phone } from "lucide-react"
 
 const socials = [
@@ -26,15 +27,32 @@ function SocialIcon({ path }: { path: string }) {
 const columns = [
   {
     title: "Quick Links",
-    links: ["Home", "Products", "About Us", "Gallery", "Contact Us"],
+    links: [
+      { label: "Home", href: "/" },
+      { label: "Products", href: "/products" },
+      { label: "FAQ", href: "/faq" },
+      { label: "Contact Us", href: "/contact" },
+    ],
   },
   {
     title: "Our Products",
-    links: ["All Quad Bikes", "New Arrivals", "Best Sellers", "Accessories", "Parts & Gear"],
+    links: [
+      { label: "All Quad Bikes", href: "/products?category=atv" },
+      { label: "Accessories", href: "/products?category=accessories" },
+      { label: "Parts & Gear", href: "/products?category=parts" },
+      { label: "New Arrivals", href: "/products" },
+      { label: "Best Sellers", href: "/products" },
+    ],
   },
   {
     title: "Customer Care",
-    links: ["Shipping & Delivery", "Warranty", "Returns", "FAQs", "Support"],
+    links: [
+      { label: "FAQs", href: "/faq" },
+      { label: "Warranty", href: "/faq" },
+      { label: "Shipping & Delivery", href: "/faq" },
+      { label: "Support", href: "/contact" },
+      { label: "Get a Quote", href: "/contact" },
+    ],
   },
 ]
 
@@ -76,10 +94,10 @@ export function SiteFooter() {
             <h4 className="text-sm font-bold text-foreground">{c.title}</h4>
             <ul className="mt-4 space-y-2.5">
               {c.links.map((l) => (
-                <li key={l}>
-                  <a href="#" className="text-sm text-muted-foreground transition hover:text-primary">
-                    {l}
-                  </a>
+                <li key={l.label}>
+                  <Link href={l.href} className="text-sm text-muted-foreground transition hover:text-primary">
+                    {l.label}
+                  </Link>
                 </li>
               ))}
             </ul>

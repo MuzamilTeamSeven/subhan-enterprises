@@ -2,6 +2,7 @@
 
 import { useRef } from "react"
 import Image from "next/image"
+import Link from "next/link"
 import { ArrowRight, ChevronLeft, ChevronRight, Cog, Gauge, Settings2 } from "lucide-react"
 
 const models = [
@@ -50,12 +51,12 @@ export function TopModels() {
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">Our Collection</p>
             <h2 className="mt-2 text-2xl font-extrabold tracking-tight sm:text-3xl">Explore Our Top Models</h2>
           </div>
-          <a
-            href="#"
+          <Link
+            href="/products?category=atv"
             className="glass hidden items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition hover:border-primary/50 sm:flex"
           >
             View All Models <ArrowRight className="h-4 w-4" />
-          </a>
+          </Link>
         </div>
 
         <div className="relative mt-6">
@@ -103,12 +104,12 @@ export function TopModels() {
                   </span>
                 </div>
                 <p className="mt-3 text-lg font-extrabold text-primary">{m.price}</p>
-                <a
-                  href="#"
+                <Link
+                  href="/products?category=atv"
                   className="glass mt-4 flex items-center justify-between rounded-xl px-4 py-2.5 text-sm font-semibold transition hover:border-primary hover:text-primary"
                 >
                   Explore <ArrowRight className="h-4 w-4" />
-                </a>
+                </Link>
               </article>
             ))}
           </div>

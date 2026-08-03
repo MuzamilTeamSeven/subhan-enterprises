@@ -7,7 +7,7 @@ import { Lifestyle } from "@/components/lifestyle"
 import { Testimonials } from "@/components/testimonials"
 import { Brands } from "@/components/brands"
 import { Blog } from "@/components/blog"
-import { ContactQuote } from "@/components/contact-quote"
+import { HomeCta } from "@/components/home-cta"
 import { SiteFooter } from "@/components/site-footer"
 
 export default function Page() {
@@ -22,7 +22,7 @@ export default function Page() {
       <Testimonials />
       <Brands />
       <Blog />
-      <ContactQuote />
+      <HomeCta />
       <SiteFooter />
     </main>
   )
