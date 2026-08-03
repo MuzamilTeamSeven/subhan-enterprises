@@ -41,7 +41,7 @@ export function HomeCta() {
               </span>
               <span>
                 <span className="block text-xs">Call us</span>
-                <span className="font-semibold text-foreground">+92 332 4350140</span>
+                <span className="font-semibold text-foreground">+92 312 1234567</span>
               </span>
             </a>
             <div className="flex items-center gap-3 text-sm text-muted-foreground">

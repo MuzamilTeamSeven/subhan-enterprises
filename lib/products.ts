@@ -186,3 +186,22 @@ export const products: Product[] = [
 export function formatPrice(value: number) {
   return "PKR " + value.toLocaleString("en-PK")
 }
+
+export function getProductById(id: string): Product | undefined {
+  return products.find((p) => p.id === id)
+}
+
+export function getRelatedProducts(product: Product, limit = 4): Product[] {
+  return products.filter((p) => p.category === product.category && p.id !== product.id).slice(0, limit)
+}
+
+export function getProductDescription(product: Product): string {
+  const specs = product.specs.join(", ")
+  if (product.category === "atv") {
+    return `The ${product.name} by ${product.brand} is built for Pakistan's toughest terrain. Delivering ${specs} performance, it combines raw power with confident control for both trail riders and serious off-road adventurers. Every unit is 100% original, directly imported, and backed by full after-sales support from Subhan Enterprises.`
+  }
+  if (product.category === "accessories") {
+    return `The ${product.name} from ${product.brand} is a rider essential engineered for safety and comfort on every ride. Featuring ${specs}, it is designed to keep you protected and confident whether you are on the trail or the track.`
+  }
+  return `The ${product.name} by ${product.brand} is a genuine replacement part built to keep your quad bike running at peak performance. Specifications include ${specs}, ensuring reliable fitment and long-lasting durability.`
+}

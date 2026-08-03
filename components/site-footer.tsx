@@ -37,20 +37,20 @@ const columns = [
   {
     title: "Our Products",
     links: [
-      { label: "All Quad Bikes", href: "/products?category=atv" },
-      { label: "Accessories", href: "/products?category=accessories" },
-      { label: "Parts & Gear", href: "/products?category=parts" },
-      { label: "New Arrivals", href: "/products" },
-      { label: "Best Sellers", href: "/products" },
+      { label: "Raptor 700R", href: "/products/raptor-700r" },
+      { label: "CFMOTO 520L", href: "/products/cfmoto-520l" },
+      { label: "Can-Am Outlander", href: "/products/can-am-outlander" },
+      { label: "Linhai LH 400", href: "/products/linhai-lh400" },
+      { label: "View All Models", href: "/products?category=atv" },
     ],
   },
   {
     title: "Customer Care",
     links: [
       { label: "FAQs", href: "/faq" },
-      { label: "Warranty", href: "/faq" },
-      { label: "Shipping & Delivery", href: "/faq" },
-      { label: "Support", href: "/contact" },
+      { label: "Warranty", href: "/warranty" },
+      { label: "Shipping & Delivery", href: "/shipping" },
+      { label: "Support", href: "/support" },
       { label: "Get a Quote", href: "/contact" },
     ],
   },
@@ -109,13 +109,14 @@ export function SiteFooter() {
           <h4 className="text-sm font-bold text-foreground">Contact Info</h4>
           <ul className="mt-4 space-y-3 text-sm text-muted-foreground">
             <li className="flex items-center gap-2.5">
-              <MapPin className="h-4 w-4 shrink-0 text-primary" /> Shop # 36, New Islamia Park Main LOS Samanabad Lahore
+              <MapPin className="h-4 w-4 shrink-0 text-primary" /> Lahore, Pakistan
             </li>
             <li className="flex items-center gap-2.5">
-              <Phone className="h-4 w-4 shrink-0 text-primary" /> +92 332 4350140
+              <Phone className="h-4 w-4 shrink-0 text-primary" /> +92 312 1234567
             </li>
             <li className="flex items-center gap-2.5">
-              <Mail className="h-4 w-4 shrink-0 text-primary" /> naeem.majeed101@gmail.com            </li>
+              <Mail className="h-4 w-4 shrink-0 text-primary" /> info@subhanenterprises.com
+            </li>
             <li className="flex items-center gap-2.5">
               <Clock className="h-4 w-4 shrink-0 text-primary" /> Mon - Sun: 10AM - 8PM
             </li>

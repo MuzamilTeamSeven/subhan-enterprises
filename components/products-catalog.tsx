@@ -255,7 +255,7 @@ export function ProductsCatalog({ initialCategory = "all" }: { initialCategory?:
                         Out of Stock
                       </span>
                     )}
-                    <div className="flex h-44 items-center justify-center">
+                    <Link href={`/products/${p.id}`} className="flex h-44 items-center justify-center">
                       <Image
                         src={p.image || "/placeholder.svg"}
                         alt={p.name}
@@ -263,11 +263,15 @@ export function ProductsCatalog({ initialCategory = "all" }: { initialCategory?:
                         height={180}
                         className="max-h-full w-auto object-contain transition group-hover:scale-105"
                       />
-                    </div>
+                    </Link>
                     <span className="mt-3 text-[11px] font-semibold uppercase tracking-wide text-primary">
                       {categoryLabels[p.category]}
                     </span>
-                    <h3 className="mt-1 text-base font-bold text-foreground">{p.name}</h3>
+                    <Link href={`/products/${p.id}`}>
+                      <h3 className="mt-1 text-base font-bold text-foreground transition hover:text-primary">
+                        {p.name}
+                      </h3>
+                    </Link>
                     <p className="text-xs text-muted-foreground">{p.brand}</p>
                     <div className="mt-3 flex flex-wrap gap-1.5">
                       {p.specs.map((s) => (
@@ -278,10 +282,10 @@ export function ProductsCatalog({ initialCategory = "all" }: { initialCategory?:
                     </div>
                     <p className="mt-3 text-lg font-extrabold text-primary">{formatPrice(p.price)}</p>
                     <Link
-                      href="/contact"
+                      href={`/products/${p.id}`}
                       className="glass mt-4 flex items-center justify-between rounded-xl px-4 py-2.5 text-sm font-semibold transition hover:border-primary hover:text-primary"
                     >
-                      Enquire Now <ArrowRight className="h-4 w-4" />
+                      View Details <ArrowRight className="h-4 w-4" />
                     </Link>
                   </article>
                 ))}

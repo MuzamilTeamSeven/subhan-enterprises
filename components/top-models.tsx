@@ -7,6 +7,7 @@ import { ArrowRight, ChevronLeft, ChevronRight, Cog, Gauge, Settings2 } from "lu
 
 const models = [
   {
+    id: "raptor-700r",
     name: "RAPTOR 700R",
     image: "/atvs/raptor-700r.png",
     tag: "BEST SELLER",
@@ -14,6 +15,7 @@ const models = [
     price: "PKR 2,850,000",
   },
   {
+    id: "cfmoto-520l",
     name: "CFMOTO 520L",
     image: "/atvs/cfmoto-520l.png",
     tag: "NEW ARRIVAL",
@@ -21,6 +23,7 @@ const models = [
     price: "PKR 1,950,000",
   },
   {
+    id: "can-am-outlander",
     name: "CAN-AM OUTLANDER",
     image: "/atvs/can-am-outlander.png",
     tag: null,
@@ -28,6 +31,7 @@ const models = [
     price: "PKR 2,450,000",
   },
   {
+    id: "linhai-lh400",
     name: "LINHAI LH 400",
     image: "/atvs/linhai-lh400.png",
     tag: null,
@@ -36,48 +40,72 @@ const models = [
   },
 ]
 
+const AUTOPLAY_MS = 3500
+
 export function TopModels() {
   const scroller = useRef<HTMLDivElement>(null)
   const [active, setActive] = useState(0)
-  const [atStart, setAtStart] = useState(true)
-  const [atEnd, setAtEnd] = useState(false)
+  const [paused, setPaused] = useState(false)
 
-  const updateState = useCallback(() => {
+  // Scroll to a given card index
+  const goTo = useCallback((index: number) => {
     const el = scroller.current
     if (!el) return
-    const { scrollLeft, scrollWidth, clientWidth } = el
-    setAtStart(scrollLeft <= 4)
-    setAtEnd(scrollLeft + clientWidth >= scrollWidth - 4)
-    const card = el.firstElementChild as HTMLElement | null
-    const step = card ? card.offsetWidth + 16 : 286
-    setActive(Math.round(scrollLeft / step))
+    const card = el.children[index] as HTMLElement | undefined
+    if (!card) return
+    el.scrollTo({ left: card.offsetLeft - el.offsetLeft, behavior: "smooth" })
+    setActive(index)
   }, [])
 
+  const step = useCallback(
+    (dir: number) => {
+      const next = (active + dir + models.length) % models.length
+      goTo(next)
+    },
+    [active, goTo],
+  )
+
+  // Real-time autoplay — advances the carousel automatically, pauses on hover/focus
   useEffect(() => {
-    updateState()
-    window.addEventListener("resize", updateState)
-    return () => window.removeEventListener("resize", updateState)
-  }, [updateState])
+    if (paused) return
+    const timer = setInterval(() => {
+      setActive((prev) => {
+        const next = (prev + 1) % models.length
+        const el = scroller.current
+        const card = el?.children[next] as HTMLElement | undefined
+        if (el && card) el.scrollTo({ left: card.offsetLeft - el.offsetLeft, behavior: "smooth" })
+        return next
+      })
+    }, AUTOPLAY_MS)
+    return () => clearInterval(timer)
+  }, [paused])
 
-  const scroll = (dir: number) => {
+  // Keep the active dot in sync when the user scrolls manually
+  const onScroll = useCallback(() => {
     const el = scroller.current
     if (!el) return
-    const card = el.firstElementChild as HTMLElement | null
-    const step = card ? card.offsetWidth + 16 : 320
-    el.scrollBy({ left: dir * step, behavior: "smooth" })
-  }
-
-  const scrollTo = (index: number) => {
-    const el = scroller.current
-    if (!el) return
-    const card = el.firstElementChild as HTMLElement | null
-    const step = card ? card.offsetWidth + 16 : 320
-    el.scrollTo({ left: index * step, behavior: "smooth" })
-  }
+    const children = Array.from(el.children) as HTMLElement[]
+    const center = el.scrollLeft + el.clientWidth / 2
+    let closest = 0
+    let min = Infinity
+    children.forEach((c, i) => {
+      const cardCenter = c.offsetLeft - el.offsetLeft + c.clientWidth / 2
+      const dist = Math.abs(cardCenter - center)
+      if (dist < min) {
+        min = dist
+        closest = i
+      }
+    })
+    setActive(closest)
+  }, [])
 
   return (
     <section id="models" className="px-3 py-6 sm:px-6">
-      <div className="glass mx-auto max-w-7xl rounded-2xl p-5 sm:p-8">
+      <div
+        className="glass mx-auto max-w-7xl rounded-2xl p-5 sm:p-8"
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
+      >
         <div className="flex items-end justify-between gap-4">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">Our Collection</p>
@@ -93,7 +121,7 @@ export function TopModels() {
 
         <div className="relative mt-6">
           <button
-            onClick={() => scroll(-1)}
+            onClick={() => step(-1)}
             className="absolute -left-3 top-1/2 z-10 hidden h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-card text-foreground transition hover:border-primary hover:text-primary lg:flex"
             aria-label="Previous"
           >
@@ -102,11 +130,12 @@ export function TopModels() {
 
           <div
             ref={scroller}
-            className="flex snap-x gap-4 overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+            onScroll={onScroll}
+            className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
           >
             {models.map((m) => (
               <article
-                key={m.name}
+                key={m.id}
                 className="glass group relative w-[270px] shrink-0 snap-start overflow-hidden rounded-2xl p-4 transition hover:border-primary/50"
               >
                 {m.tag && (
@@ -137,7 +166,7 @@ export function TopModels() {
                 </div>
                 <p className="mt-3 text-lg font-extrabold text-primary">{m.price}</p>
                 <Link
-                  href="/products?category=atv"
+                  href={`/products/${m.id}`}
                   className="glass mt-4 flex items-center justify-between rounded-xl px-4 py-2.5 text-sm font-semibold transition hover:border-primary hover:text-primary"
                 >
                   Explore <ArrowRight className="h-4 w-4" />
@@ -147,7 +176,7 @@ export function TopModels() {
           </div>
 
           <button
-            onClick={() => scroll(1)}
+            onClick={() => step(1)}
             className="absolute -right-3 top-1/2 z-10 hidden h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-card text-foreground transition hover:border-primary hover:text-primary lg:flex"
             aria-label="Next"
           >
@@ -156,9 +185,16 @@ export function TopModels() {
         </div>
 
         <div className="mt-5 flex justify-center gap-2">
-          <span className="h-2 w-6 rounded-full bg-primary" />
-          <span className="h-2 w-2 rounded-full bg-border" />
-          <span className="h-2 w-2 rounded-full bg-border" />
+          {models.map((m, i) => (
+            <button
+              key={m.id}
+              onClick={() => goTo(i)}
+              aria-label={`Go to ${m.name}`}
+              className={`h-2 rounded-full transition-all ${
+                i === active ? "w-6 bg-primary" : "w-2 bg-border hover:bg-primary/50"
+              }`}
+            />
+          ))}
         </div>
       </div>
     </section>
