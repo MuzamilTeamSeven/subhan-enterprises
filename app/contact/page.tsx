@@ -15,22 +15,22 @@ const contactCards = [
   {
     icon: Phone,
     title: "Call Us",
-    lines: ["+92 312 1234567", "+92 42 35xxxxxx"],
+    lines: ["+92 332 4350140", "+92 42 35xxxxxx"],
     href: "tel:+923121234567",
     action: "Call now",
   },
   {
     icon: MessageCircle,
     title: "WhatsApp",
-    lines: ["+92 312 1234567", "Quick replies, 7 days a week"],
+    lines: ["+92 332 4350140", "Quick replies, 7 days a week"],
     href: "https://wa.me/923121234567",
     action: "Chat now",
   },
   {
     icon: Mail,
     title: "Email Us",
-    lines: ["info@subhanenterprises.com", "sales@subhanenterprises.com"],
-    href: "mailto:info@subhanenterprises.com",
+    lines: ["inaeem.majeed101@gmail.com", "naeem.majeed101@gmail.com"],
+    href: "mailto:inaeem.majeed101@gmail.com",
     action: "Send email",
   },
 ]
@@ -38,7 +38,7 @@ const contactCards = [
 const hours = [
   { day: "Monday - Friday", time: "10:00 AM - 8:00 PM" },
   { day: "Saturday", time: "10:00 AM - 8:00 PM" },
-  { day: "Sunday", time: "12:00 PM - 6:00 PM" },
+  { day: "Sunday", time: "Avaiable on Call" },
 ]
 
 export default function ContactPage() {
@@ -128,8 +128,8 @@ export default function ContactPage() {
               {/* Map */}
               <div className="glass overflow-hidden rounded-2xl">
                 <iframe
-                  title="Subhan Enterprises location on map"
-                  src="https://www.openstreetmap.org/export/embed.html?bbox=74.3287%2C31.5100%2C74.3687%2C31.5400&layer=mapnik&marker=31.5250%2C74.3487"
+                  title="Subhan Enterprises ATV Quad Bikes Location"
+                  src="https://www.openstreetmap.org/export/embed.html?bbox=74.2960%2C31.5490%2C74.3360%2C31.5690&layer=mapnik&marker=31.5590%2C74.3160"
                   className="h-64 w-full border-0 grayscale"
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"

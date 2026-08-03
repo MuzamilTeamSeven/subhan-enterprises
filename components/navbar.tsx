@@ -1,9 +1,10 @@
 "use client"
 
 import { useState } from "react"
+import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { ArrowRight, Bike, MapPin, Menu, Truck, X } from "lucide-react"
+import { ArrowRight, MapPin, Menu, Truck, X } from "lucide-react"
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -23,8 +24,8 @@ export function Navbar() {
       <div className="glass-strong mx-auto flex max-w-7xl items-center justify-between rounded-2xl px-4 py-3 sm:px-6">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
-          <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/15 text-primary">
-            <Bike className="h-5 w-5" />
+          <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/15">
+            <Image src="/logo-quad.png" alt="Subhan Enterprises quad bike logo" width={28} height={28} className="h-7 w-7 object-contain" priority />
           </span>
           <span className="flex flex-col leading-none">
             <span className="text-sm font-extrabold tracking-wide text-foreground">SUBHAN</span>
@@ -54,7 +55,7 @@ export function Navbar() {
         <div className="flex items-center gap-3">
           <div className="glass hidden items-center gap-4 rounded-xl px-4 py-2 xl:flex">
             <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
-              <MapPin className="h-3.5 w-3.5 text-primary" /> Lahore, Pakistan
+              <MapPin className="h-3.5 w-3.5 text-primary" /> Main LOS Samanabad Lahore
             </span>
             <span className="h-4 w-px bg-border" />
             <span className="flex items-center gap-1.5 text-xs text-muted-foreground">

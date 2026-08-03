@@ -109,14 +109,13 @@ export function SiteFooter() {
           <h4 className="text-sm font-bold text-foreground">Contact Info</h4>
           <ul className="mt-4 space-y-3 text-sm text-muted-foreground">
             <li className="flex items-center gap-2.5">
-              <MapPin className="h-4 w-4 shrink-0 text-primary" /> Lahore, Pakistan
+              <MapPin className="h-4 w-4 shrink-0 text-primary" /> Shop # 36, New Islamia Park Main LOS Samanabad Lahore
             </li>
             <li className="flex items-center gap-2.5">
-              <Phone className="h-4 w-4 shrink-0 text-primary" /> +92 312 1234567
+              <Phone className="h-4 w-4 shrink-0 text-primary" /> +92 332 4350140
             </li>
             <li className="flex items-center gap-2.5">
-              <Mail className="h-4 w-4 shrink-0 text-primary" /> info@subhanenterprises.com
-            </li>
+              <Mail className="h-4 w-4 shrink-0 text-primary" /> naeem.majeed101@gmail.com            </li>
             <li className="flex items-center gap-2.5">
               <Clock className="h-4 w-4 shrink-0 text-primary" /> Mon - Sun: 10AM - 8PM
             </li>

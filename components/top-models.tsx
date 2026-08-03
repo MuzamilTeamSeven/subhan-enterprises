@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight, ChevronLeft, ChevronRight, Cog, Gauge, Settings2 } from "lucide-react"
@@ -38,9 +38,41 @@ const models = [
 
 export function TopModels() {
   const scroller = useRef<HTMLDivElement>(null)
+  const [active, setActive] = useState(0)
+  const [atStart, setAtStart] = useState(true)
+  const [atEnd, setAtEnd] = useState(false)
+
+  const updateState = useCallback(() => {
+    const el = scroller.current
+    if (!el) return
+    const { scrollLeft, scrollWidth, clientWidth } = el
+    setAtStart(scrollLeft <= 4)
+    setAtEnd(scrollLeft + clientWidth >= scrollWidth - 4)
+    const card = el.firstElementChild as HTMLElement | null
+    const step = card ? card.offsetWidth + 16 : 286
+    setActive(Math.round(scrollLeft / step))
+  }, [])
+
+  useEffect(() => {
+    updateState()
+    window.addEventListener("resize", updateState)
+    return () => window.removeEventListener("resize", updateState)
+  }, [updateState])
 
   const scroll = (dir: number) => {
-    scroller.current?.scrollBy({ left: dir * 320, behavior: "smooth" })
+    const el = scroller.current
+    if (!el) return
+    const card = el.firstElementChild as HTMLElement | null
+    const step = card ? card.offsetWidth + 16 : 320
+    el.scrollBy({ left: dir * step, behavior: "smooth" })
+  }
+
+  const scrollTo = (index: number) => {
+    const el = scroller.current
+    if (!el) return
+    const card = el.firstElementChild as HTMLElement | null
+    const step = card ? card.offsetWidth + 16 : 320
+    el.scrollTo({ left: index * step, behavior: "smooth" })
   }
 
   return (
