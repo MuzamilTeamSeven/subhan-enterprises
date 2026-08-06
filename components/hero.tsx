@@ -76,16 +76,16 @@ export function Hero() {
             Experience unmatched power, control, and freedom with our premium range of Quad Bikes.
           </p>
 
-          <div className="mt-7 flex flex-wrap items-center gap-3">
+          <div className="mt-7 flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
             <a
               href="/contact"
-              className="btn-primary flex items-center gap-2 rounded-xl px-6 py-3.5 text-sm font-semibold"
+              className="btn-primary flex items-center justify-center gap-2 rounded-xl px-6 py-3.5 text-sm font-semibold w-full sm:w-auto"
             >
               Get Quote Now <ArrowRight className="h-4 w-4" />
             </a>
             <a
               href="/products?category=atv"
-              className="btn-glass flex items-center gap-2 rounded-xl px-6 py-3.5 text-sm font-semibold text-foreground"
+              className="btn-glass flex items-center justify-center gap-2 rounded-xl px-6 py-3.5 text-sm font-semibold text-foreground w-full sm:w-auto"
             >
               Explore Models <ArrowRight className="h-4 w-4" />
             </a>

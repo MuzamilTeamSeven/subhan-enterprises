@@ -1,8 +1,9 @@
-import { Bike, MapPin, ShieldCheck, ThumbsUp, Users } from "lucide-react"
+import { MapPin, ShieldCheck, ThumbsUp, Users } from "lucide-react"
+import { QuadBikeIcon } from "@/components/ui/quad-bike-icon"
 
 const stats = [
   { icon: Users, value: "500+", label: "Happy Riders" },
-  { icon: Bike, value: "50+", label: "Models Available" },
+  { icon: QuadBikeIcon, value: "50+", label: "Models Available" },
   { icon: MapPin, value: "5+", label: "Cities Covered" },
   { icon: ShieldCheck, value: "10+", label: "Years of Trust" },
   { icon: ThumbsUp, value: "100%", label: "Customer Satisfaction" },

@@ -4,99 +4,91 @@ import { useCallback, useEffect, useRef, useState } from "react"
 import Link from "next/link"
 import { ArrowRight, ChevronLeft, ChevronRight, Cog, Gauge, Settings2 } from "lucide-react"
 import { OptimizedImage } from "@/components/ui/optimized-image"
+import { products, formatPrice } from "@/lib/products"
 
-const models = [
-  {
-    id: "raptor-700r",
-    name: "RAPTOR 700R",
-    image: "/atvs/raptor-700r.png",
-    tag: "BEST SELLER",
-    cc: "700cc",
-    price: "PKR 2,850,000",
-  },
-  {
-    id: "cfmoto-520l",
-    name: "CFMOTO 520L",
-    image: "/atvs/cfmoto-520l.png",
-    tag: "NEW ARRIVAL",
-    cc: "520cc",
-    price: "PKR 1,950,000",
-  },
-  {
-    id: "can-am-outlander",
-    name: "CAN-AM OUTLANDER",
-    image: "/atvs/can-am-outlander.png",
-    tag: null,
-    cc: "650cc",
-    price: "PKR 2,450,000",
-  },
-  {
-    id: "linhai-lh400",
-    name: "LINHAI LH 400",
-    image: "/atvs/linhai-lh400.png",
-    tag: null,
-    cc: "400cc",
-    price: "PKR 1,350,000",
-  },
-]
+const models = products
+  .filter((p) => p.category === "atv")
+  .map((p) => ({
+    id: p.id,
+    name: p.name.toUpperCase(),
+    image: p.image,
+    tag: p.tag ? p.tag.toUpperCase() : null,
+    cc: p.specs[0] || "500cc",
+    drive: p.specs[1] || "4x4",
+    engine: p.specs[2] || "4 Stroke",
+    price: formatPrice(p.price),
+  }))
 
-const AUTOPLAY_MS = 2200
+const AUTOPLAY_MS = 2800
+
+function scrollToIndex(el: HTMLDivElement, index: number) {
+  const card = el.children[index] as HTMLElement | undefined
+  if (!card) return
+  const scrollerRect = el.getBoundingClientRect()
+  const cardRect = card.getBoundingClientRect()
+  el.scrollTo({ left: cardRect.left - scrollerRect.left + el.scrollLeft, behavior: "smooth" })
+}
 
 export function TopModels() {
   const scroller = useRef<HTMLDivElement>(null)
+  const activeRef = useRef(0)
+  const pausedRef = useRef(false)
+  const scrollRafRef = useRef<number | null>(null)
   const [active, setActive] = useState(0)
   const [paused, setPaused] = useState(false)
 
-  // Scroll to a given card index
   const goTo = useCallback((index: number) => {
     const el = scroller.current
     if (!el) return
-    const card = el.children[index] as HTMLElement | undefined
-    if (!card) return
-    el.scrollTo({ left: card.offsetLeft - el.offsetLeft, behavior: "smooth" })
+    activeRef.current = index
     setActive(index)
+    scrollToIndex(el, index)
   }, [])
 
-  const step = useCallback(
-    (dir: number) => {
-      const next = (active + dir + models.length) % models.length
-      goTo(next)
-    },
-    [active, goTo],
-  )
+  const step = useCallback((dir: number) => {
+    const next = (activeRef.current + dir + models.length) % models.length
+    goTo(next)
+  }, [goTo])
 
-  // Real-time autoplay — advances the carousel automatically, pauses on hover/focus
+  // Autoplay — uses ref to avoid stale closure over `active`
   useEffect(() => {
-    if (paused) return
-    const timer = setInterval(() => {
-      setActive((prev) => {
-        const next = (prev + 1) % models.length
-        const el = scroller.current
-        const card = el?.children[next] as HTMLElement | undefined
-        if (el && card) el.scrollTo({ left: card.offsetLeft - el.offsetLeft, behavior: "smooth" })
-        return next
-      })
-    }, AUTOPLAY_MS)
-    return () => clearInterval(timer)
+    pausedRef.current = paused
   }, [paused])
 
-  // Keep the active dot in sync when the user scrolls manually
+  useEffect(() => {
+    const timer = setInterval(() => {
+      if (pausedRef.current) return
+      const el = scroller.current
+      if (!el) return
+      const next = (activeRef.current + 1) % models.length
+      activeRef.current = next
+      setActive(next)
+      scrollToIndex(el, next)
+    }, AUTOPLAY_MS)
+    return () => clearInterval(timer)
+  }, [])
+
+  // Throttled scroll listener — debounced via rAF to avoid layout thrash
   const onScroll = useCallback(() => {
-    const el = scroller.current
-    if (!el) return
-    const children = Array.from(el.children) as HTMLElement[]
-    const center = el.scrollLeft + el.clientWidth / 2
-    let closest = 0
-    let min = Infinity
-    children.forEach((c, i) => {
-      const cardCenter = c.offsetLeft - el.offsetLeft + c.clientWidth / 2
-      const dist = Math.abs(cardCenter - center)
-      if (dist < min) {
-        min = dist
-        closest = i
+    if (scrollRafRef.current !== null) return
+    scrollRafRef.current = requestAnimationFrame(() => {
+      scrollRafRef.current = null
+      const el = scroller.current
+      if (!el) return
+      const children = Array.from(el.children) as HTMLElement[]
+      const scrollerCenter = el.getBoundingClientRect().left + el.clientWidth / 2
+      let closest = 0
+      let min = Infinity
+      children.forEach((c, i) => {
+        const rect = c.getBoundingClientRect()
+        const dist = Math.abs(rect.left + rect.width / 2 - scrollerCenter)
+        if (dist < min) { min = dist; closest = i }
+      })
+      if (closest !== activeRef.current) {
+        activeRef.current = closest
+        setActive(closest)
       }
     })
-    setActive(closest)
   }, [])
 
   return (
@@ -131,12 +123,12 @@ export function TopModels() {
           <div
             ref={scroller}
             onScroll={onScroll}
-            className="scroll-smooth flex snap-x snap-mandatory gap-4 overflow-x-auto pt-2 pb-2 -mt-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+            className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 pt-2 -mt-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
           >
             {models.map((m) => (
               <article
                 key={m.id}
-                className="glass-card glass-card-hover group relative w-[270px] shrink-0 snap-start overflow-hidden rounded-2xl p-4"
+                className="glass-card glass-card-hover group relative w-[270px] shrink-0 snap-start overflow-hidden rounded-2xl p-4 flex flex-col"
               >
                 {m.tag && (
                   <span className="absolute left-4 top-4 z-10 rounded-md bg-primary px-2 py-1 text-[10px] font-bold uppercase tracking-wide text-primary-foreground">
@@ -159,16 +151,16 @@ export function TopModels() {
                     <Gauge className="h-3.5 w-3.5 text-primary" /> {m.cc}
                   </span>
                   <span className="flex items-center gap-1">
-                    <Settings2 className="h-3.5 w-3.5 text-primary" /> 4x4
+                    <Settings2 className="h-3.5 w-3.5 text-primary" /> {m.drive}
                   </span>
                   <span className="flex items-center gap-1">
-                    <Cog className="h-3.5 w-3.5 text-primary" /> 4 Stroke
+                    <Cog className="h-3.5 w-3.5 text-primary" /> {m.engine}
                   </span>
                 </div>
                 <p className="mt-3 text-lg font-extrabold text-primary">{m.price}</p>
                 <Link
                   href={`/products/${m.id}`}
-                  className="btn-glass mt-4 flex items-center justify-between rounded-xl px-4 py-2.5 text-sm font-semibold"
+                  className="btn-glass mt-auto flex items-center justify-between rounded-xl px-4 py-2.5 text-sm font-semibold"
                 >
                   Explore <ArrowRight className="h-4 w-4" />
                 </Link>
@@ -191,8 +183,9 @@ export function TopModels() {
               key={m.id}
               onClick={() => goTo(i)}
               aria-label={`Go to ${m.name}`}
-              className={`h-2 rounded-full transition-all ${i === active ? "w-6 bg-primary" : "w-2 bg-border hover:bg-primary/50"
-                }`}
+              className={`h-2 rounded-full transition-all duration-300 ${
+                i === active ? "w-6 bg-primary" : "w-2 bg-border hover:bg-primary/50"
+              }`}
             />
           ))}
         </div>

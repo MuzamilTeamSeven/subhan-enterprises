@@ -44,8 +44,8 @@ export function Lifestyle() {
             It&apos;s A <span className="text-primary">Lifestyle.</span>
           </h2>
           <p className="mt-4 leading-relaxed text-muted-foreground">
-            We don&apos;t just sell ATVs, we deliver adrenaline, adventure, and unforgettable experiences. Our machines
-            are crafted for riders who demand the best.
+            We don&apos;t just sell ATVs we deliver adrenaline, adventure, and unforgettable experiences. Our machines are built for riders who demand the very best in performance, reliability, and durability. Whether you&apos;re exploring rugged trails, tackling challenging terrain, or enjoying weekend adventures, every ride is designed to deliver confidence, power, and excitement.From off-road exploration to everyday utility, we're committed to making every journey memorable.
+            Our machines are crafted for riders who demand the best, offering unmatched power, rugged durability, and superior performance.
           </p>
           <ul className="mt-6 space-y-3">
             {points.map((p) => (

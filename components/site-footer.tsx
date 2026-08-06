@@ -1,5 +1,6 @@
 import Link from "next/link"
-import { Bike, Clock, Heart, Mail, MapPin, Phone } from "lucide-react"
+import { Clock, Heart, Mail, MapPin, Phone } from "lucide-react"
+import { QuadBikeIcon } from "@/components/ui/quad-bike-icon"
 
 const socials = [
   {
@@ -65,7 +66,7 @@ export function SiteFooter() {
         <div>
           <div className="flex items-center gap-2">
             <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/15 text-primary">
-              <Bike className="h-5 w-5" />
+              <QuadBikeIcon className="h-5 w-5" />
             </span>
             <span className="flex flex-col leading-none">
               <span className="text-sm font-extrabold tracking-wide">SUBHAN</span>

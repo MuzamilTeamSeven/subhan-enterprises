@@ -3,7 +3,8 @@
 import { useEffect, useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { ArrowRight, Bike, MapPin, Menu, Truck, X } from "lucide-react"
+import { ArrowRight, MapPin, Menu, Truck, X } from "lucide-react"
+import { QuadBikeIcon } from "@/components/ui/quad-bike-icon"
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -37,7 +38,7 @@ export function Navbar() {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
           <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/15 text-primary">
-            <Bike className="h-5 w-5" />
+            <QuadBikeIcon className="h-5 w-5" />
           </span>
           <span className="flex flex-col leading-none">
             <span className="text-sm font-extrabold tracking-wide text-foreground">SUBHAN</span>

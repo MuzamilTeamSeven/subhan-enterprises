@@ -1,9 +1,36 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
-  <rect width="32" height="32" rx="7" fill="#e02424"/>
-  <g transform="translate(4 4)" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <circle cx="18.5" cy="17.5" r="3.5"/>
-    <circle cx="5.5" cy="17.5" r="3.5"/>
-    <circle cx="15" cy="5" r="1"/>
-    <path d="M12 17.5V14l-3-3 4-3 2 3h2"/>
+  <!-- Red rounded background -->
+  <rect width="32" height="32" rx="7" fill="#cc1f1f"/>
+
+  <!-- Quad Bike side-profile in white, designed for small sizes -->
+  <g fill="none" stroke="#ffffff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Handlebars -->
+    <path d="M6 9h4M21 9h4"/>
+    <path d="M10 9l1.5 1.5"/>
+    <path d="M21 9l-1.5 1.5"/>
+    <!-- Stem -->
+    <path d="M16 10.5v2"/>
+    <!-- Body / Chassis -->
+    <path d="M10 12.5h12l1.5 3H8.5z"/>
+    <!-- Engine block hint -->
+    <rect x="13" y="13.5" width="4" height="2.5" rx="0.5"/>
+    <!-- Exhaust pipe -->
+    <path d="M21.5 15.5l2 1"/>
+    <!-- Left big tire -->
+    <circle cx="8" cy="21" r="4" stroke-width="1.5"/>
+    <circle cx="8" cy="21" r="1.5"/>
+    <!-- Right big tire -->
+    <circle cx="24" cy="21" r="4" stroke-width="1.5"/>
+    <circle cx="24" cy="21" r="1.5"/>
+    <!-- Axles to body -->
+    <path d="M10 17l-2 4"/>
+    <path d="M22 17l2 4"/>
+    <!-- Front bumper -->
+    <path d="M8.5 15.5l-1.5 2"/>
+    <!-- Rear bumper -->
+    <path d="M23.5 15.5l1.5 2"/>
+    <!-- Seat -->
+    <path d="M13 12.5q1.5-1 4 0"/>
   </g>
 </svg>
+

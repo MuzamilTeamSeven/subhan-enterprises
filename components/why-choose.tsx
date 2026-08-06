@@ -12,7 +12,7 @@ import {
 } from "lucide-react"
 
 const reasons = [
-  { icon: BadgeCheck, title: "100% Original & Imported", sub: "Direct imports from trusted brands" },
+  { icon: BadgeCheck, title: "100% Imported", sub: "Direct imports from trusted brands" },
   { icon: ThumbsUp, title: "Best Market Prices", sub: "Premium quality at best prices" },
   { icon: Wrench, title: "Expert Support", sub: "After sales service & parts availability" },
   { icon: ShieldCheck, title: "Secure & Easy Process", sub: "Smooth booking & delivery" },
@@ -42,17 +42,17 @@ export function WhyChoose() {
               </h2>
               <p className="mt-4 max-w-sm leading-relaxed text-muted-foreground">
                 Subhan Enterprises is Pakistan&apos;s trusted name in premium ATVs and Quad Bikes. We bring you the best
-                in performance, durability, and off-road experience.
+                in performance, durability, and off-road experience.  Whether you're an adventure enthusiast, a professional rider, or looking for a reliable utility vehicle, we offer high-quality machines built to handle every terrain with confidence.
               </p>
             </div>
 
             <div className="grid gap-x-6 gap-y-5 sm:grid-cols-2 lg:grid-cols-3">
               {reasons.map((r) => (
-                <div key={r.title} className="feature-card-hover glass-card flex gap-3 rounded-xl p-3">
+                <div key={r.title} className="feature-card-hover glass-card flex flex-col items-center text-center gap-3 rounded-xl p-5">
                   <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/15 text-primary">
                     <r.icon className="h-4 w-4" />
                   </span>
-                  <span className="flex flex-col">
+                  <span className="flex flex-col items-center">
                     <span className="text-sm font-bold text-foreground">{r.title}</span>
                     <span className="text-xs leading-relaxed text-muted-foreground">{r.sub}</span>
                   </span>
