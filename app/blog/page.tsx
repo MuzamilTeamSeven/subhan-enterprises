@@ -6,7 +6,7 @@ import { buildMetadata } from "@/lib/seo"
 import type { BlogCategory } from "@/lib/blog"
 
 export const metadata: Metadata = buildMetadata({
-  title: "Blog | Subhan Enterprises — ATV Tips, Guides & Adventures",
+  title: "Blog | Subhan Enterprises ATV Tips, Guides & Adventures",
   description:
     "Expert ATV guides, maintenance tips, safety advice, and off-road adventure stories from Pakistan's premium quad bike dealer, Subhan Enterprises.",
   path: "/blog",
