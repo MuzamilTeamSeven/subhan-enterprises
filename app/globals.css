@@ -148,6 +148,7 @@
 }
 
 @layer utilities {
+
   /* ─── Background depth layers ─── */
   .bg-depth {
     pointer-events: none;
@@ -156,67 +157,22 @@
     z-index: -2;
     overflow: hidden;
     background:
-      radial-gradient(ellipse 130% 90% at 50% 120%, rgba(10, 5, 5, 0.45), transparent 60%),
-      linear-gradient(180deg, #09090b 0%, #040405 50%, #000000 100%);
-  }
-
-  .bg-depth__glow {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(120px);
-    will-change: transform;
-    opacity: 0.95;
-  }
-
-  /* Top-left: Large crimson glow */
-  .bg-depth__glow--tl {
-    top: -15%;
-    left: -15%;
-    width: 60rem;
-    height: 60rem;
-    background: radial-gradient(circle, rgba(239, 68, 68, 0.28) 0%, rgba(220, 38, 38, 0.08) 50%, transparent 100%);
-    filter: blur(140px);
-  }
-
-  /* Top-right: Small dark red glow */
-  .bg-depth__glow--tr {
-    top: -5%;
-    right: 5%;
-    width: 32rem;
-    height: 32rem;
-    background: radial-gradient(circle, rgba(153, 27, 27, 0.22) 0%, transparent 75%);
-    filter: blur(90px);
-  }
-
-  /* Center: Subtle ambient lighting for content */
-  .bg-depth__glow--center {
-    top: 30%;
-    left: 50%;
-    width: 65rem;
-    height: 52rem;
-    transform: translateX(-50%);
-    background: radial-gradient(circle, rgba(220, 38, 38, 0.1) 0%, transparent 75%);
-    filter: blur(150px);
-  }
-
-  /* Bottom-left: Circular red arc */
-  .bg-depth__glow--bl {
-    bottom: -15%;
-    left: -15%;
-    width: 45rem;
-    height: 45rem;
-    background: radial-gradient(circle, rgba(220, 38, 38, 0.2) 0%, transparent 75%);
-    filter: blur(110px);
-  }
-
-  /* Bottom-right: Large soft red arc */
-  .bg-depth__glow--br {
-    bottom: -20%;
-    right: -15%;
-    width: 62rem;
-    height: 62rem;
-    background: radial-gradient(circle, rgba(239, 68, 68, 0.24) 0%, rgba(185, 28, 28, 0.08) 50%, transparent 100%);
-    filter: blur(130px);
+      /* 1. Dark vignette around outer edges to shape the focus */
+      radial-gradient(ellipse 95% 85% at 50% 45%, transparent 35%, rgba(0, 0, 0, 0.85) 100%),
+      /* 2. Soft warm red glow near bottom-right */
+      radial-gradient(70vw 70vw at 95% 95%, rgba(239, 68, 68, 0.12), transparent 75%),
+      /* 3. Large deep crimson glow from bottom-left */
+      radial-gradient(65vw 65vw at 5% 95%, rgba(220, 38, 38, 0.10), transparent 75%),
+      /* 4. Wide ambient glow through center of page */
+      radial-gradient(85vw 85vw at 50% 50%, rgba(220, 38, 38, 0.065), transparent 80%),
+      /* 5. Soft dark red glow from top-right */
+      radial-gradient(60vw 60vw at 90% 15%, rgba(180, 20, 20, 0.09), transparent 75%),
+      /* 6. Large crimson glow from top-left */
+      radial-gradient(75vw 75vw at 5% 5%, rgba(220, 38, 38, 0.14), transparent 70%),
+      /* 7. Bottom center deep ambient */
+      radial-gradient(ellipse 130vw 90vw at 50% 120%, rgba(10, 5, 5, 0.45), transparent 60%),
+      /* 8. Black luxury base linear gradient */
+      linear-gradient(180deg, #09090b 0%, #040405 55%, #000000 100%);
   }
 
   .bg-depth__grid {
@@ -228,12 +184,6 @@
     mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, black 25%, transparent 75%);
   }
 
-  .bg-depth__vignette {
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse 95% 85% at 50% 45%, transparent 35%, rgba(0, 0, 0, 0.82) 100%);
-  }
-
   .hero-glow {
     pointer-events: none;
     position: absolute;
@@ -243,7 +193,45 @@
     filter: blur(110px);
   }
 
-  /* ─── Real dark glass surfaces ─── */
+  .glass-card {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    box-shadow:
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.12),
+      inset 0 -1px 0 0 rgba(0, 0, 0, 0.20),
+      0 8px 32px rgba(0, 0, 0, 0.35);
+  }
+
+  .glass-card-hover {
+    transition:
+      transform 0.3s var(--ease-premium),
+      box-shadow 0.3s var(--ease-premium),
+      border-color 0.3s var(--ease-premium);
+  }
+
+  .glass-card-hover:hover {
+    transform: translateY(-5px);
+    border-color: rgba(255, 255, 255, 0.25);
+    box-shadow:
+      0 16px 48px rgba(0, 0, 0, 0.45),
+      0 0 15px rgba(220, 38, 38, 0.25);
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% {
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 0 0 rgba(220, 38, 38, 0.15);
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+    50% {
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 12px 4px rgba(220, 38, 38, 0.3);
+      border-color: rgba(220, 38, 38, 0.35);
+    }
+  }
+
+  .pulse-glow {
+    animation: pulse-glow 2s infinite ease-in-out;
+  }
+
   .glass {
     background: var(--glass-bg);
     backdrop-filter: blur(var(--glass-blur)) saturate(160%);
@@ -367,12 +355,10 @@
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-      105deg,
-      transparent 35%,
-      rgba(255, 255, 255, 0.25) 50%,
-      transparent 65%
-    );
+    background: linear-gradient(105deg,
+        transparent 35%,
+        rgba(255, 255, 255, 0.25) 50%,
+        transparent 65%);
     transform: translateX(-120%);
     transition: transform 0.6s var(--ease-premium);
   }
@@ -388,8 +374,15 @@
   }
 
   @keyframes button-glow {
-    0%, 100% { box-shadow: 0 14px 36px -6px rgba(220, 38, 38, 0.6), 0 0 28px -2px rgba(220, 38, 38, 0.45), inset 0 1px 0 0 rgba(255, 255, 255, 0.25); }
-    50% { box-shadow: 0 16px 42px -4px rgba(220, 38, 38, 0.7), 0 0 36px 2px rgba(220, 38, 38, 0.6), inset 0 1px 0 0 rgba(255, 255, 255, 0.35); }
+
+    0%,
+    100% {
+      box-shadow: 0 14px 36px -6px rgba(220, 38, 38, 0.6), 0 0 28px -2px rgba(220, 38, 38, 0.45), inset 0 1px 0 0 rgba(255, 255, 255, 0.25);
+    }
+
+    50% {
+      box-shadow: 0 16px 42px -4px rgba(220, 38, 38, 0.7), 0 0 36px 2px rgba(220, 38, 38, 0.6), inset 0 1px 0 0 rgba(255, 255, 255, 0.35);
+    }
   }
 
   .btn-primary:hover::after {
@@ -422,12 +415,10 @@
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-      105deg,
-      transparent 40%,
-      rgba(255, 255, 255, 0.08) 50%,
-      transparent 60%
-    );
+    background: linear-gradient(105deg,
+        transparent 40%,
+        rgba(255, 255, 255, 0.08) 50%,
+        transparent 60%);
     transform: translateX(-130%);
     transition: transform 0.6s var(--ease-premium);
     pointer-events: none;
@@ -513,20 +504,23 @@
 
   /* ─── Skeleton shimmer ─── */
   .skeleton {
-    background: linear-gradient(
-      90deg,
-      rgba(40, 40, 40, 0.8) 25%,
-      rgba(55, 55, 55, 0.5) 50%,
-      rgba(40, 40, 40, 0.8) 75%
-    );
+    background: linear-gradient(90deg,
+        rgba(40, 40, 40, 0.8) 25%,
+        rgba(55, 55, 55, 0.5) 50%,
+        rgba(40, 40, 40, 0.8) 75%);
     background-size: 200% 100%;
     animation: shimmer 1.5s infinite;
     border-radius: var(--radius);
   }
 
   @keyframes shimmer {
-    0% { background-position: 200% 0; }
-    100% { background-position: -200% 0; }
+    0% {
+      background-position: 200% 0;
+    }
+
+    100% {
+      background-position: -200% 0;
+    }
   }
 
   /* ─── Premium Carousel Arrows ─── */
@@ -571,6 +565,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .glass-card-hover,
   .glass-card-hover:hover,
   .feature-card-hover,
@@ -594,5 +589,39 @@
 
   .skeleton {
     animation: none;
+  }
+}
+
+.skeleton {
+  animation: none;
+}
+
+.glass-pulse {
+  animation: none !important;
+}
+
+
+.glass-pulse {
+  animation: glass-pulse 2s infinite ease-in-out;
+}
+
+@keyframes glass-pulse {
+
+  0%,
+  100% {
+    box-shadow:
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.12),
+      inset 0 -1px 0 0 rgba(0, 0, 0, 0.2),
+      0 8px 32px rgba(0, 0, 0, 0.35);
+    transform: translate(-50%, 0) scale(1);
+  }
+
+  50% {
+    box-shadow:
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.22),
+      inset 0 -1px 0 0 rgba(0, 0, 0, 0.2),
+      0 12px 40px rgba(0, 0, 0, 0.5),
+      0 0 12px 2px rgba(239, 68, 68, 0.3);
+    transform: translate(-50%, -4px) scale(1.03);
   }
 }

@@ -14,7 +14,7 @@ export function BlogCard({ post, className, priority = false }: BlogCardProps) {
   const date = formatBlogDate(post.publishedAt)
 
   return (
-    <article className={cn("glass glass-card-hover group overflow-hidden rounded-2xl", className)}>
+    <article className={cn("glass-card glass-card-hover group overflow-hidden rounded-2xl", className)}>
       <Link href={`/blog/${post.slug}`} className="block">
         <div className="image-zoom-wrap relative h-44 overflow-hidden">
           <OptimizedImage

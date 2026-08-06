@@ -10,8 +10,8 @@ const stats = [
 
 export function Stats() {
   return (
-    <section className="px-3 py-10 sm:px-6">
-      <div className="glass mx-auto grid max-w-7xl grid-cols-2 gap-2 rounded-2xl p-3 sm:grid-cols-3 lg:grid-cols-5">
+    <section id="stats" className="px-3 py-10 sm:px-6">
+      <div className="glass-card mx-auto grid max-w-7xl grid-cols-2 gap-2 rounded-2xl p-3 sm:grid-cols-3 lg:grid-cols-5">
         {stats.map((s, i) => (
           <div
             key={s.label}

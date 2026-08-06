@@ -31,7 +31,7 @@ export function WhyChoose() {
   return (
     <section className="px-3 py-6 sm:px-6">
       <div className="mx-auto max-w-7xl">
-        <div className="glass rounded-2xl p-5 sm:p-8">
+        <div className="glass-card rounded-2xl p-5 sm:p-8">
           <div className="grid gap-8 lg:grid-cols-[0.9fr_1.4fr]">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">Why Choose Us?</p>
@@ -48,7 +48,7 @@ export function WhyChoose() {
 
             <div className="grid gap-x-6 gap-y-5 sm:grid-cols-2 lg:grid-cols-3">
               {reasons.map((r) => (
-                <div key={r.title} className="feature-card-hover glass flex gap-3 rounded-xl p-3">
+                <div key={r.title} className="feature-card-hover glass-card flex gap-3 rounded-xl p-3">
                   <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/15 text-primary">
                     <r.icon className="h-4 w-4" />
                   </span>
@@ -63,7 +63,7 @@ export function WhyChoose() {
         </div>
 
         {/* Performance strip */}
-        <div className="glass mt-4 grid divide-y divide-border overflow-hidden rounded-2xl sm:grid-cols-2 sm:divide-y-0 sm:[&>*:nth-child(-n+2)]:border-b sm:[&>*:nth-child(-n+2)]:border-border lg:grid-cols-4 lg:[&>*:nth-child(-n+2)]:border-b-0 sm:[&>*]:border-r sm:[&>*]:border-border sm:[&>*:nth-child(2n)]:border-r-0 lg:[&>*:nth-child(2n)]:border-r lg:[&>*:nth-child(4n)]:border-r-0">
+        <div className="glass-card mt-4 grid divide-y divide-border overflow-hidden rounded-2xl sm:grid-cols-2 sm:divide-y-0 sm:[&>*:nth-child(-n+2)]:border-b sm:[&>*:nth-child(-n+2)]:border-border lg:grid-cols-4 lg:[&>*:nth-child(-n+2)]:border-b-0 sm:[&>*]:border-r sm:[&>*]:border-border sm:[&>*:nth-child(2n)]:border-r-0 lg:[&>*:nth-child(2n)]:border-r lg:[&>*:nth-child(4n)]:border-r-0">
           {perf.map((p) => (
             <div key={p.title} className="feature-card-hover flex items-center gap-3 px-5 py-6 transition-colors hover:bg-white/[0.02]">
               <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-primary/15 text-primary">

@@ -1,3 +1,6 @@
+"use client"
+
+import { useState, useEffect } from "react"
 import {
   ArrowRight,
   ChevronDown,
@@ -10,6 +13,7 @@ import {
   Zap,
 } from "lucide-react"
 import { OptimizedImage } from "@/components/ui/optimized-image"
+import { cn } from "@/lib/utils"
 
 const specs = [
   { icon: Zap, title: "700cc", sub: "Powerful Engine" },
@@ -21,6 +25,36 @@ const specs = [
 ]
 
 export function Hero() {
+  const [isVisible, setIsVisible] = useState(true)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsVisible(false)
+      } else {
+        setIsVisible(true)
+      }
+    }
+    window.addEventListener("scroll", handleScroll, { passive: true })
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
+  const handleScrollDown = () => {
+    const statsSection = document.getElementById("stats")
+    if (statsSection) {
+      const offset = 90 // sticky navbar offset height
+      const bodyRect = document.body.getBoundingClientRect().top
+      const elementRect = statsSection.getBoundingClientRect().top
+      const elementPosition = elementRect - bodyRect
+      const offsetPosition = elementPosition - offset
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      })
+    }
+  }
+
   return (
     <section className="relative overflow-hidden px-3 pt-8 sm:px-6 pb-10">
       <div className="hero-glow" aria-hidden="true" />
@@ -83,20 +117,27 @@ export function Hero() {
           </div>
         </div>
 
-        {/* Center image with ring */}
-        <div className="relative order-1 flex items-center justify-center lg:order-2">
-          <div className="absolute aspect-square w-[85%] rounded-full border-2 border-primary/30 shadow-[0_0_90px_-10px] shadow-primary/35" />
+        {/* Center image with circular ring */}
+        <div className="relative order-1 flex items-center justify-center lg:order-2 w-full max-w-[450px] mx-auto aspect-square">
+          <div className="absolute aspect-square w-[90%] rounded-full border-2 border-primary/30 shadow-[0_0_90px_-10px] shadow-primary/35" />
           <div className="absolute aspect-square w-[110%] rounded-full bg-primary/20 blur-[120px] pointer-events-none" />
           <div className="absolute aspect-square w-[80%] rounded-full bg-primary/15 blur-[80px] pointer-events-none" />
-          <OptimizedImage
-            src="/atvs/hero-atv.png"
-            alt="Premium black and red ATV quad bike"
-            width={760}
-            height={620}
-            priority
-            sizes="(max-width: 768px) 100vw, 760px"
-            className="relative z-10 w-full max-w-xl drop-shadow-2xl"
-          />
+          
+          <div className="relative z-10 w-[85%] aspect-square rounded-full overflow-hidden border border-white/10 shadow-2xl">
+            <OptimizedImage
+              src="/atvs/hero-atv.png"
+              alt="Premium black and red ATV quad bike"
+              width={600}
+              height={600}
+              priority
+              fetchPriority="high"
+              decoding="async"
+              quality={85}
+              sizes="(max-width: 768px) 100vw, 600px"
+              wrapperClassName="w-full h-full"
+              className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+            />
+          </div>
         </div>
 
         {/* Right spec rail */}
@@ -118,10 +159,17 @@ export function Hero() {
         </div>
       </div>
 
-      <div className="absolute left-1/2 bottom-4 z-10 flex -translate-x-1/2 flex-col items-center rounded-full border border-white/10 bg-background/70 px-4 py-3 text-muted-foreground shadow-2xl shadow-black/40 backdrop-blur-md">
-        <ChevronDown className="h-4 w-4 animate-bounce" />
-        <span className="text-[10px] uppercase tracking-widest">Scroll Down</span>
-      </div>
+      <button
+        onClick={handleScrollDown}
+        className={cn(
+          "glass absolute left-1/2 bottom-4 z-10 flex -translate-x-1/2 items-center justify-center gap-2 rounded-full border border-white/10 bg-background/70 text-muted-foreground shadow-2xl shadow-black/40 backdrop-blur-md transition-all duration-300 w-[150px] h-[52px] pulse-glow cursor-pointer",
+          isVisible ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-4 scale-95 pointer-events-none"
+        )}
+        aria-label="Scroll Down to Statistics"
+      >
+        <ChevronDown className="h-4 w-4 animate-bounce text-primary" />
+        <span className="text-[10px] font-bold uppercase tracking-widest text-foreground">Scroll Down</span>
+      </button>
     </section>
   )
 }

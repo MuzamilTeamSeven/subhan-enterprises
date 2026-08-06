@@ -13,7 +13,7 @@ export function Lifestyle() {
     <section className="px-3 py-6 sm:px-6">
       <div className="mx-auto grid max-w-7xl gap-5 lg:grid-cols-[1fr_1fr_0.7fr]">
         {/* Video card */}
-        <div className="glass feature-card-hover group relative overflow-hidden rounded-2xl">
+        <div className="glass-card feature-card-hover group relative overflow-hidden rounded-2xl">
           <OptimizedImage
             src="/atvs/lifestyle-rider.png"
             alt="Rider on ATV through rugged terrain"
@@ -57,11 +57,11 @@ export function Lifestyle() {
         </div>
 
         {/* CTA card */}
-        <div className="glass feature-card-hover flex flex-col justify-between gap-6 rounded-2xl p-6">
+        <div className="glass-card feature-card-hover flex flex-col justify-between gap-6 rounded-2xl p-6">
           <div>
             <h3 className="text-lg font-extrabold text-foreground">Ready To Ride?</h3>
             <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-              Get your dream quad bike today. Limited stock available!
+              Get your dream quad bike today. Limited stock available! Whether you are looking for high-speed desert conquering, rugged utility power for mountain trails, or an exciting weekend ride with your family and friends, we have the perfect premium vehicle waiting for you. Each imported model undergoes double-stage inspection, ensuring top-tier safety and raw performance from day one. Secure your favorite model today and start your next big off-road adventure!
             </p>
             <a
               href="/contact"

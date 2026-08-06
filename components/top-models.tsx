@@ -102,7 +102,7 @@ export function TopModels() {
   return (
     <section id="models" className="px-3 py-6 sm:px-6">
       <div
-        className="glass mx-auto max-w-7xl rounded-2xl p-5 sm:p-8"
+        className="glass-card mx-auto max-w-7xl rounded-2xl p-5 sm:p-8"
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
       >
@@ -113,7 +113,7 @@ export function TopModels() {
           </div>
           <Link
             href="/products?category=atv"
-            className="glass hidden items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition hover:border-primary/50 sm:flex"
+            className="glass-card hidden items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition hover:border-primary/50 sm:flex"
           >
             View All Models <ArrowRight className="h-4 w-4" />
           </Link>
@@ -131,12 +131,12 @@ export function TopModels() {
           <div
             ref={scroller}
             onScroll={onScroll}
-            className="scroll-smooth flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+            className="scroll-smooth flex snap-x snap-mandatory gap-4 overflow-x-auto pt-2 pb-2 -mt-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
           >
             {models.map((m) => (
               <article
                 key={m.id}
-                className="glass glass-card-hover group relative w-[270px] shrink-0 snap-start overflow-hidden rounded-2xl p-4"
+                className="glass-card glass-card-hover group relative w-[270px] shrink-0 snap-start overflow-hidden rounded-2xl p-4"
               >
                 {m.tag && (
                   <span className="absolute left-4 top-4 z-10 rounded-md bg-primary px-2 py-1 text-[10px] font-bold uppercase tracking-wide text-primary-foreground">
@@ -191,9 +191,8 @@ export function TopModels() {
               key={m.id}
               onClick={() => goTo(i)}
               aria-label={`Go to ${m.name}`}
-              className={`h-2 rounded-full transition-all ${
-                i === active ? "w-6 bg-primary" : "w-2 bg-border hover:bg-primary/50"
-              }`}
+              className={`h-2 rounded-full transition-all ${i === active ? "w-6 bg-primary" : "w-2 bg-border hover:bg-primary/50"
+                }`}
             />
           ))}
         </div>

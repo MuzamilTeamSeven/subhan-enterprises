@@ -30,6 +30,7 @@ export function OptimizedImage({
     <div className={cn("relative overflow-hidden", wrapperClassName)}>
       <Image
         {...props}
+        priority={priority}
         loading={effectiveLoading}
         onLoad={handleLoad}
         className={cn(

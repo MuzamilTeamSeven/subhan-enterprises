@@ -14,7 +14,7 @@ export function ProductCard({ product, className, priority = false }: ProductCar
   return (
     <article
       className={cn(
-        "glass glass-card-hover group relative flex flex-col overflow-hidden rounded-2xl p-5",
+        "glass-card glass-card-hover group relative flex flex-col overflow-hidden rounded-2xl p-5",
         className,
       )}
     >
