@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { Clock, Heart, Mail, MapPin, Phone } from "lucide-react"
-import { QuadBikeIcon } from "@/components/ui/quad-bike-icon"
+import Image from "next/image"
 
 const socials = [
   {
@@ -74,7 +74,14 @@ export function SiteFooter() {
         <div>
           <div className="flex items-center gap-2">
             <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/15 text-primary">
-              <QuadBikeIcon className="h-5 w-5" />
+              <Image
+                src="/logo.png"
+                alt="Subhan Enterprises Logo"
+                width={36}
+                height={36}
+                className="h-full w-full object-contain"
+                priority
+              />
             </span>
             <span className="flex flex-col leading-none">
               <span className="text-sm font-extrabold tracking-wide">SUBHAN</span>
