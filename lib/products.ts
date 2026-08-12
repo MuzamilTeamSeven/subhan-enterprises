@@ -436,6 +436,35 @@ export function formatPrice(value: number) {
   return "PKR " + value.toLocaleString("en-PK")
 }
 
+/**
+ * Returns a keyword-rich, unique SEO title for a product page.
+ * Pattern: "[Name] [Category keyword] Price in Pakistan | Subhan Enterprises"
+ */
+export function getProductSeoTitle(product: Product): string {
+  if (product.category === "atv") {
+    return `${product.name} ATV Quad Bike Price in Pakistan | Subhan Enterprises`
+  }
+  if (product.category === "accessories") {
+    return `${product.name} — ATV Riding Gear Pakistan | Subhan Enterprises`
+  }
+  return `${product.name} — Genuine ATV Parts Pakistan | Subhan Enterprises`
+}
+
+/**
+ * Returns an intent-matched, unique SEO meta description for a product page.
+ */
+export function getProductSeoDescription(product: Product): string {
+  const specs = product.specs.join(", ")
+  const price = formatPrice(product.price)
+  if (product.category === "atv") {
+    return `Buy ${product.name} by ${product.brand} in Pakistan — ${specs}. Price: ${price}. Nationwide delivery, 1-year warranty & expert after-sales support from Subhan Enterprises, Lahore.`
+  }
+  if (product.category === "accessories") {
+    return `${product.name} by ${product.brand} — ${specs}. Premium ATV riding gear available in Pakistan at ${price}. Fast delivery from Subhan Enterprises.`
+  }
+  return `${product.name} by ${product.brand} — Genuine ATV part. Specs: ${specs}. Price: ${price}. Original parts for quad bikes in Pakistan, available from Subhan Enterprises.`
+}
+
 export function getProductBySlug(slug: string): Product | undefined {
   return products.find((p) => p.slug === slug || p.id === slug)
 }

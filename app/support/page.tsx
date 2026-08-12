@@ -16,12 +16,14 @@ import { Navbar } from "@/components/navbar"
 import { SiteFooter } from "@/components/site-footer"
 import { PageHeader } from "@/components/page-header"
 import { ContactForm } from "@/components/contact-form"
+import { buildMetadata } from "@/lib/seo"
 
-export const metadata: Metadata = {
-  title: "Support | Subhan Enterprises",
+export const metadata: Metadata = buildMetadata({
+  title: "ATV Support & After-Sales Service Pakistan | Subhan Enterprises",
   description:
-    "Get expert help from the Subhan Enterprises support team. Call, WhatsApp or email us for sales enquiries, warranty claims, spare parts, servicing and after-sales care.",
-}
+    "Expert ATV and quad bike after-sales support from Subhan Enterprises. Call, WhatsApp or email for warranty claims, spare parts, servicing and pre-purchase advice across Pakistan.",
+  path: "/support",
+})
 
 const channels = [
   {
@@ -29,14 +31,14 @@ const channels = [
     title: "Call Us",
     value: "+92 332 4350140",
     note: "Mon – Sun, 10AM – 8PM",
-    href: "tel:+923121234567",
+    href: "tel:+923324350140",
   },
   {
     icon: MessageCircle,
     title: "WhatsApp",
     value: "+92 332 4350140",
     note: "Fastest response for quick queries",
-    href: "https://wa.me/923121234567",
+    href: "https://wa.me/923324350140",
   },
   {
     icon: Mail,
@@ -184,7 +186,7 @@ export default function SupportPage() {
             <div className="glass-tint flex flex-col gap-3 rounded-2xl p-6">
               <h3 className="text-base font-bold text-foreground">Need to talk right now?</h3>
               <a
-                href="https://wa.me/923121234567"
+                href="https://wa.me/923324350140"
                 className="flex items-center justify-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-bold text-primary-foreground transition hover:opacity-90"
               >
                 <MessageCircle className="h-4 w-4" /> Chat on WhatsApp

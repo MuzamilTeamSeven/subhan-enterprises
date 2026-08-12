@@ -144,7 +144,7 @@ export function SiteFooter() {
       </div>
 
       <div className="mx-auto mt-10 flex max-w-7xl flex-col items-center justify-between gap-3 border-t border-border pt-6 text-xs text-muted-foreground sm:flex-row">
-        <p>© 2024 Subhan Enterprises. All Rights Reserved.</p>
+        <p>© 2025 Subhan Enterprises. All Rights Reserved.</p>
         <p className="flex items-center gap-1.5">
           Designed with <Heart className="h-3.5 w-3.5 fill-primary text-primary" /> for Riders
         </p>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import Script from "next/script"
 import { notFound } from "next/navigation"
 import { OptimizedImage } from "@/components/ui/optimized-image"
 import { ChevronRight, Clock, User } from "lucide-react"
@@ -14,7 +15,11 @@ import {
   getBlogPost,
   getRelatedPosts,
 } from "@/lib/blog"
-import { buildMetadata } from "@/lib/seo"
+import {
+  buildMetadata,
+  generateArticleSchema,
+  generateBreadcrumbSchema,
+} from "@/lib/seo"
 
 export function generateStaticParams() {
   return blogPostsMeta.map((p) => ({ slug: p.slug }))
@@ -45,8 +50,37 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
   const related = getRelatedPosts(slug, 3)
   const date = formatBlogDate(post.publishedAt)
 
+  const articleSchema = generateArticleSchema({
+    title: post.metaTitle,
+    description: post.metaDescription,
+    image: post.featuredImage,
+    slug: post.slug,
+    publishedAt: post.publishedAt,
+    author: post.author,
+  })
+
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: "Home", url: "/" },
+    { name: "Blog", url: "/blog" },
+    { name: blogCategoryLabels[post.category], url: `/blog?category=${post.category}` },
+    { name: post.title, url: `/blog/${post.slug}` },
+  ])
+
   return (
     <main className="min-h-screen bg-background">
+      <Script
+        id={`schema-article-${post.slug}`}
+        type="application/ld+json"
+        strategy="beforeInteractive"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
+      <Script
+        id={`schema-breadcrumb-blog-${post.slug}`}
+        type="application/ld+json"
+        strategy="beforeInteractive"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+
       <Navbar />
 
       <section className="px-3 py-6 sm:px-6">
@@ -69,7 +103,7 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
             <div className="image-zoom-wrap relative h-52 sm:h-72">
               <OptimizedImage
                 src={post.featuredImage}
-                alt={post.title}
+                alt={`${post.title} — ATV guide by Subhan Enterprises Pakistan`}
                 fill
                 priority
                 className="image-zoom object-cover"
@@ -87,7 +121,7 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
                 <span className="flex items-center gap-1.5">
                   <User className="h-3.5 w-3.5 text-primary" /> {post.author}
                 </span>
-                <span>{date.full}</span>
+                <time dateTime={post.publishedAt}>{date.full}</time>
                 <span className="flex items-center gap-1.5">
                   <Clock className="h-3.5 w-3.5 text-primary" /> {post.readTime} min read
                 </span>

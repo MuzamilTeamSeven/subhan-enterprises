@@ -4,12 +4,14 @@ import { ArrowRight, Phone } from "lucide-react"
 import { Navbar } from "@/components/navbar"
 import { SiteFooter } from "@/components/site-footer"
 import { FaqList, type FaqCategory } from "@/components/faq-list"
+import { buildMetadata } from "@/lib/seo"
 
-export const metadata: Metadata = {
-  title: "FAQs | Subhan Enterprises",
+export const metadata: Metadata = buildMetadata({
+  title: "ATV & Quad Bike FAQs Pakistan | Subhan Enterprises",
   description:
-    "Answers to common questions about buying ATVs and quad bikes from Subhan Enterprises — delivery, warranty, financing, parts, accessories and after-sales support.",
-}
+    "Answers to common questions about buying ATVs and quad bikes from Subhan Enterprises — delivery, warranty, financing, spare parts, accessories and after-sales support in Pakistan.",
+  path: "/faq",
+})
 
 const faqs: FaqCategory[] = [
   {

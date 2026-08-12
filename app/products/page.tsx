@@ -6,9 +6,9 @@ import { buildMetadata } from "@/lib/seo"
 import type { ProductCategory } from "@/lib/products"
 
 export const metadata: Metadata = buildMetadata({
-  title: "Products | Subhan Enterprises — ATVs, Accessories & Parts",
+  title: "ATV & Quad Bikes for Sale in Pakistan | Subhan Enterprises",
   description:
-    "Browse 25+ premium ATVs, quad bikes, riding accessories, and genuine parts. Filter by category, brand, price and availability. Nationwide delivery.",
+    "Shop 25+ ATVs, quad bikes, trail bikes and accessories from top brands — Yamaha, Can-Am, CFMOTO, Polaris, Kawasaki and more. Filter by category or brand. Nationwide delivery from Subhan Enterprises, Lahore.",
   path: "/products",
 })
 

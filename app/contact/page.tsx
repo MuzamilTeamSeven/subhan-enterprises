@@ -4,26 +4,28 @@ import { Clock, Mail, MapPin, MessageCircle, Phone } from "lucide-react"
 import { Navbar } from "@/components/navbar"
 import { SiteFooter } from "@/components/site-footer"
 import { ContactForm } from "@/components/contact-form"
+import { buildMetadata } from "@/lib/seo"
 
-export const metadata: Metadata = {
-  title: "Contact Us | Subhan Enterprises",
+export const metadata: Metadata = buildMetadata({
+  title: "Contact Subhan Enterprises | ATV Dealer Lahore Pakistan",
   description:
-    "Get in touch with Subhan Enterprises for quotes, product enquiries and support. Call, email, WhatsApp or visit our Lahore showroom.",
-}
+    "Get in touch with Subhan Enterprises for ATV price quotes, quad bike enquiries and after-sales support. Call, WhatsApp or email us, or visit our Lahore showroom.",
+  path: "/contact",
+})
 
 const contactCards = [
   {
     icon: Phone,
     title: "Call Us",
     lines: ["+92 332 4350140", "+92 42 35xxxxxx"],
-    href: "tel:+923121234567",
+    href: "tel:+923324350140",
     action: "Call now",
   },
   {
     icon: MessageCircle,
     title: "WhatsApp",
     lines: ["+92 332 4350140", "Quick replies, 7 days a week"],
-    href: "https://wa.me/923121234567",
+    href: "https://wa.me/923324350140",
     action: "Chat now",
   },
   {

@@ -14,12 +14,14 @@ import {
 import { Navbar } from "@/components/navbar"
 import { SiteFooter } from "@/components/site-footer"
 import { PageHeader } from "@/components/page-header"
+import { buildMetadata } from "@/lib/seo"
 
-export const metadata: Metadata = {
-  title: "Shipping & Delivery | Subhan Enterprises",
+export const metadata: Metadata = buildMetadata({
+  title: "ATV Delivery Pakistan — Nationwide Shipping | Subhan Enterprises",
   description:
-    "Fast, fully insured nationwide delivery of ATVs and quad bikes across Pakistan. Learn about our delivery timelines, coverage, charges and the safe handover process.",
-}
+    "Fast, fully insured nationwide ATV and quad bike delivery across Pakistan. Lahore, Karachi, Islamabad, Peshawar and beyond. Learn about timelines, charges and our safe handover process.",
+  path: "/shipping",
+})
 
 const features = [
   {
@@ -172,7 +174,7 @@ export default function ShippingPage() {
               Get a Quote <ArrowRight className="h-4 w-4" />
             </Link>
             <a
-              href="tel:+923121234567"
+              href="tel:+923324350140"
               className="glass flex items-center justify-center gap-2 rounded-xl px-6 py-3 text-sm font-bold transition hover:border-primary hover:text-primary"
             >
               <Phone className="h-4 w-4" /> +92 332 4350140

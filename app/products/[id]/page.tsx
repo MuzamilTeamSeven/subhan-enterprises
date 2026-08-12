@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import Script from "next/script"
 import { notFound } from "next/navigation"
 import { OptimizedImage } from "@/components/ui/optimized-image"
 import { ArrowRight, Check, ChevronRight, Phone, ShieldCheck, Star, Truck, Wrench, X } from "lucide-react"
@@ -11,10 +12,17 @@ import {
   formatPrice,
   getProductBySlug,
   getProductDescription,
+  getProductSeoTitle,
+  getProductSeoDescription,
   getRelatedProducts,
   products,
 } from "@/lib/products"
-import { buildMetadata } from "@/lib/seo"
+import {
+  buildMetadata,
+  generateProductSchema,
+  generateBreadcrumbSchema,
+  siteUrl,
+} from "@/lib/seo"
 import { cn } from "@/lib/utils"
 
 export function generateStaticParams() {
@@ -30,8 +38,8 @@ export async function generateMetadata({
   const product = getProductBySlug(id)
   if (!product) return { title: "Product Not Found | Subhan Enterprises" }
   return buildMetadata({
-    title: `${product.name} | Subhan Enterprises`,
-    description: getProductDescription(product),
+    title: getProductSeoTitle(product),
+    description: getProductSeoDescription(product),
     path: `/products/${product.slug}`,
     image: product.image,
   })
@@ -50,9 +58,41 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
 
   const description = getProductDescription(product)
   const related = getRelatedProducts(product)
+  const productUrl = `${siteUrl}/products/${product.slug}`
+
+  const productSchema = generateProductSchema({
+    name: product.name,
+    description: getProductSeoDescription(product),
+    image: product.image,
+    brand: product.brand,
+    price: product.price,
+    availability: product.inStock,
+    url: productUrl,
+    sku: product.id,
+  })
+
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: "Home", url: "/" },
+    { name: "Products", url: "/products" },
+    { name: categoryLabels[product.category], url: `/products?category=${product.category}` },
+    { name: product.name, url: `/products/${product.slug}` },
+  ])
 
   return (
     <main className="min-h-screen bg-background">
+      <Script
+        id={`schema-product-${product.id}`}
+        type="application/ld+json"
+        strategy="beforeInteractive"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
+      />
+      <Script
+        id={`schema-breadcrumb-product-${product.id}`}
+        type="application/ld+json"
+        strategy="beforeInteractive"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+
       <Navbar />
 
       <section className="px-3 py-6 sm:px-6">
@@ -82,7 +122,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
               )}
               <OptimizedImage
                 src={product.image || "/placeholder.svg"}
-                alt={`${product.name} — ${product.brand} ${categoryLabels[product.category]}`}
+                alt={`${product.brand} ${product.name} — ${categoryLabels[product.category]} available in Pakistan from Subhan Enterprises`}
                 width={520}
                 height={400}
                 priority

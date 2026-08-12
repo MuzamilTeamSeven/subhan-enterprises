@@ -11,6 +11,7 @@ const models = products
   .map((p) => ({
     id: p.id,
     name: p.name.toUpperCase(),
+    brand: p.brand,
     image: p.image,
     tag: p.tag ? p.tag.toUpperCase() : null,
     cc: p.specs[0] || "500cc",
@@ -138,7 +139,7 @@ export function TopModels() {
                 <div className="image-zoom-wrap flex h-40 items-center justify-center">
                   <OptimizedImage
                     src={m.image || "/placeholder.svg"}
-                    alt={m.name}
+                    alt={`${m.brand} ${m.name} ATV Quad Bike — available in Pakistan from Subhan Enterprises`}
                     width={260}
                     height={180}
                     sizes="(max-width: 640px) 100vw, 260px"

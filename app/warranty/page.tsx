@@ -4,12 +4,14 @@ import { ArrowRight, BadgeCheck, CheckCircle2, Clock, Cog, FileText, Phone, Shie
 import { Navbar } from "@/components/navbar"
 import { SiteFooter } from "@/components/site-footer"
 import { PageHeader } from "@/components/page-header"
+import { buildMetadata } from "@/lib/seo"
 
-export const metadata: Metadata = {
-  title: "Warranty | Subhan Enterprises",
+export const metadata: Metadata = buildMetadata({
+  title: "ATV Warranty Pakistan — 1 Year Comprehensive Cover | Subhan Enterprises",
   description:
-    "Every ATV and quad bike from Subhan Enterprises is backed by a comprehensive 1 year warranty covering engine, transmission and electrical components with genuine parts and expert service.",
-}
+    "Every ATV and quad bike from Subhan Enterprises comes with a 1-year comprehensive warranty covering engine, transmission and electrical systems. Genuine parts, free labour on claims.",
+  path: "/warranty",
+})
 
 const coverage = [
   {
@@ -172,7 +174,7 @@ export default function WarrantyPage() {
               Contact Support <ArrowRight className="h-4 w-4" />
             </Link>
             <a
-              href="tel:+923121234567"
+              href="tel:+923324350140"
               className="glass flex items-center justify-center gap-2 rounded-xl px-6 py-3 text-sm font-bold transition hover:border-primary hover:text-primary"
             >
               <Phone className="h-4 w-4" /> +92 332 4350140

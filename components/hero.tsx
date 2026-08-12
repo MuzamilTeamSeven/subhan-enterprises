@@ -73,7 +73,10 @@ export function Hero() {
             <span className="text-primary">TERRAIN.</span>
           </h1>
           <p className="mt-5 max-w-md leading-relaxed text-muted-foreground">
-            Experience unmatched power, control, and freedom with our premium range of Quad Bikes.
+            Pakistan&apos;s trusted ATV and Quad Bike dealer. Buy premium ATVs, quad bikes and trail bikes — nationwide delivery with a 1-year warranty.
+          </p>
+          <p className="sr-only">
+            Subhan Enterprises is Lahore&apos;s leading ATV dealer offering quad bikes for sale in Pakistan, trail bikes, farm ATVs, kids ATVs and off-road bikes with nationwide delivery, installment plans and expert after-sales support.
           </p>
 
           <div className="mt-7 flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
@@ -126,7 +129,7 @@ export function Hero() {
           <div className="relative z-10 w-[85%] aspect-square rounded-full overflow-hidden border border-white/10 shadow-2xl">
             <OptimizedImage
               src="/atvs/hero-atv.png"
-              alt="Premium black and red ATV quad bike"
+              alt="Subhan Enterprises ATV quad bike — Pakistan's premium off-road vehicle dealer in Lahore"
               width={600}
               height={600}
               priority
