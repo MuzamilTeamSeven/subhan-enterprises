@@ -46,9 +46,16 @@ export function buildMetadata({
   }
 }
 
-export const defaultMetadata: Metadata = buildMetadata({
-  title: "Subhan Enterprises | Pakistan's Premium ATV & Quad Bike Dealer",
-  description:
-    "Experience unmatched power, control, and freedom with Subhan Enterprises — Pakistan's premium range of ATVs and Quad Bikes. Nationwide delivery, 1 year warranty.",
-  path: "/",
-})
+export const defaultMetadata: Metadata = {
+  ...buildMetadata({
+    title: "Subhan Enterprises | Pakistan's Premium ATV & Quad Bike Dealer",
+    description:
+      "Experience unmatched power, control, and freedom with Subhan Enterprises Pakistan's premium range of ATVs and Quad Bikes. Nationwide delivery, 1 year warranty.",
+    path: "/",
+  }),
+  icons: {
+    icon: "/favicon.png",
+    shortcut: "/favicon.png",
+    apple: "/favicon.png",
+  },
+}

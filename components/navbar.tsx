@@ -3,8 +3,8 @@
 import { useEffect, useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import Image from "next/image"
 import { ArrowRight, MapPin, Menu, Truck, X } from "lucide-react"
-import { QuadBikeIcon } from "@/components/ui/quad-bike-icon"
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -31,14 +31,20 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-50 px-3 pt-3 sm:px-6">
       <div
-        className={`glass-strong mx-auto flex max-w-7xl items-center justify-between rounded-2xl px-4 py-3 sm:px-6 ${
-          scrolled ? "nav-scrolled" : ""
-        }`}
+        className={`glass-strong mx-auto flex max-w-7xl items-center justify-between rounded-2xl px-4 py-3 sm:px-6 ${scrolled ? "nav-scrolled" : ""
+          }`}
       >
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2">
-          <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/15 text-primary">
-            <QuadBikeIcon className="h-5 w-5" />
+        <Link href="/" className="flex items-center">
+          <span className="flex h-13 w-13 items-center justify-center rounded-lg overflow-hidden">
+            <Image
+              src="/logo.png"
+              alt="Subhan Enterprises Logo"
+              width={36}
+              height={36}
+              className="h-full w-full object-contain"
+              priority
+            />
           </span>
           <span className="flex flex-col leading-none">
             <span className="text-sm font-extrabold tracking-wide text-foreground">SUBHAN</span>
@@ -52,9 +58,8 @@ export function Navbar() {
             <Link
               key={link.label}
               href={link.href}
-              className={`nav-link relative text-sm font-medium transition-colors hover:text-foreground ${
-                isActive(link.href) ? "nav-link-active text-primary" : "text-muted-foreground"
-              }`}
+              className={`nav-link relative text-sm font-medium transition-colors hover:text-foreground ${isActive(link.href) ? "nav-link-active text-primary" : "text-muted-foreground"
+                }`}
             >
               {link.label}
             </Link>
@@ -97,11 +102,10 @@ export function Navbar() {
                 key={link.label}
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className={`rounded-lg border px-3 py-2.5 text-sm transition-all duration-300 ${
-                  isActive(link.href)
-                    ? "bg-primary/20 border-primary/20 text-primary font-bold shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]"
-                    : "border-transparent text-muted-foreground hover:bg-white/5"
-                }`}
+                className={`rounded-lg border px-3 py-2.5 text-sm transition-all duration-300 ${isActive(link.href)
+                  ? "bg-primary/20 border-primary/20 text-primary font-bold shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]"
+                  : "border-transparent text-muted-foreground hover:bg-white/5"
+                  }`}
               >
                 {link.label}
               </Link>
