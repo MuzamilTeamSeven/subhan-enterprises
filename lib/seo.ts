@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 
 export const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://subhanenterprises.com"
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://subhan-enterprises.vercel.app"
 export const siteName = "Subhan Enterprises"
 export const sitePhone = "+923324350140"
 export const siteEmail = "naeem.majeed101@gmail.com"
@@ -70,6 +70,13 @@ export const defaultMetadata: Metadata = {
     shortcut: "/favicon.png",
     apple: "/favicon.png",
   },
+  ...(process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+    ? {
+      verification: {
+        google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+      },
+    }
+    : {}),
 }
 
 // ─── JSON-LD Schema Factories ───────────────────────────────────────────────
