@@ -1,12 +1,14 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import Script from "next/script"
+
 import { notFound } from "next/navigation"
 import { OptimizedImage } from "@/components/ui/optimized-image"
 import { ArrowRight, Check, ChevronRight, Phone, ShieldCheck, Star, Truck, Wrench, X } from "lucide-react"
 import { Navbar } from "@/components/navbar"
 import { SiteFooter } from "@/components/site-footer"
 import { ProductCard } from "@/components/product-card"
+import { BlogCard } from "@/components/blog-card"
+import { getRelatedBlogPosts } from "@/lib/blog"
 import {
   categoryLabels,
   formatPrice,
@@ -58,6 +60,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
 
   const description = getProductDescription(product)
   const related = getRelatedProducts(product)
+  const relatedBlogPosts = getRelatedBlogPosts(product.slug, 3)
   const productUrl = `${siteUrl}/products/${product.slug}`
 
   const productSchema = generateProductSchema({
@@ -80,16 +83,12 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
 
   return (
     <main className="min-h-screen bg-background">
-      <Script
-        id={`schema-product-${product.id}`}
+      <script
         type="application/ld+json"
-        strategy="beforeInteractive"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
       />
-      <Script
-        id={`schema-breadcrumb-product-${product.id}`}
+      <script
         type="application/ld+json"
-        strategy="beforeInteractive"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
 
@@ -219,6 +218,18 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
               </div>
             </div>
           )}
+
+          {relatedBlogPosts.length > 0 && (
+            <div className="mt-12">
+              <h2 className="text-2xl font-extrabold tracking-tight">From Our Blog & Guides</h2>
+              <p className="mt-1 text-xs text-muted-foreground">Guides and articles featuring this model</p>
+              <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {relatedBlogPosts.map((post) => (
+                  <BlogCard key={post.slug} post={post} />
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </section>
 
@@ -226,3 +237,4 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
     </main>
   )
 }
+

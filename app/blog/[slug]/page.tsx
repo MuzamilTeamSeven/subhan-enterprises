@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import Script from "next/script"
+
 import { notFound } from "next/navigation"
 import { OptimizedImage } from "@/components/ui/optimized-image"
 import { ChevronRight, Clock, User } from "lucide-react"
@@ -8,6 +8,7 @@ import { Navbar } from "@/components/navbar"
 import { SiteFooter } from "@/components/site-footer"
 import { BlogCard } from "@/components/blog-card"
 import { BlogArticleContent } from "@/components/blog-article-content"
+import { ProductCard } from "@/components/product-card"
 import {
   blogCategoryLabels,
   blogPostsMeta,
@@ -15,6 +16,7 @@ import {
   getBlogPost,
   getRelatedPosts,
 } from "@/lib/blog"
+import { getProductBySlug } from "@/lib/products"
 import {
   buildMetadata,
   generateArticleSchema,
@@ -47,7 +49,17 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
   const post = getBlogPost(slug)
   if (!post) notFound()
 
-  const related = getRelatedPosts(slug, 3)
+  const explicitRelated = post.relatedArticleSlugs
+    ?.map((s) => getBlogPost(s))
+    .filter((p): p is NonNullable<typeof p> => p != null) ?? []
+
+  const autoRelated = getRelatedPosts(slug, 3)
+  const related = explicitRelated.length > 0 ? explicitRelated.slice(0, 3) : autoRelated
+
+  const relatedProducts = post.relatedProductSlugs
+    ?.map((s) => getProductBySlug(s))
+    .filter((p): p is NonNullable<typeof p> => p != null) ?? []
+
   const date = formatBlogDate(post.publishedAt)
 
   const articleSchema = generateArticleSchema({
@@ -68,16 +80,12 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
 
   return (
     <main className="min-h-screen bg-background">
-      <Script
-        id={`schema-article-${post.slug}`}
+      <script
         type="application/ld+json"
-        strategy="beforeInteractive"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
       />
-      <Script
-        id={`schema-breadcrumb-blog-${post.slug}`}
+      <script
         type="application/ld+json"
-        strategy="beforeInteractive"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
 
@@ -103,9 +111,10 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
             <div className="image-zoom-wrap relative h-52 sm:h-72">
               <OptimizedImage
                 src={post.featuredImage}
-                alt={`${post.title} — ATV guide by Subhan Enterprises Pakistan`}
+                alt={post.imageAlt ?? `${post.title} — ATV guide by Subhan Enterprises Pakistan`}
                 fill
                 priority
+                wrapperClassName="h-full w-full"
                 className="image-zoom object-cover"
                 sizes="(max-width: 768px) 100vw, 768px"
               />
@@ -133,6 +142,18 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
             <BlogArticleContent post={post} />
           </div>
 
+          {relatedProducts.length > 0 && (
+            <div className="mt-12">
+              <h2 className="text-2xl font-extrabold tracking-tight">Featured Products Mentioned</h2>
+              <p className="mt-1 text-xs text-muted-foreground">Explore models and accessories referenced in this guide</p>
+              <div className="mt-5 grid gap-4 sm:grid-cols-2">
+                {relatedProducts.map((p) => (
+                  <ProductCard key={p.id} product={p} />
+                ))}
+              </div>
+            </div>
+          )}
+
           {related.length > 0 && (
             <div className="mt-12">
               <h2 className="text-2xl font-extrabold tracking-tight">Related Articles</h2>
@@ -150,3 +171,4 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
     </main>
   )
 }
+

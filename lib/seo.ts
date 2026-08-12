@@ -136,7 +136,7 @@ export function generateOrganizationSchema() {
           "https://www.youtube.com/@Subhan-Enterprises",
           "https://www.tiktok.com/@subhan_enterprises",
         ],
-        priceRange: "PKR 1,350,000 – PKR 2,850,000",
+        priceRange: "PKR 1,35,000 – PKR 700,000",
         currenciesAccepted: "PKR",
         paymentAccepted: "Cash, Bank Transfer",
         areaServed: {

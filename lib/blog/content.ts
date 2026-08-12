@@ -1,4 +1,4 @@
-import type { BlogFaq, BlogPost, BlogSection } from "./types"
+import type { BlogFaq, BlogPost, BlogPostMeta, BlogSection } from "./types"
 import { blogPostsMeta } from "./posts"
 
 type ArticleBody = {
@@ -1020,7 +1020,403 @@ const remainingContent: Record<(typeof remainingSlugs)[number], ArticleBody> = {
   },
 }
 
-Object.assign(articleBodies, remainingContent)
+const seoArticleBodies: Record<string, ArticleBody> = {
+  "atv-price-guide-pakistan-2025": {
+    sections: [
+      {
+        heading: "Understanding ATV & Quad Bike Prices in Pakistan (2025)",
+        paragraphs: [
+          "If you are considering buying an ATV or quad bike in Pakistan in 2025, understanding the price landscape is essential. Quad bike prices vary significantly depending on engine displacement (cc), drive system (2WD vs 4WD), brand origin, and imported customs duties.",
+          "At Subhan Enterprises, Pakistan's premier ATV dealer, we believe in 100% price transparency. Our range spans from entry-level 400cc quad bikes starting around PKR 1,350,000 to top-tier 700cc+ sport and heavy utility ATVs reaching PKR 2,850,000.",
+          "Whether you need an affordable machine for farm tasks or a high-performance quad bike for desert dunes, this guide breaks down exactly what you get at every price tier in Pakistan.",
+        ],
+      },
+      {
+        heading: "Entry-Level ATVs (PKR 1.35 Million – 1.6 Million)",
+        paragraphs: [
+          "Entry-level quad bikes are designed for new riders, budget-conscious buyers, and basic farm or estate utility. In this price category, machines typically feature 350cc–400cc single-cylinder engines with automatic CVT transmissions.",
+          "Our featured entry-level pick is the [Linhai LH 400](/products/linhai-lh400) priced at PKR 1,350,000. It offers full 4x4 capability, independent rear suspension, and robust racks, making it exceptionally high value for first-time quad bike owners in Pakistan.",
+        ],
+      },
+      {
+        heading: "Mid-Range Adventure & Utility ATVs (PKR 1.8 Million – 2.2 Million)",
+        paragraphs: [
+          "The mid-range bracket is the sweet spot for most Pakistani riders. Here you get 500cc–600cc liquid-cooled engines, fuel injection, superior ground clearance, and enhanced towing capacities ideal for northern trail rides and heavy agricultural work.",
+          "The popular [CFMOTO 520L](/products/cfmoto-520l) (PKR 1,950,000) and the dependable [Honda TRX420](/products/honda-trx420) (PKR 2,150,000) dominate this category, offering unmatched reliability and ride comfort on rugged trails.",
+        ],
+      },
+      {
+        heading: "Premium Sport & Heavy Utility ATVs (PKR 2.4 Million – 2.85 Million)",
+        paragraphs: [
+          "For riders demanding maximum power, aggressive speed, or extreme mud capability, premium ATVs feature 700cc+ engines, performance shocks, power steering, and reinforced chassis construction.",
+          "The ultimate sport machine, the [Yamaha Raptor 700R](/products/raptor-700r) (PKR 2,850,000), delivers race-proven performance, while the [Can-Am Outlander](/products/can-am-outlander) (PKR 2,750,000) provides luxury utility performance for demanding off-road enthusiasts.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "What is the starting price for an ATV quad bike in Pakistan?",
+        answer:
+          "Full-size 4x4 quad bike prices at Subhan Enterprises start at PKR 1,350,000 for models like the Linhai LH 400.",
+      },
+      {
+        question: "Are quad bike prices inclusive of delivery in Pakistan?",
+        answer:
+          "We offer transparent pricing and insured nationwide shipping to Lahore, Karachi, Islamabad, Peshawar, and all other major cities.",
+      },
+      {
+        question: "Does Subhan Enterprises offer warranty with quad bikes?",
+        answer:
+          "Yes! Every new quad bike purchased from Subhan Enterprises comes with a comprehensive 1-year warranty.",
+      },
+    ],
+    cta: {
+      heading: "Find Your Perfect Quad Bike Today",
+      text: "Compare all models, view detailed specifications, and request an official quote from Subhan Enterprises.",
+      buttonLabel: "View All Products & Prices",
+      href: "/products",
+    },
+  },
+
+  "dirt-bike-vs-atv-pakistan": {
+    sections: [
+      {
+        heading: "Dirt Bike vs ATV: Making the Right Choice in Pakistan",
+        paragraphs: [
+          "When Pakistani off-road enthusiasts prepare to purchase a new machine, one common debate arises: Should you buy a 2-wheel dirt bike or a 4-wheel ATV quad bike?",
+          "While both vehicles offer off-road excitement, they serve very different riding styles, safety profiles, and practical use cases across Pakistani terrain.",
+        ],
+      },
+      {
+        heading: "Stability, Safety, and Learning Curve",
+        paragraphs: [
+          "The single largest advantage of an ATV quad bike over a dirt bike is 4-wheel stability. Quad bikes remain upright at a standstill, making them far safer and easier for beginners, families, and riders of all age groups.",
+          "Dirt bikes require significant balance, coordination, and physical stamina — especially on rocky Pakistani mountain tracks. For entry-level riders, a quad bike like the [Linhai LH 400](/products/linhai-lh400) provides confidence from day one.",
+        ],
+      },
+      {
+        heading: "Terrain Suitability Across Pakistani Landscapes",
+        paragraphs: [
+          "On open sand dunes in Cholistan or loose riverbeds in Swat, four wide knobby tires give ATVs vastly superior flotation and traction compared to narrow dirt bike tires.",
+          "For high-speed sport riding, machines like the [Yamaha Raptor 700R](/products/raptor-700r) offer adrenaline-pumping performance without the constant risk of tip-overs associated with two-wheelers.",
+        ],
+      },
+      {
+        heading: "Utility and Towing Capacity",
+        paragraphs: [
+          "A dirt bike is purely recreational. An ATV, however, is a multi-purpose workhorse. With front and rear steel racks and tow hitches, ATVs like the [CFMOTO 520L](/products/cfmoto-520l) can carry heavy cargo, haul equipment across farm fields, or carry camping gear for multi-day expeditions.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Is an ATV safer than a dirt bike for beginners in Pakistan?",
+        answer:
+          "Yes. Four wheels provide immediate stability on uneven ground, reducing low-speed tip-overs and rider fatigue.",
+      },
+      {
+        question: "Can an ATV carry passenger or cargo unlike a dirt bike?",
+        answer:
+          "Absolutely. Many 2-up ATV models are built for two passengers, and all utility quad bikes include heavy-duty cargo racks.",
+      },
+      {
+        question: "Where can I view ATV quad bikes in Lahore?",
+        answer:
+          "Visit Subhan Enterprises at Shop #36, New Islamia Park, Main LOS Samnabad, Lahore to compare quad bike models in person.",
+      },
+    ],
+    cta: {
+      heading: "Explore Stable, High-Performance Quad Bikes",
+      text: "Check out our range of 4x4 utility and sport ATVs built for Pakistani off-road adventures.",
+      buttonLabel: "Browse ATV Quad Bikes",
+      href: "/products?category=atv",
+    },
+  },
+
+  "trail-bike-pakistan-guide": {
+    sections: [
+      {
+        heading: "Trail Bike Pakistan — A Complete Guide to Trail Riding",
+        paragraphs: [
+          "Trail riding is one of the fastest-growing outdoor activities in Pakistan. From the forested trails of Murree to the rocky valleys of Swat and Kaghan, Pakistani terrain is tailor-made for off-road exploration.",
+          "Whether you call them trail bikes, trail quads, or off-road ATVs, selecting a vehicle engineered for endurance and terrain handling is key to a rewarding journey.",
+        ],
+      },
+      {
+        heading: "What Makes a Great Trail Riding Machine?",
+        paragraphs: [
+          "True trail riding requires reliable liquid cooling, long-travel independent suspension, and high ground clearance to glide over rocks, roots, and rutted tracks.",
+          "Models like the [CFMOTO 520L](/products/cfmoto-520l) and [Kawasaki Brute Force 750](/products/kawasaki-brute-force) excel on Pakistani trails thanks to selectable 2WD/4WD modes and differential locks for extreme inclines.",
+        ],
+      },
+      {
+        heading: "Top Trail Destinations in Pakistan",
+        paragraphs: [
+          "Popular routes include the Galyat region trails, Kala Chitta mountain tracks in Attock, and the highland meadows of Gilgit-Baltistan.",
+          "Heavy-duty machines like the [Arctic Cat Alterra 600](/products/arctic-cat-alterra) provide the fuel capacity and luggage space necessary for long-distance remote mountain trail expeditions.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Do I need a 4x4 vehicle for trail riding in northern Pakistan?",
+        answer:
+          "We strongly recommend 4x4 capability for northern mountain trails due to steep loose gravel and mud.",
+      },
+      {
+        question: "What protective gear should I wear on trail rides?",
+        answer:
+          "Always wear a DOT-certified off-road helmet, riding goggles, gloves, and sturdy ankle-support boots.",
+      },
+    ],
+    cta: {
+      heading: "Gear Up for Your Next Trail Expedition",
+      text: "Browse our lineup of trail-ready 4x4 quad bikes with nationwide delivery across Pakistan.",
+      buttonLabel: "Explore Trail Machines",
+      href: "/products?category=atv",
+    },
+  },
+
+  "off-road-riding-beginners-pakistan": {
+    sections: [
+      {
+        heading: "Off-Road Riding in Pakistan — A Beginner's Complete Guide",
+        paragraphs: [
+          "Starting your off-road journey in Pakistan is an exciting step into outdoor adventure. However, proper vehicle selection, safety preparation, and basic technique are critical for a fun and safe experience.",
+        ],
+      },
+      {
+        heading: "Choosing Your First Beginner Machine",
+        paragraphs: [
+          "For beginners, predictable throttle response and easy automatic CVT controls are essential. The [Linhai LH 400](/products/linhai-lh400) is widely regarded as one of the best starter quad bikes in Pakistan.",
+        ],
+      },
+      {
+        heading: "Mandatory Rider Safety Equipment",
+        paragraphs: [
+          "Never ride without essential safety gear. Subhan Enterprises stocks genuine protective equipment including the [Off-Road Riding Helmet](/products/off-road-helmet), [Body Armor Chest Protector](/products/chest-protector), and [Anti-Fog Riding Goggles](/products/riding-goggles).",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "What is the easiest off-road vehicle to learn on?",
+        answer:
+          "Automatic 4x4 ATVs are the easiest and safest off-road vehicles for new riders in Pakistan.",
+      },
+      {
+        question: "Where can I get riding gear in Lahore?",
+        answer:
+          "Subhan Enterprises carries a complete range of helmets, goggles, and body armor at our Lahore showroom and online.",
+      },
+    ],
+    cta: {
+      heading: "Start Riding Safely Today",
+      text: "Explore beginner-friendly quad bikes and safety gear packages from Subhan Enterprises.",
+      buttonLabel: "Shop Starter Gear & Bikes",
+      href: "/products",
+    },
+  },
+
+  "quad-bike-price-pakistan": {
+    sections: [
+      {
+        heading: "Quad Bike Price in Pakistan 2025 — All Models Compared",
+        paragraphs: [
+          "Searching for exact quad bike prices in Pakistan? Subhan Enterprises provides full pricing clarity across all major brands and engine sizes available in the market today.",
+        ],
+      },
+      {
+        heading: "Price Breakdown by Engine Size",
+        paragraphs: [
+          "400cc Quad Bikes: PKR 1,350,000 – PKR 1,600,000 (e.g. [Linhai LH 400](/products/linhai-lh400))",
+          "500cc–600cc Quad Bikes: PKR 1,950,000 – PKR 2,350,000 (e.g. [CFMOTO 520L](/products/cfmoto-520l), [Honda TRX420](/products/honda-trx420))",
+          "700cc+ Sport & Heavy Quad Bikes: PKR 2,650,000 – PKR 2,850,000 (e.g. [Yamaha Raptor 700R](/products/raptor-700r), [Can-Am Outlander](/products/can-am-outlander), [Kawasaki Brute Force 750](/products/kawasaki-brute-force))",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Why do quad bike prices vary so much in Pakistan?",
+        answer:
+          "Prices vary based on engine cc, brand origin, suspension technology, electronic power steering, and import duties.",
+      },
+      {
+        question: "How can I place an order for a quad bike in Pakistan?",
+        answer:
+          "Call us at +92 332 4350140 or visit our Lahore showroom. We ship nationwide with fully insured transport.",
+      },
+    ],
+    cta: {
+      heading: "Get an Instant Quad Bike Quote",
+      text: "Contact Subhan Enterprises for current pricing, promotional deals, and delivery schedules.",
+      buttonLabel: "Contact Sales Team",
+      href: "/contact",
+    },
+  },
+
+  "best-dirt-bikes-pakistan": {
+    sections: [
+      {
+        heading: "Best Off-Road Bikes in Pakistan — Dirt Bikes, Trail Bikes & ATVs",
+        paragraphs: [
+          "Pakistani off-road enthusiasts frequently search for the best off-road bikes to explore mountain trails and desert tracks. While 2-stroke and 4-stroke dirt bikes have a dedicated track following, many riders discover that 4-wheel ATVs offer greater versatility.",
+        ],
+      },
+      {
+        heading: "Why Four-Wheelers Win for Most Pakistani Off-Roaders",
+        paragraphs: [
+          "Unless you are competing on dedicated motocross tracks, 4-wheel ATVs like the [Yamaha Raptor 700R](/products/raptor-700r) or [CFMOTO 520L](/products/cfmoto-520l) handle rocks, sand, and mud with vastly superior stability and luggage capacity.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Can an ATV handle the same mountain trails as a dirt bike?",
+        answer:
+          "Yes, 4x4 ATVs handle mountain trails effortlessly, with added stability and cargo carrying ability.",
+      },
+    ],
+    cta: {
+      heading: "Explore Top Off-Road Vehicles",
+      text: "View Subhan Enterprises' complete lineup of off-road quad bikes and sport ATVs in Pakistan.",
+      buttonLabel: "View All Off-Road Vehicles",
+      href: "/products",
+    },
+  },
+
+  "atv-vs-dirt-bike-kids-pakistan": {
+    sections: [
+      {
+        heading: "Kids ATV vs Dirt Bike in Pakistan — A Parent's Guide",
+        paragraphs: [
+          "Introducing young family members to off-road motorsports requires prioritizing safety and control. Parents often evaluate youth ATVs against 2-wheel mini dirt bikes.",
+        ],
+      },
+      {
+        heading: "Stability and Safety Controls",
+        paragraphs: [
+          "ATVs provide 4-wheel stability that prevents tipping over when stopping or maneuvering at low speeds. Equipping kids with proper gear like an [Off-Road Riding Helmet](/products/off-road-helmet) and [Chest Protector](/products/chest-protector) ensures maximum protection.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Is a quad bike safer for kids than a 2-wheel bike?",
+        answer:
+          "Four wheels provide immediate balance, significantly reducing low-speed falls for young riders.",
+      },
+    ],
+    cta: {
+      heading: "Shop Youth Gear & ATVs",
+      text: "Ensure your young riders are safe with Subhan Enterprises genuine protective gear and quad bikes.",
+      buttonLabel: "Browse Safety Gear",
+      href: "/products?category=accessories",
+    },
+  },
+
+  "trail-riding-spots-pakistan": {
+    sections: [
+      {
+        heading: "Best Trail Riding Spots in Pakistan for ATV & Off-Road Adventures",
+        paragraphs: [
+          "Pakistan features incredible terrain for trail riding. Here are the top locations for your next off-road adventure.",
+        ],
+      },
+      {
+        heading: "1. Murree, Galyat & Patriata Trails",
+        paragraphs: [
+          "Pine forest tracks with cool weather, perfect for mid-size 4x4 quad bikes like the [CFMOTO 520L](/products/cfmoto-520l).",
+        ],
+      },
+      {
+        heading: "2. Swat Valley & Kalam Off-Road Trails",
+        paragraphs: [
+          "Rugged mountain trails requiring heavy-duty power from machines like the [Kawasaki Brute Force 750](/products/kawasaki-brute-force).",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Can Subhan Enterprises ship ATVs directly to northern cities?",
+        answer:
+          "Yes, we deliver ATVs fully assembled and ready to ride to Islamabad, Abbottabad, Swat, and all surrounding areas.",
+      },
+    ],
+    cta: {
+      heading: "Prepare Your ATV for Mountain Trails",
+      text: "Get your machine serviced or buy a new trail-ready 4x4 quad bike today.",
+      buttonLabel: "View Trail ATVs",
+      href: "/products?category=atv",
+    },
+  },
+
+  "farm-atv-pakistan-guide": {
+    sections: [
+      {
+        heading: "Farm ATV in Pakistan — Best Utility Quad Bikes for Agriculture",
+        paragraphs: [
+          "Pakistani agricultural estate managers and farmers are increasingly replacing or supplementing traditional tractors with versatile 4x4 utility ATVs.",
+        ],
+      },
+      {
+        heading: "Towing & Estate Maintenance Capabilities",
+        paragraphs: [
+          "Utility ATVs like the [Honda TRX420](/products/honda-trx420) and [Polaris Sportsman 570](/products/polaris-sportsman-570) easily tow sprayers, feed trailers, and inspect remote irrigation channels with low fuel consumption.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "What is the best ATV model for farm work in Pakistan?",
+        answer:
+          "The Honda TRX420 and CFMOTO 520L are our top recommendations for durability and towing on Pakistani farms.",
+      },
+    ],
+    cta: {
+      heading: "Upgrade Your Farm Efficiency",
+      text: "Contact Subhan Enterprises for agricultural quad bike quotes and commercial delivery.",
+      buttonLabel: "Contact Commercial Sales",
+      href: "/contact",
+    },
+  },
+
+  "atv-accessories-must-have-pakistan": {
+    sections: [
+      {
+        heading: "Top 10 Must-Have ATV Accessories for Pakistani Riders",
+        paragraphs: [
+          "Enhance your quad bike's safety, performance, and utility with essential accessories built for Pakistani riding conditions.",
+        ],
+      },
+      {
+        heading: "Top Recommendations",
+        paragraphs: [
+          "1. [Off-Road Riding Helmet](/products/off-road-helmet) — Essential safety protection.",
+          "2. [LED Light Bar Kit](/products/led-light-bar) — High-intensity lighting for night riding.",
+          "3. [Knobby Off-Road Tires](/products/off-road-tire) — Maximum mud and sand traction.",
+          "4. [Anti-Fog Riding Goggles](/products/riding-goggles) — Dust protection for eyes.",
+          "5. [Body Armor Chest Protector](/products/chest-protector) — Impact absorbing protection.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Do you ship accessories across Pakistan?",
+        answer:
+          "Yes! All ATV accessories and gear can be ordered online for fast nationwide courier delivery.",
+      },
+    ],
+    cta: {
+      heading: "Browse All Genuine Accessories",
+      text: "Upgrade your ride with premium lights, tires, helmets, and protection gear.",
+      buttonLabel: "Shop Accessories Catalog",
+      href: "/products?category=accessories",
+    },
+  },
+}
+
+Object.assign(articleBodies, remainingContent, seoArticleBodies)
 
 export function getBlogPost(slug: string): BlogPost | undefined {
   const meta = blogPostsMeta.find((p) => p.slug === slug)
@@ -1048,4 +1444,11 @@ export function getRelatedPosts(slug: string, limit = 3): BlogPost[] {
     .slice(0, limit)
 }
 
+export function getRelatedBlogPosts(productSlug: string, limit = 3): BlogPostMeta[] {
+  return blogPostsMeta
+    .filter((p) => p.relatedProductSlugs?.includes(productSlug))
+    .slice(0, limit)
+}
+
 export { blogPostsMeta }
+

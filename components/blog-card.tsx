@@ -20,11 +20,11 @@ export function BlogCard({ post, className, priority = false }: BlogCardProps) {
           <OptimizedImage
             src={post.featuredImage || "/placeholder.svg"}
             alt={post.title}
-            width={420}
-            height={260}
+            fill
             priority={priority}
             sizes="(max-width: 768px) 100vw, 420px"
-            className="image-zoom h-full w-full object-cover"
+            wrapperClassName="h-full w-full"
+            className="image-zoom object-cover"
           />
           <div className="absolute left-3 top-3 flex flex-col items-center rounded-lg bg-primary px-2.5 py-1.5 leading-none text-primary-foreground shadow-lg">
             <span className="text-base font-extrabold">{date.day}</span>

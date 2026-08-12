@@ -26,12 +26,15 @@ export type BlogPostMeta = {
   metaDescription: string
   excerpt: string
   featuredImage: string
+  imageAlt?: string
   category: BlogCategory
   publishedAt: string
+  updatedAt?: string
   readTime: number
   author: string
   tags: string[]
   relatedProductSlugs?: string[]
+  relatedArticleSlugs?: string[]
 }
 
 export type BlogPost = BlogPostMeta & {
