@@ -148,7 +148,7 @@ export default function SupportPage() {
               Fill in the form and our support team will get back to you shortly.
             </p>
             <div className="mt-6">
-              <ContactForm />
+              <ContactForm source="/support" />
             </div>
           </div>
 

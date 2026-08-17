@@ -31,7 +31,7 @@ const contactCards = [
   {
     icon: Mail,
     title: "Email Us",
-    lines: ["naeem.majeed101@gmail.com", "naeem.majeed101@gmail.com"],
+    lines: ["naeem.majeed101@gmail.com", "Sales & support inquiries"],
     href: "mailto:naeem.majeed101@gmail.com",
     action: "Send email",
   },
@@ -71,8 +71,8 @@ export default function ContactPage() {
                 </span>
                 <h3 className="mt-4 text-base font-bold text-foreground">{c.title}</h3>
                 <div className="mt-1 flex-1">
-                  {c.lines.map((l) => (
-                    <p key={l} className="text-sm text-muted-foreground">
+                  {c.lines.map((l, index) => (
+                    <p key={`${c.title}-${index}`} className="text-sm text-muted-foreground">
                       {l}
                     </p>
                   ))}
@@ -96,7 +96,7 @@ export default function ContactPage() {
                 Fill out the form and we&apos;ll get back to you as soon as possible.
               </p>
               <div className="mt-6">
-                <ContactForm />
+                <ContactForm source="/contact" />
               </div>
             </div>
 
