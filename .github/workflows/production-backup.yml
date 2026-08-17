@@ -1,0 +1,40 @@
+name: Sync Production Backup
+
+on:
+  deployment_status:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: production-backup
+  cancel-in-progress: false
+
+jobs:
+  sync-backup:
+    name: Backup Successful Production
+    if: >
+      github.event.deployment_status.state == 'success' &&
+      (
+        github.event.deployment_status.environment == 'Production' ||
+        github.event.deployment_status.environment == 'production'
+      ) &&
+      github.event.deployment.ref == 'main'
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout successful production commit
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.deployment.sha }}
+          fetch-depth: 0
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Update production backup
+        run: |
+          git push origin HEAD:production-backup --force
