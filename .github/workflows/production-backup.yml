@@ -18,8 +18,7 @@ jobs:
       (
         github.event.deployment_status.environment == 'Production' ||
         github.event.deployment_status.environment == 'production'
-      ) &&
-      github.event.deployment.ref == 'main'
+      )
 
     runs-on: ubuntu-latest
 
