@@ -17,7 +17,7 @@ const contactCards = [
   {
     icon: Phone,
     title: "Call Us",
-    lines: ["+92 332 4350140", "+92 42 35xxxxxx"],
+    lines: ["+92 332 4350140", "+92 322 2212727"],
     href: "tel:+923324350140",
     action: "Call now",
   },
