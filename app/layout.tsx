@@ -32,7 +32,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en-PK" className={`${geistSans.variable} ${geistMono.variable} bg-background`}>
+    <html lang="en-PK" data-scroll-behavior="smooth" className={`${geistSans.variable} ${geistMono.variable} bg-background`}>
       <head>
         <Script
           id="schema-organization"
