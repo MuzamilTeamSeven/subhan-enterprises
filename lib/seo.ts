@@ -62,7 +62,7 @@ export const defaultMetadata: Metadata = {
     title:
       "Subhan Enterprises | ATV & Quad Bike Dealer Pakistan — ATVs, Trail Bikes & More",
     description:
-      "Pakistan's trusted ATV and Quad Bike dealer. Shop premium ATVs, quad bikes and trail bikes from top brands. Nationwide delivery, 1-year warranty, expert after-sales support. Visit our Lahore showroom.",
+      "Shop ATVs and quad bikes in Pakistan from Subhan Enterprises. Serving 10,000+ riders for 18+ years, with nationwide delivery and a 7-day engine warranty.",
     path: "/",
   }),
   icons: {
@@ -99,7 +99,7 @@ export function generateOrganizationSchema() {
         },
         image: `${siteUrl}/atvs/hero-atv.png`,
         description:
-          "Pakistan's trusted ATV and Quad Bike dealer based in Lahore. Supplying premium ATVs, quad bikes and trail bikes nationwide.",
+          "Lahore-based ATV and quad bike dealer serving 10,000+ riders across Pakistan for 18+ years, with nationwide delivery and a 7-day engine warranty.",
         telephone: sitePhone,
         email: siteEmail,
         address: {
@@ -188,10 +188,10 @@ export function generateProductSchema({
   name: string
   description: string
   image: string
-  brand: string
+  brand?: string
   price: number
   currency?: string
-  availability: boolean
+  availability?: boolean
   url: string
   sku: string
 }) {
@@ -203,17 +203,25 @@ export function generateProductSchema({
     description,
     image: imageUrl,
     sku,
-    brand: {
-      "@type": "Brand",
-      name: brand,
-    },
+    ...(brand
+      ? {
+          brand: {
+            "@type": "Brand",
+            name: brand,
+          },
+        }
+      : {}),
     offers: {
       "@type": "Offer",
       priceCurrency: currency,
       price: price.toString(),
-      availability: availability
-        ? "https://schema.org/InStock"
-        : "https://schema.org/OutOfStock",
+      ...(availability == null
+        ? {}
+        : {
+            availability: availability
+              ? "https://schema.org/InStock"
+              : "https://schema.org/OutOfStock",
+          }),
       url,
       seller: {
         "@type": "Organization",
@@ -246,6 +254,7 @@ export function generateArticleSchema({
   image,
   slug,
   publishedAt,
+  updatedAt,
   author,
 }: {
   title: string
@@ -253,6 +262,7 @@ export function generateArticleSchema({
   image: string
   slug: string
   publishedAt: string
+  updatedAt?: string
   author: string
 }) {
   const imageUrl = image.startsWith("http") ? image : `${siteUrl}${image}`
@@ -265,7 +275,7 @@ export function generateArticleSchema({
     image: imageUrl,
     url: articleUrl,
     datePublished: publishedAt,
-    dateModified: publishedAt,
+    dateModified: updatedAt ?? publishedAt,
     author: {
       "@type": "Organization",
       name: author,

@@ -20,6 +20,9 @@ function loadEnvExample() {
 }
 
 const exampleEnv = loadEnvExample()
+const publicEnv = Object.fromEntries(
+  Object.entries(exampleEnv).filter(([key]) => key.startsWith("NEXT_PUBLIC_")),
+)
 
 for (const [key, value] of Object.entries(exampleEnv)) {
   if (!process.env[key]) {
@@ -30,7 +33,7 @@ for (const [key, value] of Object.entries(exampleEnv)) {
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   env: {
-    ...exampleEnv,
+    ...publicEnv,
   },
   images: {
     formats: ["image/avif", "image/webp"],
@@ -41,4 +44,3 @@ const nextConfig = {
 }
 
 export default nextConfig
-

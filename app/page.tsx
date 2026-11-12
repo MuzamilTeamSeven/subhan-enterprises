@@ -11,24 +11,29 @@ import { Blog } from "@/components/blog"
 import { HomeCta } from "@/components/home-cta"
 import { SiteFooter } from "@/components/site-footer"
 import { buildMetadata } from "@/lib/seo"
+import { getGoogleReviews } from "@/lib/google-reviews"
 
 export const metadata: Metadata = buildMetadata({
   title: "Subhan Enterprises | ATV & Quad Bike Dealer Pakistan — Buy ATVs Online",
   description:
-    "Buy ATVs, quad bikes and trail bikes in Pakistan from Subhan Enterprises — Lahore's trusted ATV dealer. 10+ premium brands, nationwide delivery, 1-year warranty and expert after-sales support.",
+    "Shop ATVs and quad bikes in Pakistan with Subhan Enterprises. Serving 10,000+ riders for 18+ years, with delivery across Pakistan and a 7-day engine warranty.",
   path: "/",
 })
 
-export default function Page() {
+export const revalidate = 3600
+
+export default async function Page() {
+  const googleReviews = await getGoogleReviews()
+
   return (
     <main className="min-h-screen bg-background">
       <Navbar />
-      <Hero />
+      <Hero googleReviews={googleReviews} />
       <Stats />
       <TopModels />
       <WhyChoose />
       <Lifestyle />
-      <Testimonials />
+      <Testimonials googleReviews={googleReviews} />
       <Brands />
       <Blog />
       <HomeCta />

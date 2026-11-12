@@ -19,7 +19,7 @@ const faqs: FaqCategory[] = [
     items: [
       {
         q: "Do you offer nationwide delivery across Pakistan?",
-        a: "Yes. We deliver to all major cities including Lahore, Karachi, Islamabad, Faisalabad, Peshawar, Multan and beyond with safe, fully insured shipping.",
+        a: "We arrange delivery across Pakistan. Contact our team with your city or area to confirm the route, expected timing and delivery charges.",
       },
       {
         q: "How long does delivery take?",
@@ -35,8 +35,8 @@ const faqs: FaqCategory[] = [
     category: "Products & Availability",
     items: [
       {
-        q: "Are your ATVs original and imported?",
-        a: "Every quad bike we sell is 100% original and directly imported from trusted global brands like CFMOTO, Can-Am, Yamaha, Linhai and more.",
+        q: "How can I confirm an ATV's model details?",
+        a: "Our listed quad-bike models are shown on Subhan Enterprises' official TikTok. We don't state a manufacturer unless it is confirmed. Contact us to verify the exact unit, specifications, availability and price before ordering.",
       },
       {
         q: "Do you sell accessories and spare parts?",
@@ -70,7 +70,7 @@ const faqs: FaqCategory[] = [
     items: [
       {
         q: "Do you provide a warranty?",
-        a: "All our models come with a 1 year warranty covering the engine and major components for complete peace of mind.",
+        a: "Our ATV engine warranty lasts seven days from delivery and covers reported engine smoke or engine blow issues. We inspect the bike first; eligible engine maintenance is free. Other components are not included in this engine warranty.",
       },
       {
         q: "Do you offer after-sales service and maintenance?",

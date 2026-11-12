@@ -34,6 +34,7 @@ export function HomeCta() {
           <div className="glass flex flex-col gap-4 rounded-2xl p-5">
             <a
               href="tel:+923324350140"
+              data-analytics-placement="homepage_call_cta"
               className="flex items-center gap-3 text-sm text-muted-foreground transition hover:text-foreground"
             >
               <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/15 text-primary">

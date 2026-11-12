@@ -68,6 +68,7 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
     image: post.featuredImage,
     slug: post.slug,
     publishedAt: post.publishedAt,
+    updatedAt: post.updatedAt,
     author: post.author,
   })
 
@@ -131,6 +132,11 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
                   <User className="h-3.5 w-3.5 text-primary" /> {post.author}
                 </span>
                 <time dateTime={post.publishedAt}>{date.full}</time>
+                {post.updatedAt && (
+                  <span>
+                    Updated <time dateTime={post.updatedAt}>{formatBlogDate(post.updatedAt).full}</time>
+                  </span>
+                )}
                 <span className="flex items-center gap-1.5">
                   <Clock className="h-3.5 w-3.5 text-primary" /> {post.readTime} min read
                 </span>
@@ -171,4 +177,3 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
     </main>
   )
 }
-

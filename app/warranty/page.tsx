@@ -1,57 +1,48 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { ArrowRight, BadgeCheck, CheckCircle2, Clock, Cog, FileText, Phone, ShieldCheck, Wrench, XCircle } from "lucide-react"
+import { ArrowRight, BadgeCheck, CheckCircle2, Clock, Cog, FileText, Info, Phone, Wrench } from "lucide-react"
 import { Navbar } from "@/components/navbar"
 import { SiteFooter } from "@/components/site-footer"
 import { PageHeader } from "@/components/page-header"
 import { buildMetadata } from "@/lib/seo"
 
 export const metadata: Metadata = buildMetadata({
-  title: "ATV Warranty Pakistan — 1 Year Comprehensive Cover | Subhan Enterprises",
+  title: "7-Day ATV Engine Warranty in Pakistan | Subhan Enterprises",
   description:
-    "Every ATV and quad bike from Subhan Enterprises comes with a 1-year comprehensive warranty covering engine, transmission and electrical systems. Genuine parts, free labour on claims.",
+    "Learn about the 7-day ATV engine warranty from Subhan Enterprises. Engine smoke or blow issues reported within seven days are inspected for eligible free maintenance.",
   path: "/warranty",
 })
 
 const coverage = [
   {
     icon: Cog,
-    title: "Engine & Transmission",
-    text: "Full coverage on engine internals, gearbox and drivetrain against manufacturing defects for 12 months.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Electrical System",
-    text: "Wiring, ignition, lighting and electronic control units are protected against faults from day one.",
+    title: "7-Day Engine Warranty",
+    text: "Report engine smoke or an engine blow issue within seven days of delivery for an inspection under our engine warranty.",
   },
   {
     icon: Wrench,
-    title: "Genuine Parts & Labour",
-    text: "All warranty repairs use 100% original parts and are carried out by our factory-trained technicians.",
+    title: "Free Maintenance",
+    text: "If inspection confirms an eligible engine issue within the warranty period, maintenance is provided free of charge.",
   },
 ]
 
 const included = [
-  "Manufacturing defects in engine, transmission and frame",
-  "Electrical and electronic component failures",
-  "Free labour on all approved warranty claims",
-  "Genuine imported replacement parts",
-  "Nationwide service coordination",
+  "Seven days of engine warranty from delivery",
+  "Engine smoke or engine blow concerns reported during the warranty period",
+  "Free maintenance for issues confirmed eligible after inspection",
 ]
 
-const excluded = [
-  "Normal wear items — tyres, brake pads, filters, oil",
-  "Damage from accidents, misuse or racing",
-  "Unauthorised modifications or repairs",
-  "Neglected or skipped scheduled maintenance",
-  "Cosmetic wear from regular use",
+const notes = [
+  "Claims reported after the seven-day engine warranty period",
+  "Issues outside the engine are not included in this engine warranty",
+  "Warranty eligibility is confirmed after the bike is inspected",
 ]
 
 const steps = [
   { icon: Phone, title: "Contact Us", text: "Call or WhatsApp our support team with your model and issue details." },
-  { icon: FileText, title: "Share Proof", text: "Provide your invoice and warranty card so we can verify coverage." },
+  { icon: FileText, title: "Share Proof", text: "Provide your purchase details and report the engine issue within seven days of delivery." },
   { icon: Wrench, title: "Inspection", text: "Our technicians inspect the unit and confirm the warranty claim." },
-  { icon: BadgeCheck, title: "Repaired & Returned", text: "We repair with genuine parts and return your bike ready to ride." },
+  { icon: BadgeCheck, title: "Free Maintenance", text: "If approved, we provide the eligible engine maintenance free of charge." },
 ]
 
 export default function WarrantyPage() {
@@ -61,8 +52,8 @@ export default function WarrantyPage() {
 
       <PageHeader
         eyebrow="Peace of Mind"
-        title="1 Year Comprehensive Warranty"
-        description="Every quad bike we sell is 100% original and protected by a full 12-month warranty. Ride with total confidence knowing our team and genuine parts stand behind your machine."
+        title="7-Day Engine Warranty"
+        description="Our ATV engine warranty covers eligible smoke or engine blow issues reported within seven days of delivery. The bike is inspected first, and approved engine maintenance is free."
         breadcrumb="Warranty"
       />
 
@@ -70,9 +61,9 @@ export default function WarrantyPage() {
       <section className="px-3 py-6 sm:px-6">
         <div className="mx-auto grid max-w-7xl gap-4 sm:grid-cols-3">
           {[
-            { icon: Clock, stat: "12 Months", label: "Full Warranty Cover" },
-            { icon: Wrench, stat: "100%", label: "Genuine Parts Used" },
-            { icon: BadgeCheck, stat: "Free", label: "Labour on Claims" },
+            { icon: Clock, stat: "7 Days", label: "Engine Warranty" },
+            { icon: Cog, stat: "Engine", label: "Smoke or Blow Issues" },
+            { icon: BadgeCheck, stat: "Free", label: "Eligible Maintenance" },
           ].map((b) => (
             <div key={b.label} className="glass flex items-center gap-4 rounded-2xl p-5">
               <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/15 text-primary">
@@ -91,7 +82,7 @@ export default function WarrantyPage() {
       <section className="px-3 py-6 sm:px-6">
         <div className="mx-auto max-w-7xl">
           <h2 className="text-2xl font-extrabold tracking-tight sm:text-3xl">What Your Warranty Covers</h2>
-          <div className="mt-6 grid gap-4 md:grid-cols-3">
+          <div className="mt-6 grid gap-4 md:grid-cols-2">
             {coverage.map((c) => (
               <div key={c.title} className="glass rounded-2xl p-6">
                 <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/15 text-primary">
@@ -123,12 +114,12 @@ export default function WarrantyPage() {
           </div>
           <div className="glass rounded-2xl p-6 sm:p-8">
             <h3 className="flex items-center gap-2 text-lg font-bold text-foreground">
-              <XCircle className="h-5 w-5 text-muted-foreground" /> What&apos;s Not Covered
+              <Info className="h-5 w-5 text-muted-foreground" /> Important Warranty Details
             </h3>
             <ul className="mt-5 space-y-3">
-              {excluded.map((i) => (
+              {notes.map((i) => (
                 <li key={i} className="flex items-start gap-3 text-sm text-muted-foreground">
-                  <XCircle className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
+                  <Info className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
                   {i}
                 </li>
               ))}
@@ -175,6 +166,7 @@ export default function WarrantyPage() {
             </Link>
             <a
               href="tel:+923324350140"
+              data-analytics-placement="warranty_call_cta"
               className="glass flex items-center justify-center gap-2 rounded-xl px-6 py-3 text-sm font-bold transition hover:border-primary hover:text-primary"
             >
               <Phone className="h-4 w-4" /> +92 332 4350140

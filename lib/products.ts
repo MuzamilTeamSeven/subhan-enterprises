@@ -1,174 +1,160 @@
-export type ProductCategory = "atv" | "accessories" | "parts"
+export type ProductCategory = "atv" | "dirt_bike" | "accessories" | "parts"
 
 export type Product = {
   id: string
   slug: string
   name: string
-  brand: string
+  brand?: string
   category: ProductCategory
   image: string
+  images?: string[]
   price: number
   oldPrice?: number
   rating?: number
   tag?: "Best Seller" | "New Arrival" | "Sale"
-  inStock: boolean
+  inStock?: boolean
   specs: string[]
   description: string
+  sourceUrl?: string
+  isCatalogVisible?: boolean
 }
 
 export const categoryLabels: Record<ProductCategory, string> = {
   atv: "Quad Bikes / ATVs",
+  dirt_bike: "Dirt Bikes",
   accessories: "Accessories",
   parts: "Parts & Gear",
 }
 
 export const products: Product[] = [
   {
-    id: "raptor-700r",
-    slug: "raptor-700r",
-    name: "Raptor 700R",
-    brand: "Yamaha",
+    id: "125cc-sports-raptor",
+    slug: "125cc-sports-raptor",
+    name: "125cc Sports Raptor ATV",
     category: "atv",
-    image: "/atvs/raptor-700r.png",
+    image: "/atvs/Aggressive Red-Black Camo ATV.png",
+    images: ["/atvs/Aggressive Red-Black Camo ATV.png", "/atvs/atv_side_view_separate.png"],
     price: 2850000,
-    oldPrice: 3100000,
-    rating: 4.9,
-    tag: "Best Seller",
-    inStock: true,
-    specs: ["700cc", "4x4", "4 Stroke"],
+    specs: ["125cc"],
     description:
-      "The Yamaha Raptor 700R is Pakistan's most sought-after sport ATV, delivering explosive 700cc power with precision handling for dunes, trails, and open terrain.",
+      "A 125cc sports Raptor quad bike featured on Subhan Enterprises' official TikTok. Contact us to confirm the current price, availability, and specifications.",
+    sourceUrl: "https://www.tiktok.com/@subhan_enterprises/video/7705115028294257938",
   },
   {
-    id: "cfmoto-520l",
-    slug: "cfmoto-520l",
-    name: "CFMOTO 520L",
-    brand: "CFMOTO",
+    id: "124cc-mini-raptor",
+    slug: "124cc-mini-raptor",
+    name: "124cc Sports Mini Raptor ATV",
     category: "atv",
-    image: "/atvs/cfmoto-520l.png",
+    image: "/atvs/subhan-124cc-mini-raptor.avif",
     price: 1950000,
-    rating: 4.8,
-    tag: "New Arrival",
-    inStock: true,
-    specs: ["520cc", "4x4", "4 Stroke"],
+    specs: ["124cc"],
     description:
-      "The CFMOTO 520L combines value and capability with a reliable 520cc engine, full 4x4 drive, and rugged build quality ideal for Pakistani off-road conditions.",
+      "A 124cc mini Raptor quad bike for kids featured on Subhan Enterprises' official TikTok. Contact us to confirm the current price, availability, and specifications.",
+    sourceUrl: "https://www.tiktok.com/@subhan_enterprises/video/7704709234885168392",
+    isCatalogVisible: false,
   },
   {
-    id: "can-am-outlander",
-    slug: "can-am-outlander",
-    name: "Can-Am Outlander",
-    brand: "Can-Am",
+    id: "250cc-monster-atv",
+    slug: "250cc-monster-atv",
+    name: "250cc Monster ATV",
     category: "atv",
-    image: "/atvs/can-am-outlander.png",
+    image: "/atvs/Camouflaged ATV Under Red Studio Glow.png",
+    images: [
+      "/atvs/Camouflaged ATV Under Red Studio Glow.png",
+      "/atvs/Camouflaged ATV Side Profile Showcase.png",
+    ],
     price: 2450000,
-    rating: 4.7,
-    inStock: true,
-    specs: ["650cc", "4x4", "4 Stroke"],
+    specs: ["250cc"],
     description:
-      "Can-Am Outlander sets the standard for utility ATVs with premium suspension, intelligent throttle control, and unmatched comfort on long rides.",
+      "A 250cc monster ATV featured on Subhan Enterprises' official TikTok. Contact us to confirm the current price, availability, and specifications.",
+    sourceUrl: "https://www.tiktok.com/@subhan_enterprises/video/7703968899854814471",
   },
   {
-    id: "linhai-lh400",
-    slug: "linhai-lh400",
-    name: "Linhai LH 400",
-    brand: "Linhai",
+    id: "150cc-audi-style-atv",
+    slug: "150cc-audi-style-atv",
+    name: "150cc Audi-Style ATV",
     category: "atv",
-    image: "/atvs/linhai-lh400.png",
+    image: "/atvs/Sporty Yellow ATV in Red Glow.png",
+    images: ["/atvs/Sporty Yellow ATV in Red Glow.png", "/atvs/Yellow Sports ATV Studio Showcase.png"],
     price: 1350000,
-    rating: 4.6,
-    inStock: true,
-    specs: ["400cc", "4x4", "4 Stroke"],
-    description:
-      "The Linhai LH 400 is the perfect entry-level quad for new riders and farm use, offering dependable 400cc performance at an accessible price point.",
-  },
-  {
-    id: "polaris-sportsman-570",
-    slug: "polaris-sportsman-570",
-    name: "Polaris Sportsman 570",
-    brand: "Polaris",
-    category: "atv",
-    image: "/atvs/hero-atv.png",
-    price: 2250000,
-    oldPrice: 2400000,
-    rating: 4.8,
-    tag: "Sale",
-    inStock: true,
-    specs: ["570cc", "4x4", "Automatic"],
-    description:
-      "Polaris Sportsman 570 delivers proven utility performance with smooth automatic transmission, heavy-duty towing capacity, and legendary Polaris reliability.",
-  },
-  {
-    id: "honda-trx420",
-    slug: "honda-trx420",
-    name: "Honda TRX420 Rancher",
-    brand: "Honda",
-    category: "atv",
-    image: "/atvs/lifestyle-rider.png",
-    price: 1780000,
-    rating: 4.7,
-    inStock: true,
-    specs: ["420cc", "4x4", "4 Stroke"],
-    description:
-      "Honda TRX420 Rancher is built for work and play with legendary Honda reliability, efficient fuel economy, and comfortable ergonomics for all-day riding.",
-  },
-  {
-    id: "kawasaki-brute-force",
-    slug: "kawasaki-brute-force",
-    name: "Kawasaki Brute Force 750",
-    brand: "Kawasaki",
-    category: "atv",
-    image: "/atvs/blog-offroad.png",
-    price: 2650000,
-    rating: 4.9,
-    tag: "Best Seller",
-    inStock: true,
-    specs: ["750cc", "4x4", "4 Stroke"],
-    description:
-      "Kawasaki Brute Force 750 packs serious V-twin power for the toughest terrain, with advanced chassis design and premium build quality.",
-  },
-  {
-    id: "arctic-cat-alterra",
-    slug: "arctic-cat-alterra",
-    name: "Arctic Cat Alterra 700",
-    brand: "Arctic Cat",
-    category: "atv",
-    image: "/atvs/blog-maintenance.png",
-    price: 2100000,
-    rating: 4.6,
+    specs: ["150cc"],
     tag: "New Arrival",
-    inStock: true,
-    specs: ["700cc", "4x4", "4 Stroke"],
     description:
-      "Arctic Cat Alterra 700 offers mid-range power with excellent ground clearance, making it ideal for rocky trails and agricultural applications across Pakistan.",
+      "A 150cc Audi-style ATV featured on Subhan Enterprises' official TikTok. The styling name does not indicate an Audi-manufactured vehicle. Contact us to confirm the current price, availability, and specifications.",
+    sourceUrl: "https://www.tiktok.com/@subhan_enterprises/video/7701000678344346888",
   },
   {
-    id: "suzuki-kingquad",
-    slug: "suzuki-kingquad",
-    name: "Suzuki KingQuad 500",
-    brand: "Suzuki",
+    id: "125cc-sports-hummer-jeep",
+    slug: "125cc-sports-hummer-jeep",
+    name: "125cc Sports Hummer Jeep",
     category: "atv",
-    image: "/atvs/blog-safety.png",
-    price: 1890000,
-    rating: 4.5,
-    inStock: true,
-    specs: ["500cc", "4x4", "4 Stroke"],
+    image: "/atvs/Front-Facing Red ATV Studio Render.png",
+    price: 2250000,
+    specs: ["125cc"],
     description:
-      "Suzuki KingQuad 500 is a versatile all-rounder with smooth power delivery, durable construction, and excellent value for recreational and utility riders.",
+      "A 125cc Sports Hummer Jeep featured on Subhan Enterprises' official TikTok. Contact us to confirm the current price, availability, and specifications.",
+    sourceUrl: "https://www.tiktok.com/@subhan_enterprises/video/7686899707087539463",
   },
   {
-    id: "cfmoto-cforce-625",
-    slug: "cfmoto-cforce-625",
-    name: "CFMOTO CForce 625",
-    brand: "CFMOTO",
+    id: "124cc-six-plus-sports-jeep",
+    slug: "124cc-six-plus-sports-jeep",
+    name: "124cc Six Plus Sports Jeep",
     category: "atv",
-    image: "/atvs/cfmoto-520l.png",
-    price: 2150000,
-    rating: 4.7,
-    inStock: true,
-    specs: ["625cc", "4x4", "4 Stroke"],
+    image: "/atvs/Rugged Camo ATV in Dramatic Studio Light.png",
+    price: 1780000,
+    specs: ["124cc"],
+    tag: "New Arrival",
     description:
-      "CFMOTO CForce 625 bridges sport and utility with a responsive 625cc engine, premium features, and competitive pricing for the Pakistani market.",
+      "A 124cc Six Plus Sports Jeep featured on Subhan Enterprises' official TikTok. Contact us to confirm the current price, availability, and specifications.",
+    sourceUrl: "https://www.tiktok.com/@subhan_enterprises/video/7699885257444674834",
+  },
+  {
+    id: "125cc-shikari-jeep",
+    slug: "125cc-shikari-jeep",
+    name: "125cc Shikari Jeep",
+    category: "atv",
+    image: "/atvs/Rugged LED ATV in Red Glow.png",
+    price: 2650000,
+    specs: ["125cc"],
+    description:
+      "A 125cc Shikari Jeep featured on Subhan Enterprises' official TikTok. Contact us to confirm the current price, availability, and specifications.",
+    sourceUrl: "https://www.tiktok.com/@subhan_enterprises/video/7688012611526397191",
+  },
+  {
+    id: "70cc-mini-kids-atv",
+    slug: "70cc-mini-kids-atv",
+    name: "70cc Mini Kids ATV",
+    category: "atv",
+    image: "/atvs/subhan-70cc-mini-kids.avif",
+    price: 2100000,
+    specs: ["70cc"],
+    description:
+      "A 70cc mini kids quad bike featured on Subhan Enterprises' official TikTok. Contact us to confirm the current price, availability, and specifications.",
+    sourceUrl: "https://www.tiktok.com/@subhan_enterprises/video/7701366254572981512",
+    isCatalogVisible: false,
+  },
+  {
+    id: "neon-green-dirt-bike",
+    slug: "neon-green-dirt-bike",
+    name: "Neon Green Dirt Bike",
+    category: "dirt_bike",
+    image: "/atvs/Premium Neon-Green Dirt Bike 52.png",
+    price: 190000,
+    specs: [],
+    description:
+      "Explore the Neon Green Dirt Bike at Subhan Enterprises in Pakistan. Contact us to confirm specifications, current availability, and price.",
+  },
+  {
+    id: "waypark-dirt-bike",
+    slug: "waypark-dirt-bike",
+    name: "Waypark Dirt Bike",
+    brand: "Waypark",
+    category: "dirt_bike",
+    image: "/atvs/Yellow Waypark Dirt Bike Studio Render.png",
+    price: 220000,
+    specs: [],
+    description:
+      "Explore the Waypark Dirt Bike at Subhan Enterprises in Pakistan. Contact us to confirm specifications, current availability, and price.",
   },
   {
     id: "off-road-helmet",
@@ -436,6 +422,19 @@ export function formatPrice(value: number) {
   return "PKR " + value.toLocaleString("en-PK")
 }
 
+const legacyProductSlugs: Record<string, string> = {
+  "raptor-700r": "125cc-sports-raptor",
+  "cfmoto-520l": "124cc-mini-raptor",
+  "can-am-outlander": "250cc-monster-atv",
+  "linhai-lh400": "150cc-audi-style-atv",
+  "polaris-sportsman-570": "125cc-sports-hummer-jeep",
+  "honda-trx420": "124cc-six-plus-sports-jeep",
+  "kawasaki-brute-force": "125cc-shikari-jeep",
+  "arctic-cat-alterra": "70cc-mini-kids-atv",
+  "suzuki-kingquad": "70cc-mini-kids-atv",
+  "cfmoto-cforce-625": "250cc-monster-atv",
+}
+
 /**
  * Returns a keyword-rich, unique SEO title for a product page.
  * Pattern: "[Name] [Category keyword] Price in Pakistan | Subhan Enterprises"
@@ -443,6 +442,9 @@ export function formatPrice(value: number) {
 export function getProductSeoTitle(product: Product): string {
   if (product.category === "atv") {
     return `${product.name} ATV Quad Bike Price in Pakistan | Subhan Enterprises`
+  }
+  if (product.category === "dirt_bike") {
+    return `${product.name} Price in Pakistan | Subhan Enterprises`
   }
   if (product.category === "accessories") {
     return `${product.name} — ATV Riding Gear Pakistan | Subhan Enterprises`
@@ -457,7 +459,10 @@ export function getProductSeoDescription(product: Product): string {
   const specs = product.specs.join(", ")
   const price = formatPrice(product.price)
   if (product.category === "atv") {
-    return `Buy ${product.name} by ${product.brand} in Pakistan — ${specs}. Price: ${price}. Nationwide delivery, 1-year warranty & expert after-sales support from Subhan Enterprises, Lahore.`
+    return `Buy the ${product.name} quad bike in Pakistan from Subhan Enterprises. ${specs}. Price: ${price}. Nationwide delivery and a 7-day engine warranty. Contact us to confirm the current price and availability.`
+  }
+  if (product.category === "dirt_bike") {
+    return `Explore the ${product.name} dirt bike in Pakistan from Subhan Enterprises. Price: ${price}. Contact us to confirm specifications and availability.`
   }
   if (product.category === "accessories") {
     return `${product.name} by ${product.brand} — ${specs}. Premium ATV riding gear available in Pakistan at ${price}. Fast delivery from Subhan Enterprises.`
@@ -469,20 +474,26 @@ export function getProductBySlug(slug: string): Product | undefined {
   return products.find((p) => p.slug === slug || p.id === slug)
 }
 
+export function getReplacementProductSlug(slug: string): string | undefined {
+  return legacyProductSlugs[slug]
+}
+
 /** @deprecated Use getProductBySlug */
 export function getProductById(id: string): Product | undefined {
   return getProductBySlug(id)
 }
 
 export function getRelatedProducts(product: Product, limit = 4): Product[] {
-  return products.filter((p) => p.category === product.category && p.id !== product.id).slice(0, limit)
+  return products
+    .filter((p) => p.isCatalogVisible !== false && p.category === product.category && p.id !== product.id)
+    .slice(0, limit)
 }
 
 export function getProductDescription(product: Product): string {
   if (product.description) return product.description
   const specs = product.specs.join(", ")
   if (product.category === "atv") {
-    return `The ${product.name} by ${product.brand} is built for Pakistan's toughest terrain. Delivering ${specs} performance, it combines raw power with confident control for both trail riders and serious off-road adventurers. Every unit is 100% original, directly imported, and backed by full after-sales support from Subhan Enterprises.`
+    return `${product.name} is available from Subhan Enterprises in Pakistan. Listed specifications: ${specs}. Contact us to confirm current availability, price, and details.`
   }
   if (product.category === "accessories") {
     return `The ${product.name} from ${product.brand} is a rider essential engineered for safety and comfort on every ride. Featuring ${specs}, it is designed to keep you protected and confident whether you are on the trail or the track.`

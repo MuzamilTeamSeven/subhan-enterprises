@@ -47,10 +47,10 @@ const columns = [
   {
     title: "Our Products",
     links: [
-      { label: "Raptor 700R", href: "/products/raptor-700r" },
-      { label: "CFMOTO 520L", href: "/products/cfmoto-520l" },
-      { label: "Can-Am Outlander", href: "/products/can-am-outlander" },
-      { label: "Linhai LH 400", href: "/products/linhai-lh400" },
+      { label: "125cc Sports Raptor", href: "/products/125cc-sports-raptor" },
+      { label: "250cc Monster ATV", href: "/products/250cc-monster-atv" },
+      { label: "150cc Audi-Style ATV", href: "/products/150cc-audi-style-atv" },
+      { label: "70cc Mini Kids ATV", href: "/products/70cc-mini-kids-atv" },
       { label: "View All Models", href: "/products?category=atv" },
     ],
   },
@@ -98,6 +98,7 @@ export function SiteFooter() {
                 href={s.href}
                 target="_blank"
                 rel="noopener noreferrer"
+                data-analytics-placement={`footer_${s.label.toLowerCase()}`}
                 className="glass flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition hover:border-primary hover:text-primary"
                 aria-label={s.label}
               >
@@ -153,6 +154,7 @@ export function SiteFooter() {
       {/* WhatsApp float */}
       <a
         href="https://wa.me/923324350140"
+        data-analytics-placement="floating_whatsapp"
         className="whatsapp-float fixed bottom-6 right-6 z-50 flex flex-col items-center gap-1"
         aria-label="Chat on WhatsApp"
       >

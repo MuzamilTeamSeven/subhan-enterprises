@@ -19,7 +19,7 @@ import { buildMetadata } from "@/lib/seo"
 export const metadata: Metadata = buildMetadata({
   title: "ATV Delivery Pakistan — Nationwide Shipping | Subhan Enterprises",
   description:
-    "Fast, fully insured nationwide ATV and quad bike delivery across Pakistan. Lahore, Karachi, Islamabad, Peshawar and beyond. Learn about timelines, charges and our safe handover process.",
+    "Arrange ATV and quad bike delivery across Pakistan with Subhan Enterprises. Contact our Lahore team to confirm route availability, timing and delivery charges.",
   path: "/shipping",
 })
 
@@ -27,7 +27,7 @@ const features = [
   {
     icon: Truck,
     title: "Nationwide Coverage",
-    text: "We deliver to all major cities — Lahore, Karachi, Islamabad, Faisalabad, Peshawar, Multan and beyond.",
+    text: "We arrange ATV and quad bike delivery across Pakistan. Contact us to confirm service for your destination and current delivery schedule.",
   },
   {
     icon: ShieldCheck,
@@ -175,6 +175,7 @@ export default function ShippingPage() {
             </Link>
             <a
               href="tel:+923324350140"
+              data-analytics-placement="shipping_call_cta"
               className="glass flex items-center justify-center gap-2 rounded-xl px-6 py-3 text-sm font-bold transition hover:border-primary hover:text-primary"
             >
               <Phone className="h-4 w-4" /> +92 332 4350140
