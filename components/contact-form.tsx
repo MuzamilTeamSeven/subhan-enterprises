@@ -4,6 +4,8 @@ import type React from "react"
 import { useState, useRef } from "react"
 import emailjs from "@emailjs/browser"
 import { AlertCircle, Loader2, Send, ShieldCheck } from "lucide-react"
+import { usePathname } from "next/navigation"
+import { getAnalyticsPagePath, pushAnalyticsEvent } from "@/lib/analytics"
 import { products } from "@/lib/products"
 
 const subjects = ["Product Enquiry", "Request a Quote", "Warranty / Support", "Financing / Installments", "Other"]
@@ -13,7 +15,9 @@ interface ContactFormProps {
 }
 
 export function ContactForm({ source = "/contact" }: ContactFormProps) {
+  const pathname = usePathname()
   const formRef = useRef<HTMLFormElement>(null)
+  const isSubmittingRef = useRef(false)
   const [submitted, setSubmitted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -22,9 +26,10 @@ export function ContactForm({ source = "/contact" }: ContactFormProps) {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
 
-    if (isSubmitting) return
+    if (isSubmittingRef.current) return
 
     setError(null)
+    isSubmittingRef.current = true
     setIsSubmitting(true)
 
     const now = new Date().toLocaleString("en-PK", {
@@ -39,24 +44,33 @@ export function ContactForm({ source = "/contact" }: ContactFormProps) {
 
     if (!serviceId || !templateId || !publicKey) {
       setError("Sorry, we couldn't send your inquiry right now. Please try again or contact us directly.")
+      isSubmittingRef.current = false
       setIsSubmitting(false)
       return
     }
 
     try {
-      if (formRef.current) {
-        const submittedAtInput = formRef.current.querySelector<HTMLInputElement>('input[name="submitted_at"]')
-        if (submittedAtInput) {
-          submittedAtInput.value = now
-        }
-        await emailjs.sendForm(serviceId, templateId, formRef.current, {
-          publicKey,
-        })
+      if (!formRef.current) {
+        throw new Error("Contact form is unavailable.")
       }
+
+      const submittedAtInput = formRef.current.querySelector<HTMLInputElement>('input[name="submitted_at"]')
+      if (submittedAtInput) {
+        submittedAtInput.value = now
+      }
+      await emailjs.sendForm(serviceId, templateId, formRef.current, {
+        publicKey,
+      })
+      pushAnalyticsEvent("generate_lead", {
+        form_source: source,
+        form_type: "contact_form",
+        page_path: getAnalyticsPagePath(pathname || source),
+      })
       setSubmitted(true)
     } catch {
       setError("Sorry, we couldn't send your inquiry right now. Please try again or contact us directly.")
     } finally {
+      isSubmittingRef.current = false
       setIsSubmitting(false)
     }
   }

@@ -99,6 +99,7 @@ export default function SupportPage() {
             <a
               key={c.title}
               href={c.href}
+              data-analytics-placement={`support_${c.title.toLowerCase().replace(/\s+/g, "_")}`}
               className="glass group flex items-start gap-4 rounded-2xl p-6 transition hover:border-primary/50"
             >
               <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/15 text-primary">
@@ -147,7 +148,11 @@ export default function SupportPage() {
             <p className="mt-2 text-sm text-muted-foreground">
               Fill in the form and our support team will get back to you shortly.
             </p>
-            <div className="mt-6">
+            <div
+              className="mt-6"
+              data-analytics-section="support-form"
+              data-analytics-section-name="Support enquiry form"
+            >
               <ContactForm source="/support" />
             </div>
           </div>
@@ -187,6 +192,7 @@ export default function SupportPage() {
               <h3 className="text-base font-bold text-foreground">Need to talk right now?</h3>
               <a
                 href="https://wa.me/923324350140"
+                data-analytics-placement="support_whatsapp_cta"
                 className="flex items-center justify-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-bold text-primary-foreground transition hover:opacity-90"
               >
                 <MessageCircle className="h-4 w-4" /> Chat on WhatsApp

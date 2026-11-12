@@ -1,5 +1,6 @@
 import type { BlogFaq, BlogPost, BlogPostMeta, BlogSection } from "./types"
 import { blogPostsMeta } from "./posts"
+import { getProductBySlug, getReplacementProductSlug } from "@/lib/products"
 
 type ArticleBody = {
   sections: BlogSection[]
@@ -283,7 +284,7 @@ const remainingContent: Record<(typeof remainingSlugs)[number], ArticleBody> = {
         heading: "Test Before You Buy",
         paragraphs: [
           "Visit our Lahore showroom to see models in person, sit on different machines, and discuss your needs with our sales team. We can arrange test rides for serious buyers on approved terrain.",
-          "Ask about warranty coverage, parts availability, and after-sales service. Subhan Enterprises provides 1-year warranty, nationwide delivery, and a fully equipped workshop — advantages that matter enormously during your first year of ownership.",
+          "Ask about warranty coverage, parts availability, and after-sales service. Subhan Enterprises offers nationwide delivery and a 7-day engine warranty for eligible smoke or engine blow concerns reported after delivery.",
         ],
       },
     ],
@@ -338,8 +339,8 @@ const remainingContent: Record<(typeof remainingSlugs)[number], ArticleBody> = {
       {
         heading: "Parts, Warranty, and Support",
         paragraphs: [
-          "Both brands receive full warranty and after-sales support through Subhan Enterprises. Parts availability for both is good, though Can-Am's longer market presence means some third-party parts options exist.",
-          "Our workshop technicians are trained on both brands. Regardless of your choice, you receive 1-year warranty, nationwide delivery, and expert servicing at our Lahore facility.",
+          "Ask our team about warranty eligibility, parts availability, and after-sales support for the specific model you are considering.",
+          "Warranty terms vary by concern: our 7-day engine warranty is for reported engine smoke or engine blow issues and requires inspection. Contact us for model-specific support and delivery details.",
         ],
       },
       {
@@ -640,14 +641,14 @@ const remainingContent: Record<(typeof remainingSlugs)[number], ArticleBody> = {
       {
         heading: "Peace of Mind With Every Purchase",
         paragraphs: [
-          "Every ATV sold by Subhan Enterprises includes a comprehensive 1-year warranty covering manufacturing defects in engine and major components. Understanding what your warranty covers — and how to maintain it — ensures you receive full support when you need it.",
+          "Subhan Enterprises provides a 7-day engine warranty for reported engine smoke or engine blow concerns. The bike is inspected first, and free maintenance is provided for issues confirmed eligible under the warranty.",
         ],
       },
       {
         heading: "What Is Covered",
         paragraphs: [
-          "The standard warranty covers defects in materials and workmanship in the engine, transmission, electrical system, and frame for 12 months from delivery date. This includes engine internal components, drive system, and factory-installed electrical parts.",
-          "Warranty service is performed at our Lahore workshop by trained technicians using genuine parts. We document all warranty claims and aim for resolution within 5–10 business days depending on parts availability.",
+          "The 7-day engine warranty applies to reported engine smoke or engine blow concerns raised within seven days of delivery. It is limited to eligible engine issues; transmission, electrical, frame, and other non-engine coverage is not included in this warranty.",
+          "Contact the support team promptly with your order details. The ATV must be inspected to confirm eligibility; approved engine maintenance is free.",
         ],
       },
       {
@@ -961,8 +962,8 @@ const remainingContent: Record<(typeof remainingSlugs)[number], ArticleBody> = {
       {
         heading: "Our ATV Range",
         paragraphs: [
-          "We stock 10 ATV models from world-leading brands: Yamaha, CFMOTO, Can-Am, Linhai, Polaris, Honda, Kawasaki, Arctic Cat, and Suzuki. Prices range from PKR 1,350,000 (Linhai LH 400) to PKR 2,850,000 (Yamaha Raptor 700R).",
-          "Every machine is 100% original, directly imported, and backed by our 1-year warranty. Browse our complete range on the products page, filtered by category, brand, and price.",
+          "Browse eight distinct ATV and quad-bike models featured on Subhan Enterprises' official TikTok, with engine sizes shown from 70cc to 250cc. Model names follow the posts; a manufacturer is not named unless verified.",
+          "The TikTok posts do not list prices or confirm current stock. Product pages retain their existing listed prices; contact Subhan Enterprises to confirm a current quote, model availability, nationwide delivery, and the 7-day engine warranty for eligible issues.",
         ],
       },
       {
@@ -982,8 +983,8 @@ const remainingContent: Record<(typeof remainingSlugs)[number], ArticleBody> = {
       {
         heading: "Why Choose Subhan Enterprises",
         paragraphs: [
-          "100% original imported ATVs from trusted global brands. Best market prices with transparent, no-hidden-fee quoting. 1-year warranty on all models. Nationwide delivery to every major city. Expert after-sales workshop and genuine parts.",
-          "Easy financing, installment plans, and trade-in options. 500+ satisfied riders and 4.9/5 customer rating. We do not just sell ATVs — we deliver the complete ownership experience.",
+          "Explore available ATVs from trusted brands, ask for a clear quote, and arrange delivery across Pakistan. A 7-day engine warranty covers eligible smoke or engine blow issues reported within the warranty period, subject to inspection.",
+          "With 18+ years of experience and more than 10,000 riders served across Pakistan, Subhan Enterprises helps buyers compare quad bikes and get after-sales guidance.",
         ],
       },
       {
@@ -1003,7 +1004,7 @@ const remainingContent: Record<(typeof remainingSlugs)[number], ArticleBody> = {
       {
         question: "What warranty comes with every ATV?",
         answer:
-          "All models include a 1-year warranty covering manufacturing defects in engine and major components, serviced at our Lahore workshop.",
+          "Our 7-day engine warranty covers reported engine smoke or engine blow concerns. We inspect the ATV first; eligible engine maintenance is free. Other components are not included.",
       },
       {
         question: "Can I visit without an appointment?",
@@ -1013,7 +1014,7 @@ const remainingContent: Record<(typeof remainingSlugs)[number], ArticleBody> = {
     ],
     cta: {
       heading: "Start Your ATV Journey Today",
-      text: "Browse our 2025 collection, request a quote, and join 500+ happy riders across Pakistan.",
+      text: "Explore available ATV models and request a quote from a dealer with 18+ years of experience and 10,000+ riders served across Pakistan.",
       buttonLabel: "Explore Products",
       href: "/products",
     },
@@ -1024,32 +1025,29 @@ const seoArticleBodies: Record<string, ArticleBody> = {
   "atv-price-guide-pakistan-2025": {
     sections: [
       {
-        heading: "Understanding ATV & Quad Bike Prices in Pakistan (2025)",
+        heading: "Understanding ATV & Quad Bike Prices in Pakistan",
         paragraphs: [
-          "If you are considering buying an ATV or quad bike in Pakistan in 2025, understanding the price landscape is essential. Quad bike prices vary significantly depending on engine displacement (cc), drive system (2WD vs 4WD), brand origin, and imported customs duties.",
-          "At Subhan Enterprises, Pakistan's premier ATV dealer, we believe in 100% price transparency. Our range spans from entry-level 400cc quad bikes starting around PKR 1,350,000 to top-tier 700cc+ sport and heavy utility ATVs reaching PKR 2,850,000.",
-          "Whether you need an affordable machine for farm tasks or a high-performance quad bike for desert dunes, this guide breaks down exactly what you get at every price tier in Pakistan.",
+          "Quad-bike prices depend on the exact model and the seller's current availability. The official Subhan Enterprises TikTok posts show eight distinct models from 70cc to 250cc, but do not publish prices or confirm current stock.",
+          "Product pages retain their existing listed prices. Contact Subhan Enterprises to confirm the current price, availability, and specifications before ordering; no manufacturer is named unless verified.",
+          "Use the model names and engine sizes shown in the listings to compare options, then request a current quote for the specific quad bike you are considering.",
         ],
       },
       {
-        heading: "Entry-Level ATVs (PKR 1.35 Million – 1.6 Million)",
+        heading: "Kids and Mini Quad Bikes (70cc–124cc)",
         paragraphs: [
-          "Entry-level quad bikes are designed for new riders, budget-conscious buyers, and basic farm or estate utility. In this price category, machines typically feature 350cc–400cc single-cylinder engines with automatic CVT transmissions.",
-          "Our featured entry-level pick is the [Linhai LH 400](/products/linhai-lh400) priced at PKR 1,350,000. It offers full 4x4 capability, independent rear suspension, and robust racks, making it exceptionally high value for first-time quad bike owners in Pakistan.",
+          "The listed kids and mini options include the [70cc Mini Kids ATV](/products/70cc-mini-kids-atv) and the [124cc Sports Mini Raptor ATV](/products/124cc-mini-raptor). Confirm age suitability, safety equipment, exact specifications, and availability with the seller.",
         ],
       },
       {
-        heading: "Mid-Range Adventure & Utility ATVs (PKR 1.8 Million – 2.2 Million)",
+        heading: "Sports and Jeep-Style Models (124cc–125cc)",
         paragraphs: [
-          "The mid-range bracket is the sweet spot for most Pakistani riders. Here you get 500cc–600cc liquid-cooled engines, fuel injection, superior ground clearance, and enhanced towing capacities ideal for northern trail rides and heavy agricultural work.",
-          "The popular [CFMOTO 520L](/products/cfmoto-520l) (PKR 1,950,000) and the dependable [Honda TRX420](/products/honda-trx420) (PKR 2,150,000) dominate this category, offering unmatched reliability and ride comfort on rugged trails.",
+          "The 124cc–125cc listings include the [125cc Sports Raptor ATV](/products/125cc-sports-raptor), [124cc Six Plus Sports Jeep](/products/124cc-six-plus-sports-jeep), [125cc Sports Hummer Jeep](/products/125cc-sports-hummer-jeep), and [125cc Shikari Jeep](/products/125cc-shikari-jeep). The model descriptions follow Subhan Enterprises' official TikTok posts.",
         ],
       },
       {
-        heading: "Premium Sport & Heavy Utility ATVs (PKR 2.4 Million – 2.85 Million)",
+        heading: "150cc and 250cc ATV Models",
         paragraphs: [
-          "For riders demanding maximum power, aggressive speed, or extreme mud capability, premium ATVs feature 700cc+ engines, performance shocks, power steering, and reinforced chassis construction.",
-          "The ultimate sport machine, the [Yamaha Raptor 700R](/products/raptor-700r) (PKR 2,850,000), delivers race-proven performance, while the [Can-Am Outlander](/products/can-am-outlander) (PKR 2,750,000) provides luxury utility performance for demanding off-road enthusiasts.",
+          "The TikTok catalog also features a [150cc Audi-style ATV](/products/150cc-audi-style-atv) and a [250cc Monster ATV](/products/250cc-monster-atv). The styling name does not indicate an Audi-manufactured vehicle. Contact Subhan Enterprises to confirm current price, availability, and details.",
         ],
       },
     ],
@@ -1057,7 +1055,7 @@ const seoArticleBodies: Record<string, ArticleBody> = {
       {
         question: "What is the starting price for an ATV quad bike in Pakistan?",
         answer:
-          "Full-size 4x4 quad bike prices at Subhan Enterprises start at PKR 1,350,000 for models like the Linhai LH 400.",
+          "Check the listed price on the product page and contact Subhan Enterprises to confirm the current quote and availability for that model.",
       },
       {
         question: "Are quad bike prices inclusive of delivery in Pakistan?",
@@ -1067,7 +1065,7 @@ const seoArticleBodies: Record<string, ArticleBody> = {
       {
         question: "Does Subhan Enterprises offer warranty with quad bikes?",
         answer:
-          "Yes! Every new quad bike purchased from Subhan Enterprises comes with a comprehensive 1-year warranty.",
+          "New quad bikes include a 7-day engine warranty for reported smoke or engine blow issues. Eligibility is confirmed after inspection, and approved engine maintenance is free.",
       },
     ],
     cta: {
@@ -1446,9 +1444,12 @@ export function getRelatedPosts(slug: string, limit = 3): BlogPost[] {
 
 export function getRelatedBlogPosts(productSlug: string, limit = 3): BlogPostMeta[] {
   return blogPostsMeta
-    .filter((p) => p.relatedProductSlugs?.includes(productSlug))
+    .filter((p) =>
+      p.relatedProductSlugs?.some(
+        (slug) => (getProductBySlug(slug)?.slug ?? getReplacementProductSlug(slug)) === productSlug,
+      ),
+    )
     .slice(0, limit)
 }
 
 export { blogPostsMeta }
-

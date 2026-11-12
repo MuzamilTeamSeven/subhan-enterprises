@@ -14,6 +14,7 @@ import {
 } from "lucide-react"
 import { OptimizedImage } from "@/components/ui/optimized-image"
 import { cn } from "@/lib/utils"
+import type { GoogleReviewsData } from "@/lib/google-reviews"
 
 const specs = [
   { icon: Zap, title: "700cc", sub: "Powerful Engine" },
@@ -21,10 +22,10 @@ const specs = [
   { icon: Cog, title: "Automatic", sub: "Transmission" },
   { icon: Gauge, title: "4 Stroke", sub: "Engine" },
   { icon: Mountain, title: "Off Road", sub: "Built Tough" },
-  { icon: ShieldCheck, title: "Warranty", sub: "1 Year" },
+  { icon: ShieldCheck, title: "Engine Warranty", sub: "7 Days" },
 ]
 
-export function Hero() {
+export function Hero({ googleReviews }: { googleReviews: GoogleReviewsData }) {
   const [isVisible, setIsVisible] = useState(true)
 
   useEffect(() => {
@@ -56,7 +57,11 @@ export function Hero() {
   }
 
   return (
-    <section className="relative overflow-hidden px-3 pt-8 sm:px-6 pb-10">
+    <section
+      data-analytics-section="homepage-hero"
+      data-analytics-section-name="Homepage hero"
+      className="relative overflow-hidden px-3 pt-8 sm:px-6 pb-10"
+    >
       <div className="hero-glow" aria-hidden="true" />
 
       <div className="mx-auto grid max-w-7xl items-center gap-8 lg:grid-cols-[1fr_1.1fr_auto]">
@@ -73,10 +78,10 @@ export function Hero() {
             <span className="text-primary">TERRAIN.</span>
           </h1>
           <p className="mt-5 max-w-md leading-relaxed text-muted-foreground">
-            Pakistan&apos;s trusted ATV and Quad Bike dealer. Buy premium ATVs, quad bikes and trail bikes — nationwide delivery with a 1-year warranty.
+            Find the right ATV or quad bike for sale in Pakistan. Subhan Enterprises offers guidance on available models, delivery across Pakistan, and a 7-day engine warranty.
           </p>
           <p className="sr-only">
-            Subhan Enterprises is Lahore&apos;s leading ATV dealer offering quad bikes for sale in Pakistan, trail bikes, farm ATVs, kids ATVs and off-road bikes with nationwide delivery, installment plans and expert after-sales support.
+            Subhan Enterprises has served over 10,000 riders across Pakistan in more than 18 years, with ATV and quad bike sales, nationwide delivery and a 7-day engine warranty.
           </p>
 
           <div className="mt-7 flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
@@ -96,25 +101,54 @@ export function Hero() {
 
           <div className="mt-8 flex items-center gap-4">
             <div className="flex -space-x-3">
-              {["usman", "hamza", "talal"].map((a) => (
-                <OptimizedImage
-                  key={a}
-                  src={`/avatars/${a}.png`}
-                  alt={`Customer avatar ${a}`}
-                  width={40}
-                  height={40}
-                  sizes="40px"
-                  className="h-10 w-10 rounded-full border-2 border-background object-cover"
-                />
-              ))}
+              {googleReviews.status === "ready" && googleReviews.reviews.length > 0
+                ? googleReviews.reviews.slice(0, 3).map((review) => (
+                    <span
+                      key={review.id}
+                      aria-label={`Google reviewer: ${review.author}`}
+                      className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-background bg-card text-xs font-bold text-foreground"
+                    >
+                      {review.author.charAt(0).toUpperCase()}
+                    </span>
+                  ))
+                : ["usman", "hamza", "talal"].map((avatar) => (
+                    <OptimizedImage
+                      key={avatar}
+                      src={`/avatars/${avatar}.png`}
+                      alt={`Customer avatar ${avatar}`}
+                      width={40}
+                      height={40}
+                      sizes="40px"
+                      className="h-10 w-10 rounded-full border-2 border-background object-cover"
+                    />
+                  ))}
             </div>
             <div>
-              <p className="text-sm font-bold text-foreground">500+ Happy Riders</p>
+              <p className="text-sm font-bold text-foreground">
+                {googleReviews.status === "ready" && googleReviews.totalReviewCount > 0
+                  ? `${googleReviews.totalReviewCount.toLocaleString()} Google Reviews`
+                  : "10,000+ Riders"}
+              </p>
               <div className="flex items-center gap-1 text-primary">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Star key={i} className="h-3.5 w-3.5 fill-current" />
-                ))}
-                <span className="ml-1 text-xs text-muted-foreground">4.9/5</span>
+                {googleReviews.status === "ready" &&
+                googleReviews.reviews.length > 0 &&
+                googleReviews.averageRating !== null ? (
+                  <>
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <Star key={i} className="h-3.5 w-3.5 fill-current" />
+                    ))}
+                    <span className="ml-1 text-xs text-muted-foreground">
+                      {googleReviews.averageRating.toFixed(1)}/5
+                    </span>
+                  </>
+                ) : (
+                  <>
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <Star key={i} className="h-3.5 w-3.5 fill-current" />
+                    ))}
+                    <span className="ml-1 text-xs text-muted-foreground">4.9/5</span>
+                  </>
+                )}
               </div>
             </div>
           </div>

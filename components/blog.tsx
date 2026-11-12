@@ -7,7 +7,11 @@ const featuredPosts = blogPostsMeta.slice(0, 3)
 
 export function Blog() {
   return (
-    <section className="px-3 py-6 sm:px-6">
+    <section
+      data-analytics-section="homepage-blog"
+      data-analytics-section-name="Homepage blog"
+      className="px-3 py-6 sm:px-6"
+    >
       <div className="glass mx-auto max-w-7xl rounded-2xl p-5 sm:p-8">
         <div className="flex items-end justify-between gap-4">
           <div>

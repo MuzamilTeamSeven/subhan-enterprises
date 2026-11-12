@@ -1,19 +1,21 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 
-import { notFound } from "next/navigation"
-import { OptimizedImage } from "@/components/ui/optimized-image"
+import { notFound, permanentRedirect } from "next/navigation"
 import { ArrowRight, Check, ChevronRight, Phone, ShieldCheck, Star, Truck, Wrench, X } from "lucide-react"
 import { Navbar } from "@/components/navbar"
 import { SiteFooter } from "@/components/site-footer"
 import { ProductCard } from "@/components/product-card"
 import { BlogCard } from "@/components/blog-card"
+import { ProductViewTracker } from "@/components/product-view-tracker"
+import { ProductImageGallery } from "@/components/product-image-gallery"
 import { getRelatedBlogPosts } from "@/lib/blog"
 import {
   categoryLabels,
   formatPrice,
   getProductBySlug,
   getProductDescription,
+  getReplacementProductSlug,
   getProductSeoTitle,
   getProductSeoDescription,
   getRelatedProducts,
@@ -28,7 +30,7 @@ import {
 import { cn } from "@/lib/utils"
 
 export function generateStaticParams() {
-  return products.map((p) => ({ id: p.slug }))
+  return products.filter((p) => p.isCatalogVisible !== false).map((p) => ({ id: p.slug }))
 }
 
 export async function generateMetadata({
@@ -38,7 +40,16 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { id } = await params
   const product = getProductBySlug(id)
-  if (!product) return { title: "Product Not Found | Subhan Enterprises" }
+  if (!product || product.isCatalogVisible === false) {
+    if (getReplacementProductSlug(id)) {
+      return buildMetadata({
+        title: "Quad Bikes for Sale in Pakistan | Subhan Enterprises",
+        description: "Browse verified quad-bike listings from Subhan Enterprises.",
+        path: "/products?category=atv",
+      })
+    }
+    return { title: "Product Not Found | Subhan Enterprises" }
+  }
   return buildMetadata({
     title: getProductSeoTitle(product),
     description: getProductSeoDescription(product),
@@ -48,7 +59,7 @@ export async function generateMetadata({
 }
 
 const highlights = [
-  { icon: ShieldCheck, label: "1 Year Warranty", href: "/warranty" },
+  { icon: ShieldCheck, label: "7-Day Engine Warranty", href: "/warranty" },
   { icon: Truck, label: "Nationwide Delivery", href: "/shipping" },
   { icon: Wrench, label: "After-Sales Support", href: "/support" },
 ]
@@ -56,7 +67,10 @@ const highlights = [
 export default async function ProductDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
   const product = getProductBySlug(id)
-  if (!product) notFound()
+  if (!product || product.isCatalogVisible === false) {
+    if (getReplacementProductSlug(id)) permanentRedirect("/products?category=atv")
+    notFound()
+  }
 
   const description = getProductDescription(product)
   const related = getRelatedProducts(product)
@@ -83,6 +97,12 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
 
   return (
     <main className="min-h-screen bg-background">
+      <ProductViewTracker
+        id={product.id}
+        name={product.name}
+        category={product.category}
+        slug={product.slug}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
@@ -112,30 +132,26 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
             <span className="text-foreground">{product.name}</span>
           </nav>
 
-          <div className="mt-6 grid gap-6 lg:grid-cols-2">
-            <div className="glass glass-card-hover relative flex items-center justify-center rounded-2xl p-8">
-              {product.tag && (
-                <span className="absolute left-5 top-5 rounded-md bg-primary px-2.5 py-1 text-[11px] font-bold uppercase tracking-wide text-primary-foreground">
-                  {product.tag}
-                </span>
-              )}
-              <OptimizedImage
-                src={product.image || "/placeholder.svg"}
-                alt={`${product.brand} ${product.name} — ${categoryLabels[product.category]} available in Pakistan from Subhan Enterprises`}
-                width={520}
-                height={400}
-                priority
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                className="max-h-[380px] w-auto object-contain"
-              />
-            </div>
+          <div
+            data-analytics-section="product-detail"
+            data-analytics-section-name="Product details"
+            className="mt-6 grid gap-6 lg:grid-cols-2"
+          >
+            <ProductImageGallery
+              key={product.id}
+              productName={product.name}
+              images={product.images ?? [product.image]}
+              tag={product.tag}
+            />
 
             <div className="glass flex flex-col rounded-2xl p-6 sm:p-8">
               <span className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
                 {categoryLabels[product.category]}
               </span>
               <h1 className="mt-2 text-3xl font-extrabold tracking-tight text-balance sm:text-4xl">{product.name}</h1>
-              <p className="mt-1 text-sm text-muted-foreground">by {product.brand}</p>
+              <p className="mt-1 text-sm text-muted-foreground">
+                Sold by Subhan Enterprises{product.brand ? ` · ${product.brand}` : ""}
+              </p>
 
               {product.rating != null && (
                 <div className="mt-3 flex items-center gap-1 text-primary">
@@ -149,13 +165,15 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
                 </div>
               )}
 
-              <div className="mt-4 flex flex-wrap gap-2">
-                {product.specs.map((s) => (
-                  <span key={s} className="glass-tint rounded-lg px-3 py-1.5 text-xs font-medium text-foreground">
-                    {s}
-                  </span>
-                ))}
-              </div>
+              {product.specs.length > 0 && (
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {product.specs.map((s) => (
+                    <span key={s} className="glass-tint rounded-lg px-3 py-1.5 text-xs font-medium text-foreground">
+                      {s}
+                    </span>
+                  ))}
+                </div>
+              )}
 
               <div className="mt-5 flex flex-wrap items-baseline gap-3">
                 <p className="text-4xl font-extrabold text-primary">{formatPrice(product.price)}</p>
@@ -165,28 +183,47 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
               </div>
 
               <div className="mt-3 flex items-center gap-2 text-sm">
-                {product.inStock ? (
+                {product.inStock === true ? (
                   <span className="flex items-center gap-1.5 font-semibold text-primary">
                     <Check className="h-4 w-4" /> In Stock — Ready to Deliver
                   </span>
-                ) : (
+                ) : product.inStock === false ? (
                   <span className="flex items-center gap-1.5 font-semibold text-muted-foreground">
                     <X className="h-4 w-4" /> Currently Out of Stock
                   </span>
+                ) : (
+                  <span className="font-semibold text-muted-foreground">Contact us to confirm availability</span>
                 )}
               </div>
 
               <p className="mt-5 text-sm leading-relaxed text-muted-foreground">{description}</p>
+              {product.sourceUrl && (
+                <a
+                  href={product.sourceUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-3 w-fit text-sm font-medium text-primary underline-offset-4 hover:underline"
+                >
+                  View original Subhan Enterprises TikTok post
+                </a>
+              )}
 
               <div className="mt-6 flex flex-col gap-3 sm:flex-row">
                 <Link
                   href="/contact"
+                  data-analytics-product-enquiry=""
+                  data-product-id={product.id}
+                  data-product-name={product.name}
+                  data-product-category={product.category}
+                  data-product-url={`/products/${product.slug}`}
+                  data-analytics-placement="product_detail"
                   className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-bold text-primary-foreground shadow-lg shadow-primary/25 transition hover:brightness-110"
                 >
                   Enquire Now <ArrowRight className="h-4 w-4" />
                 </Link>
                 <a
                   href="tel:+923324350140"
+                  data-analytics-placement="product_detail"
                   className="btn-glass flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-bold"
                 >
                   <Phone className="h-4 w-4" /> Call to Order
@@ -213,7 +250,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
               <h2 className="text-2xl font-extrabold tracking-tight">You May Also Like</h2>
               <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
                 {related.map((p) => (
-                  <ProductCard key={p.id} product={p} />
+                  <ProductCard key={p.id} product={p} listContext="related_products" />
                 ))}
               </div>
             </div>
@@ -237,4 +274,3 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
     </main>
   )
 }
-

@@ -1,39 +1,56 @@
-import { ArrowRight, CheckCircle2, CreditCard, Play, Repeat } from "lucide-react"
+import { ArrowRight, CheckCircle2, CreditCard, ExternalLink, Repeat } from "lucide-react"
 import { OptimizedImage } from "@/components/ui/optimized-image"
 
+const YOUTUBE_CHANNEL_URL = "https://www.youtube.com/@Subhan-Enterprises"
+
 const points = [
-  "Premium quality quad bikes",
-  "Trusted by hundreds of riders",
-  "Unbeatable after sales support",
-  "Passion for performance",
+  "18+ years of ATV experience",
+  "10,000+ riders served across Pakistan",
+  "Nationwide delivery",
+  "7-day engine warranty",
 ]
 
 export function Lifestyle() {
   return (
-    <section className="px-3 py-6 sm:px-6">
-      <div className="mx-auto grid max-w-7xl gap-5 lg:grid-cols-[1fr_1fr_0.7fr]">
-        {/* Video card */}
-        <div className="glass-card feature-card-hover group relative overflow-hidden rounded-2xl">
+    <section
+      data-analytics-section="lifestyle"
+      data-analytics-section-name="Lifestyle and social content"
+      className="px-3 py-6 sm:px-6"
+    >
+      <div className="mx-auto grid max-w-7xl items-stretch gap-5 lg:grid-cols-[1fr_1fr_0.7fr]">
+        {/* YouTube channel card */}
+        <a
+          href={YOUTUBE_CHANNEL_URL}
+          target="_blank"
+          rel="noreferrer"
+          data-analytics-placement="homepage_lifestyle"
+          aria-label="Visit the official Subhan Enterprises YouTube channel"
+          className="glass-card feature-card-hover group relative min-h-[360px] self-stretch overflow-hidden rounded-2xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
+        >
           <OptimizedImage
             src="/atvs/lifestyle-rider.png"
             alt="Rider on ATV through rugged terrain"
             width={640}
             height={520}
             sizes="(max-width: 768px) 100vw, 640px"
-            className="h-full min-h-[320px] w-full object-cover"
+            wrapperClassName="absolute inset-0"
+            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
-          <button
-            className="absolute left-1/2 top-1/2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/30 bg-primary/90 text-primary-foreground backdrop-blur transition group-hover:scale-110"
-            aria-label="Play video"
-          >
-            <Play className="h-6 w-6 fill-current" />
-          </button>
-          <div className="absolute bottom-4 left-4">
-            <p className="text-xs uppercase tracking-widest text-white/70">Built For Extreme</p>
-            <p className="text-lg font-extrabold text-primary">Performance</p>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent" />
+          <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-5 sm:p-6">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/70">
+                Subhan Enterprises
+              </p>
+              <p className="mt-1 text-lg font-extrabold text-white sm:text-xl">
+                Official YouTube Channel
+              </p>
+            </div>
+            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/25 bg-black/35 text-white backdrop-blur transition group-hover:border-primary group-hover:bg-primary">
+              <ExternalLink className="h-5 w-5" />
+            </span>
           </div>
-        </div>
+        </a>
 
         {/* Copy */}
         <div>
@@ -44,8 +61,7 @@ export function Lifestyle() {
             It&apos;s A <span className="text-primary">Lifestyle.</span>
           </h2>
           <p className="mt-4 leading-relaxed text-muted-foreground">
-            We don&apos;t just sell ATVs we deliver adrenaline, adventure, and unforgettable experiences. Our machines are built for riders who demand the very best in performance, reliability, and durability. Whether you&apos;re exploring rugged trails, tackling challenging terrain, or enjoying weekend adventures, every ride is designed to deliver confidence, power, and excitement.From off-road exploration to everyday utility, we're committed to making every journey memorable.
-            Our machines are crafted for riders who demand the best, offering unmatched power, rugged durability, and superior performance.
+            With 18+ years in the ATV market and more than 10,000 riders served, Subhan Enterprises helps customers across Pakistan find the right quad bike for their needs. Explore available models, ask about nationwide delivery, and get clear guidance on our 7-day engine warranty.
           </p>
           <ul className="mt-6 space-y-3">
             {points.map((p) => (
@@ -61,7 +77,7 @@ export function Lifestyle() {
           <div>
             <h3 className="text-lg font-extrabold text-foreground">Ready To Ride?</h3>
             <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-              Get your dream quad bike today. Limited stock available! Whether you are looking for high-speed desert conquering, rugged utility power for mountain trails, or an exciting weekend ride with your family and friends, we have the perfect premium vehicle waiting for you. Each imported model undergoes double-stage inspection, ensuring top-tier safety and raw performance from day one. Secure your favorite model today and start your next big off-road adventure!
+              Compare available quad bikes for work, recreation, and off-road riding. Our team can help you choose a model, confirm current stock, explain delivery across Pakistan, and answer questions about the 7-day engine warranty.
             </p>
             <a
               href="/contact"

@@ -79,6 +79,7 @@ export default function ContactPage() {
                 </div>
                 <Link
                   href={c.href}
+                  data-analytics-placement={`contact_${c.title.toLowerCase().replace(/\s+/g, "_")}`}
                   className="mt-4 inline-flex w-fit items-center gap-1.5 text-sm font-semibold text-primary transition hover:brightness-110"
                 >
                   {c.action}
@@ -95,7 +96,11 @@ export default function ContactPage() {
               <p className="mt-1 text-sm text-muted-foreground">
                 Fill out the form and we&apos;ll get back to you as soon as possible.
               </p>
-              <div className="mt-6">
+              <div
+                className="mt-6"
+                data-analytics-section="contact-form"
+                data-analytics-section-name="Contact enquiry form"
+              >
                 <ContactForm source="/contact" />
               </div>
             </div>

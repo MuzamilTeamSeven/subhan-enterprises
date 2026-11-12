@@ -1,5 +1,4 @@
 import {
-  Award,
   BadgeCheck,
   Cog,
   Gauge,
@@ -12,12 +11,12 @@ import {
 } from "lucide-react"
 
 const reasons = [
-  { icon: BadgeCheck, title: "100% Imported", sub: "Direct imports from trusted brands" },
+  { icon: BadgeCheck, title: "Verified Listings", sub: "Models shown on our official TikTok" },
   { icon: ThumbsUp, title: "Best Market Prices", sub: "Premium quality at best prices" },
   { icon: Wrench, title: "Expert Support", sub: "After sales service & parts availability" },
   { icon: ShieldCheck, title: "Secure & Easy Process", sub: "Smooth booking & delivery" },
   { icon: Truck, title: "Nationwide Delivery", sub: "Fast & safe delivery across Pakistan" },
-  { icon: Award, title: "1 Year Warranty", sub: "Peace of mind with reliable warranty" },
+  { icon: ShieldCheck, title: "7-Day Engine Warranty", sub: "Free maintenance for eligible smoke or engine-blow issues" },
 ]
 
 const perf = [
@@ -43,6 +42,7 @@ export function WhyChoose() {
               <p className="mt-4 max-w-sm leading-relaxed text-muted-foreground">
                 Subhan Enterprises is Pakistan&apos;s trusted name in premium ATVs and Quad Bikes. We bring you the best
                 in performance, durability, and off-road experience.  Whether you're an adventure enthusiast, a professional rider, or looking for a reliable utility vehicle, we offer high-quality machines built to handle every terrain with confidence.
+                With 18+ years of experience, we have served more than 10,000 riders across Pakistan.
               </p>
             </div>
 

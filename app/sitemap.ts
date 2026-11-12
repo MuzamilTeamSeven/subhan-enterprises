@@ -22,7 +22,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // ATV products get highest priority — main commercial intent pages
   const atvPages: MetadataRoute.Sitemap = products
-    .filter((p) => p.category === "atv")
+    .filter((p) => p.category === "atv" && p.isCatalogVisible !== false)
     .map((p) => ({
       url: `${base}/products/${p.slug}`,
       lastModified: siteLastMod,
@@ -32,7 +32,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // Accessories slightly lower
   const accessoryPages: MetadataRoute.Sitemap = products
-    .filter((p) => p.category === "accessories")
+    .filter((p) => p.category === "accessories" && p.isCatalogVisible !== false)
     .map((p) => ({
       url: `${base}/products/${p.slug}`,
       lastModified: siteLastMod,
@@ -42,7 +42,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // Parts lower still
   const partsPages: MetadataRoute.Sitemap = products
-    .filter((p) => p.category === "parts")
+    .filter((p) => p.category === "parts" && p.isCatalogVisible !== false)
     .map((p) => ({
       url: `${base}/products/${p.slug}`,
       lastModified: siteLastMod,
@@ -57,5 +57,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }))
 
-  return [...staticPages, ...atvPages, ...accessoryPages, ...partsPages, ...blogPages]
+  const dirtBikePages: MetadataRoute.Sitemap = products
+    .filter((p) => p.category === "dirt_bike" && p.isCatalogVisible !== false)
+    .map((p) => ({
+      url: `${base}/products/${p.slug}`,
+      lastModified: siteLastMod,
+      changeFrequency: "weekly" as const,
+      priority: 0.85,
+    }))
+
+  return [...staticPages, ...atvPages, ...dirtBikePages, ...accessoryPages, ...partsPages, ...blogPages]
 }

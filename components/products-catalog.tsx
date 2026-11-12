@@ -1,8 +1,9 @@
 "use client"
 
-import { useMemo, useState } from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
 import { Check, Search, SlidersHorizontal, X } from "lucide-react"
 import { ProductCard } from "@/components/product-card"
+import { pushAnalyticsEvent } from "@/lib/analytics"
 import { products, categoryLabels, type ProductCategory } from "@/lib/products"
 
 type CategoryFilter = ProductCategory | "all"
@@ -11,6 +12,7 @@ type SortKey = "featured" | "price-asc" | "price-desc" | "name"
 const categoryTabs: { key: CategoryFilter; label: string }[] = [
   { key: "all", label: "All" },
   { key: "atv", label: "Quad Bikes" },
+  { key: "dirt_bike", label: "Dirt Bikes" },
   { key: "accessories", label: "Accessories" },
   { key: "parts", label: "Parts & Gear" },
 ]
@@ -22,7 +24,10 @@ const sortOptions: { key: SortKey; label: string }[] = [
   { key: "name", label: "Name A-Z" },
 ]
 
-const brands = Array.from(new Set(products.map((p) => p.brand))).sort()
+const catalogProducts = products.filter((product) => product.isCatalogVisible !== false)
+const brands = Array.from(
+  new Set(catalogProducts.map((product) => product.brand).filter((brand): brand is string => Boolean(brand))),
+).sort()
 
 export function ProductsCatalog({ initialCategory = "all" }: { initialCategory?: CategoryFilter }) {
   const [category, setCategory] = useState<CategoryFilter>(initialCategory)
@@ -31,16 +36,21 @@ export function ProductsCatalog({ initialCategory = "all" }: { initialCategory?:
   const [inStockOnly, setInStockOnly] = useState(false)
   const [sort, setSort] = useState<SortKey>("featured")
   const [filtersOpen, setFiltersOpen] = useState(false)
+  const previousFilters = useRef({ category, selectedBrands, inStockOnly, sort })
+  const previousQuery = useRef(query)
 
   const toggleBrand = (brand: string) =>
     setSelectedBrands((prev) => (prev.includes(brand) ? prev.filter((b) => b !== brand) : [...prev, brand]))
 
   const filtered = useMemo(() => {
-    let list = products.filter((p) => {
+    let list = catalogProducts.filter((p) => {
       if (category !== "all" && p.category !== category) return false
-      if (selectedBrands.length > 0 && !selectedBrands.includes(p.brand)) return false
+      if (selectedBrands.length > 0 && (!p.brand || !selectedBrands.includes(p.brand))) return false
       if (inStockOnly && !p.inStock) return false
-      if (query.trim() && !`${p.name} ${p.brand}`.toLowerCase().includes(query.trim().toLowerCase())) return false
+      if (
+        query.trim() &&
+        !`${p.name} ${p.brand ?? "Subhan Enterprises"}`.toLowerCase().includes(query.trim().toLowerCase())
+      ) return false
       return true
     })
 
@@ -52,6 +62,8 @@ export function ProductsCatalog({ initialCategory = "all" }: { initialCategory?:
     })
     return list
   }, [category, query, selectedBrands, inStockOnly, sort])
+  const latestFilterResults = useRef({ resultCount: filtered.length, sortOrder: sort })
+  latestFilterResults.current = { resultCount: filtered.length, sortOrder: sort }
 
   const clearAll = () => {
     setCategory("all")
@@ -62,6 +74,74 @@ export function ProductsCatalog({ initialCategory = "all" }: { initialCategory?:
   }
 
   const hasActiveFilters = selectedBrands.length > 0 || inStockOnly || query.trim() !== "" || category !== "all"
+
+  useEffect(() => {
+    const previous = previousFilters.current
+    const eventBase = { sort_order: sort, result_count: filtered.length }
+
+    if (previous.category !== category) {
+      pushAnalyticsEvent("product_filter", {
+        filter_type: "category",
+        filter_value: category,
+        filter_action: category === "all" ? "cleared" : "applied",
+        ...eventBase,
+      })
+    }
+
+    const addedBrands = selectedBrands.filter((brand) => !previous.selectedBrands.includes(brand))
+    const removedBrands = previous.selectedBrands.filter((brand) => !selectedBrands.includes(brand))
+    for (const brand of addedBrands) {
+      pushAnalyticsEvent("product_filter", {
+        filter_type: "brand",
+        filter_value: brand,
+        filter_action: "applied",
+        ...eventBase,
+      })
+    }
+    for (const brand of removedBrands) {
+      pushAnalyticsEvent("product_filter", {
+        filter_type: "brand",
+        filter_value: brand,
+        filter_action: "removed",
+        ...eventBase,
+      })
+    }
+
+    if (previous.inStockOnly !== inStockOnly) {
+      pushAnalyticsEvent("product_filter", {
+        filter_type: "stock",
+        filter_value: inStockOnly ? "in_stock" : "all",
+        filter_action: inStockOnly ? "applied" : "cleared",
+        ...eventBase,
+      })
+    }
+
+    if (previous.sort !== sort) {
+      pushAnalyticsEvent("product_filter", {
+        filter_type: "sort",
+        filter_value: sort,
+        filter_action: "applied",
+        ...eventBase,
+      })
+    }
+
+    previousFilters.current = { category, selectedBrands, inStockOnly, sort }
+  }, [category, filtered.length, inStockOnly, selectedBrands, sort])
+
+  useEffect(() => {
+    if (previousQuery.current === query) return
+    previousQuery.current = query
+    const timer = window.setTimeout(() => {
+      pushAnalyticsEvent("product_filter", {
+        filter_type: "search",
+        filter_value: query.trim() ? "applied" : "cleared",
+        filter_action: query.trim() ? "applied" : "cleared",
+        sort_order: latestFilterResults.current.sortOrder,
+        result_count: latestFilterResults.current.resultCount,
+      })
+    }, 500)
+    return () => window.clearTimeout(timer)
+  }, [query])
 
   const FiltersPanel = (
     <div className="flex flex-col gap-6">
@@ -80,7 +160,7 @@ export function ProductsCatalog({ initialCategory = "all" }: { initialCategory?:
             >
               {c.label}
               <span className="text-xs">
-                {c.key === "all" ? products.length : products.filter((p) => p.category === c.key).length}
+                {c.key === "all" ? catalogProducts.length : catalogProducts.filter((p) => p.category === c.key).length}
               </span>
             </button>
           ))}
@@ -145,7 +225,11 @@ export function ProductsCatalog({ initialCategory = "all" }: { initialCategory?:
   )
 
   return (
-    <section className="px-3 py-6 sm:px-6">
+    <section
+      data-analytics-section="product-listing"
+      data-analytics-section-name="Product listing"
+      className="px-3 py-6 sm:px-6"
+    >
       <div className="mx-auto max-w-7xl">
         {/* Page header */}
         <div className="glass rounded-2xl p-5 sm:p-8">
@@ -154,8 +238,8 @@ export function ProductsCatalog({ initialCategory = "all" }: { initialCategory?:
             Explore Our Full Range
           </h1>
           <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-            From powerful quad bikes to premium accessories and genuine parts &amp; gear — everything you need for the
-            ride, all in one place. Use the filters to find exactly what you want.
+            From quad bikes and dirt bikes to premium accessories and genuine parts &amp; gear — everything you need
+            for the ride, all in one place. Use the filters to find exactly what you want.
           </p>
         </div>
 
@@ -240,7 +324,7 @@ export function ProductsCatalog({ initialCategory = "all" }: { initialCategory?:
             ) : (
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
                 {filtered.map((p, i) => (
-                  <ProductCard key={p.id} product={p} priority={i < 3} />
+                  <ProductCard key={p.id} product={p} priority={i < 3} listContext="product_catalog" />
                 ))}
               </div>
             )}
