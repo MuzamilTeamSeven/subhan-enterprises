@@ -1,6 +1,6 @@
 import type { BlogFaq, BlogPost, BlogPostMeta, BlogSection } from "./types"
 import { blogPostsMeta } from "./posts"
-import { getProductBySlug, getReplacementProductSlug } from "@/lib/products"
+import { formatPrice, getProductBySlug, getReplacementProductSlug, products } from "@/lib/products"
 
 type ArticleBody = {
   sections: BlogSection[]
@@ -15,15 +15,15 @@ const articleBodies: Record<string, ArticleBody> = {
         heading: "Why Regular Maintenance Matters",
         paragraphs: [
           "Owning an ATV in Pakistan means subjecting your machine to dust, heat, mud, and varied terrain that places extraordinary demands on every component. Regular maintenance is not optional — it is the difference between years of reliable adventure and costly breakdowns in remote areas where help is hours away.",
-          "At Subhan Enterprises, we service hundreds of riders each season across Lahore and nationwide. The owners who enjoy the longest, most trouble-free experience are invariably those who follow a consistent maintenance schedule. This guide covers the five most impactful practices you can adopt today, regardless of which brand or model you ride.",
-          "Whether you own a Yamaha Raptor 700R, a CFMOTO 520L, or a Linhai LH 400, these principles apply universally. Investing a few hours each month in maintenance saves thousands in repairs and keeps your machine performing at its peak when you need it most.",
+          "A quad bike used on dusty, hot or uneven terrain needs regular checks. The correct service schedule depends on the make and model, so use this checklist alongside the owner's manual rather than as a replacement for it.",
+          "Keep a simple record of service dates, hours ridden and repairs. If a warning light appears, a fluid leaks or a component feels different, stop riding and have the ATV checked before the issue gets worse.",
         ],
       },
       {
         heading: "1. Change Your Engine Oil on Schedule",
         paragraphs: [
-          "Engine oil is the lifeblood of your quad bike. In Pakistan's hot climate, oil degrades faster than in temperate regions, losing its ability to lubricate camshafts, crankshafts, and transmission components. For most 4-stroke ATVs, we recommend changing oil every 25–40 hours of riding or every 3 months, whichever comes first.",
-          "Always use the viscosity grade specified in your owner's manual — typically 10W-40 fully synthetic for modern 4-stroke engines. Our 4-Stroke Engine Oil at Subhan Enterprises is formulated specifically for powersports applications and performs reliably in temperatures exceeding 45°C.",
+          "Use the oil type and change interval specified by your ATV manufacturer. Service intervals can vary by engine, model year and riding conditions; dusty or demanding use may call for more frequent checks.",
+          "Check the oil level using the method in the owner's manual and use only a lubricant that meets the manufacturer's specification. Do not assume one viscosity or product is suitable for every quad bike.",
         ],
         list: [
           "Warm up the engine for 2–3 minutes before draining old oil",
@@ -45,24 +45,23 @@ const articleBodies: Record<string, ArticleBody> = {
         heading: "3. Inspect Brakes Before Every Ride",
         paragraphs: [
           "Your brakes are your most critical safety system. Before every ride, squeeze the front and rear brake levers to confirm firm, progressive pressure. Spongy levers indicate air in the hydraulic system or worn pads requiring immediate attention.",
-          "Check brake pad thickness visually through the caliper inspection port. If pads are worn to 2mm or less, replace them immediately — waiting risks rotor damage and brake failure on steep descents. Also verify brake fluid level in master cylinder reservoirs; low fluid may indicate worn pads or a developing leak.",
-          "Subhan Enterprises stocks Sintered Brake Pads that deliver consistent stopping power in both wet monsoon conditions and dry summer heat, with low dust output that keeps your wheels clean.",
+          "Check pad wear and brake-fluid level using the inspection points and limits in your owner's manual. If braking feels weak, uneven or spongy, do not ride until the system has been inspected by a qualified technician.",
+          "Confirm replacement pad compatibility with the ATV make and model before ordering. The [Sintered Brake Pads](/products/brake-pads) listing includes product details; contact the seller if you are unsure about fitment.",
         ],
       },
       {
         heading: "4. Maintain Proper Tire Pressure",
         paragraphs: [
           "Incorrect tire pressure dramatically affects handling, fuel economy, and tire wear. Under-inflated tires overheat, increase rolling resistance, and can debead from the rim on hard cornering. Over-inflated tires reduce traction and create a harsh, unstable ride.",
-          "Check pressure when tires are cold using a quality low-pressure gauge. Most ATV tires perform best between 4–7 PSI for off-road use, but always refer to your sidewall specifications and owner manual. While checking pressure, inspect tread depth and look for cuts, punctures, or embedded objects.",
-          "When tread is worn below 3mm or sidewalls show cracking, replace tires promptly. Our Knobby Off-Road Tires feature deep tread patterns optimised for Pakistani mud, sand, and rocky terrain.",
+          "Check pressure when the tires are cold and use the pressure specified by the ATV and tire manufacturers. Do not rely on a generic PSI figure: the correct value varies with the tire, load and vehicle.",
+          "Inspect the tread, sidewalls and valve stems for damage, cracking or embedded objects. Replace a damaged or excessively worn tire with a size and type approved for your ATV.",
         ],
       },
       {
         heading: "5. Check Fluids and Fasteners",
         paragraphs: [
-          "Beyond engine oil, your ATV relies on coolant, brake fluid, and sometimes differential or transmission oil. Check coolant level weekly during riding season and top up with the correct premix — never use plain water alone in liquid-cooled engines.",
-          "Inspect all visible bolts and fasteners monthly. Vibration from rough trails loosens hardware over time, and a loose axle nut or wheel lug can cause catastrophic failure at speed. Pay special attention to skid plate bolts, rack mounting hardware, and suspension linkage fasteners.",
-          "Use a torque wrench for critical fasteners and apply medium-strength thread locker where specified in your service manual. Subhan Enterprises workshop can perform a comprehensive 50-point inspection if you prefer professional service.",
+          "Check coolant, brake fluid and any transmission or differential fluids only if your model has them, following the manufacturer's procedure and service interval. Use the specified fluid; never mix products unless the manual permits it.",
+          "Inspect visible fasteners, controls and guards as directed by the manual. Use the specified torque values for critical fasteners and do not guess at tightening settings.",
         ],
       },
     ],
@@ -70,7 +69,7 @@ const articleBodies: Record<string, ArticleBody> = {
       {
         question: "How often should I service my ATV in Pakistan?",
         answer:
-          "We recommend a basic visual inspection before every ride, an oil change every 25–40 hours, and a comprehensive service every 6 months or 100 hours. Dusty conditions in Punjab and KPK may require more frequent air filter maintenance.",
+          "Follow the maintenance schedule in your owner's manual. Check the ATV before each ride and inspect or service it at the manufacturer-recommended hours or time intervals. Dusty conditions may require more frequent air-filter checks.",
       },
       {
         question: "Can I use car engine oil in my ATV?",
@@ -80,12 +79,12 @@ const articleBodies: Record<string, ArticleBody> = {
       {
         question: "Where can I get genuine ATV parts in Lahore?",
         answer:
-          "Subhan Enterprises stocks genuine parts including oil, filters, brake pads, tires, and batteries. Visit our showroom at Shop #36, New Islamia Park, Main LOS Samnabad, Lahore, or order with nationwide delivery.",
+          "Browse the [parts and gear catalog](/products?category=parts) for listed items and contact Subhan Enterprises to confirm fitment, availability and delivery options. The showroom address and contact details are on our contact page.",
       },
     ],
     cta: {
       heading: "Need Parts or Professional Service?",
-      text: "Browse our full range of genuine ATV parts and accessories, or contact our workshop team for expert maintenance on any brand.",
+      text: "Browse the parts and gear currently listed, and contact Subhan Enterprises to confirm fitment, availability or service options.",
       buttonLabel: "Shop Parts & Gear",
       href: "/products?category=parts",
     },
@@ -94,64 +93,42 @@ const articleBodies: Record<string, ArticleBody> = {
   "best-atvs-off-road-adventures-pakistan": {
     sections: [
       {
-        heading: "Pakistan: A Paradise for Off-Road Riders",
+        heading: "Choose an ATV for the terrain you actually ride",
         paragraphs: [
-          "Pakistan offers some of the most diverse and spectacular off-road terrain on Earth. From the pine forests of Murree and Nathia Gali to the rugged trails of Swat and Chitral, from the salt flats of the Thar to the agricultural tracks of Punjab — there is an adventure waiting for every skill level and every type of quad bike.",
-          "Choosing the right ATV for these conditions requires understanding how engine size, drive system, suspension, and ground clearance translate to real-world capability. At Subhan Enterprises, we match riders to machines based on where and how they plan to ride — not just budget alone.",
-          "This guide presents our expert picks for off-road adventures across Pakistan, with specific model recommendations for different terrain types and riding styles.",
+          "The right quad bike for a sandy track may not be the right choice for rocky ground or regular farm use. Before comparing models, think about who will ride, where you will ride, how often you will go, and whether you need to carry equipment.",
+          "Do not choose by engine size alone. Check the exact model's drive system, ground clearance, tire size, load limits, maintenance needs and safety instructions in the manufacturer's documentation.",
         ],
       },
       {
-        heading: "Best Sport ATV: Yamaha Raptor 700R",
+        heading: "Compare current quad bike listings",
         paragraphs: [
-          "For riders who prioritise speed, agility, and adrenaline on open trails and dunes, the Yamaha Raptor 700R remains the gold standard. Its 700cc engine delivers explosive acceleration, while the sport-tuned suspension handles jumps and whoops with confidence.",
-          "The Raptor excels on hard-pack trails, sandy riverbeds, and open desert sections common in southern Punjab and Sindh. Its lightweight chassis and responsive throttle make it the top choice for experienced riders seeking maximum performance. Priced at PKR 2,850,000, it represents premium sport capability with full Subhan Enterprises warranty and support.",
+          "Subhan Enterprises currently lists several ATV styles and engine sizes, including the [250cc Monster ATV](/products/250cc-monster-atv), [150cc Audi-Style ATV](/products/150cc-audi-style-atv), and [125cc Sports Raptor ATV](/products/125cc-sports-raptor). These listing names are not a substitute for checking the detailed specifications or confirming stock.",
+          "Use the [ATV catalog](/products?category=atv) to compare the models and listed prices. Ask the seller to confirm current availability, specifications, intended rider suitability and delivery arrangements before placing an order.",
         ],
       },
       {
-        heading: "Best All-Round Adventure: CFMOTO 520L",
+        heading: "Prepare before riding off-road",
         paragraphs: [
-          "The CFMOTO 520L strikes an exceptional balance between capability and value. Its 520cc engine provides ample power for northern mountain trails without the fuel consumption of larger displacement machines. Full 4x4 drive and generous ground clearance handle rocky paths and stream crossings with ease.",
-          "For riders exploring Swat, Kaghan, or the Potohar region, the 520L offers reliable performance at PKR 1,950,000 — making it our most recommended adventure ATV for riders who want capability without premium pricing. It also serves well for farm utility work during the week and weekend trail rides.",
-        ],
-      },
-      {
-        heading: "Best Heavy-Duty Explorer: Kawasaki Brute Force 750",
-        paragraphs: [
-          "When the trail gets truly challenging — steep inclines, deep mud, and loaded cargo racks — the Kawasaki Brute Force 750 delivers. Its V-twin 750cc engine produces massive low-end torque that pulls through obstacles other machines struggle with.",
-          "Northern Pakistan's high-altitude trails demand power and cooling capacity. The Brute Force's liquid-cooled engine maintains performance at elevation, while the rugged chassis absorbs punishment from rocky terrain. At PKR 2,650,000, it is the choice for serious explorers and utility riders who refuse to turn back.",
-        ],
-      },
-      {
-        heading: "Best Entry-Level Trail Machine: Linhai LH 400",
-        paragraphs: [
-          "New riders and those on a tighter budget should consider the Linhai LH 400. At PKR 1,350,000, it provides genuine 4x4 capability with a manageable 400cc engine that builds confidence without overwhelming inexperienced riders.",
-          "The LH 400 handles Punjab's agricultural tracks, moderate hill trails, and recreational riding perfectly. Its simplicity means lower maintenance costs, and Subhan Enterprises provides the same warranty and support as our premium models.",
-        ],
-      },
-      {
-        heading: "Preparing for Your Adventure",
-        paragraphs: [
-          "Regardless of which ATV you choose, proper preparation transforms a good ride into a great one. Carry a basic tool kit, spare fuses, tire repair kit, and plenty of water. Tell someone your planned route and expected return time.",
-          "Equip yourself with a DOT-certified helmet, goggles, gloves, and appropriate riding boots. Check out our safety gear collection and LED light bars for early morning or late evening trail sessions. Visit Subhan Enterprises for a pre-adventure inspection — our team will verify fluids, tires, brakes, and fasteners before you depart.",
+          "Check local access rules and landowner permission before riding a route. Review weather and terrain conditions, share your route and return time with someone, carry water and a suitable communication method, and avoid riding alone in remote areas.",
+          "Wear a correctly fitted helmet and suitable protective equipment. Inspect the ATV using its owner's manual and do not exceed its passenger, towing or load limits.",
         ],
       },
     ],
     faqs: [
       {
-        question: "What CC ATV is best for mountain trails in Pakistan?",
+        question: "Which ATV is best for off-road riding in Pakistan?",
         answer:
-          "For northern mountain trails, we recommend 520cc and above for adequate power at altitude. The CFMOTO 520L and Kawasaki Brute Force 750 are our top picks for Swat, Murree, and Kaghan region adventures.",
+          "There is no single best ATV for every rider or terrain. Compare the model's specifications, rider suitability, maintenance requirements and your intended routes, then confirm current availability with the seller.",
       },
       {
-        question: "Do I need 4x4 for off-road riding in Pakistan?",
+        question: "What should I check before buying an off-road quad bike?",
         answer:
-          "Yes, for most Pakistani terrain. 4x4 drive provides essential traction in mud, loose gravel, and steep inclines. All models at Subhan Enterprises feature 4x4 as standard.",
+          "Confirm the exact model and engine size, drive system, safety instructions, included warranty terms, current price, parts availability and delivery details.",
       },
       {
-        question: "Can Subhan Enterprises deliver ATVs outside Lahore?",
+        question: "Can I ride an ATV on any trail?",
         answer:
-          "Absolutely. We offer nationwide delivery to all major cities including Karachi, Islamabad, Faisalabad, Peshawar, and Multan with fully insured shipping.",
+          "No. Check local rules and obtain permission where required. Protected areas, private property and public roads may have restrictions.",
       },
     ],
     cta: {
@@ -167,43 +144,43 @@ const articleBodies: Record<string, ArticleBody> = {
       {
         heading: "Safety Is Not Optional",
         paragraphs: [
-          "Every year, preventable injuries occur because riders skip basic safety equipment. ATVs are powerful machines capable of speeds exceeding 80 km/h on open terrain — and when things go wrong, the right gear makes the difference between a minor scare and a hospital visit.",
-          "At Subhan Enterprises, we sell adventure — but we insist on responsible riding. This guide covers every piece of safety gear you should own before your first ride, with specific product recommendations from our Subhan Gear collection.",
+          "Protective equipment is an essential part of preparing for an ATV ride. Choose equipment suited to the activity, the rider and the manufacturer's safety guidance; a product listing alone cannot guarantee protection or replace safe riding.",
+          "Check the fit, condition and certification information on each item before use. Replace damaged equipment and follow the instructions provided by its manufacturer.",
         ],
       },
       {
         heading: "Helmet: Your Most Important Investment",
         paragraphs: [
-          "A DOT-certified off-road helmet is non-negotiable. Unlike street helmets, off-road helmets feature extended chin bars, peak visors for sun and roost protection, and superior ventilation for hot Pakistani conditions. Replace your helmet after any significant impact or every 5 years, whichever comes first.",
-          "Our Off-Road Riding Helmet meets DOT standards with adjustable visor, multiple intake vents, and a lightweight shell that reduces neck fatigue on long rides. At PKR 24,500, it is the single most important purchase you will make as a rider.",
+          "Choose a properly fitted helmet intended for the type of riding you plan to do. Check its labels and certification claims, inspect it for damage, and follow the manufacturer's guidance for replacement after an impact or over time.",
+          "The [Off-Road Riding Helmet](/products/off-road-helmet) listing shows its stated features. Confirm fit, certification and current availability with the seller before purchase.",
         ],
       },
       {
         heading: "Eye Protection: Goggles Matter",
         paragraphs: [
-          "Riding without eye protection invites dust, insects, branches, and debris directly into your eyes — causing loss of control at the worst possible moment. Off-road goggles provide a sealed environment with anti-fog coating and UV protection.",
-          "Our Anti-Fog Riding Goggles feature mirrored lenses for bright sunlight, foam padding for comfort, and wide peripheral vision. Pair them with your helmet for complete face protection.",
+          "Eye protection can help keep dust and debris away while riding. Choose goggles that fit securely with your helmet and do not restrict vision; check the product's stated features and use instructions.",
+          "The [Anti-Fog Riding Goggles](/products/riding-goggles) listing includes its current product details. Confirm compatibility and fit before ordering.",
         ],
       },
       {
         heading: "Hand and Body Protection",
         paragraphs: [
-          "Pro Riding Gloves protect palms and knuckles from blisters, branches, and impact. Look for reinforced knuckle guards and touchscreen-compatible fingertips for using navigation apps without removing gloves.",
-          "For aggressive trail riding, add a Body Armor Chest Protector and Pro Knee & Shin Guards. These absorb impact from falls and roost kicked up by riders ahead. Our chest protector features impact foam, adjustable straps, and integrated shoulder guards at PKR 12,900.",
+          "Riding gloves can improve comfort and help protect hands from abrasion. Choose gloves that fit securely and allow you to operate the controls.",
+          "A chest protector and knee guards provide additional coverage, but protection varies by product and fit. Review the [chest protector](/products/chest-protector) and other gear details, and follow each manufacturer's instructions.",
         ],
       },
       {
         heading: "Footwear and Additional Gear",
         paragraphs: [
-          "MX Riding Boots provide ankle support, steel toe protection, and water resistance that regular shoes cannot match. At PKR 18,500, they prevent the most common lower-leg injuries in off-road riding.",
-          "Consider a neck brace for high-speed dune riding, a hydration pack for long summer trails, and a high-visibility vest when riding near roads or in hunting areas. Our LED Light Bar ensures you are visible and can see the trail during dawn and dusk rides.",
+          "Use sturdy footwear intended for the riding activity and make sure it does not interfere with the foot controls. Check the [MX Riding Boots](/products/riding-boots) listing for stated features and confirm fit before purchase.",
+          "For longer rides, plan water, weather-appropriate clothing and visibility equipment. A vehicle light is not a substitute for riding only in safe conditions with adequate visibility.",
         ],
       },
       {
         heading: "Building Your Safety Kit",
         paragraphs: [
-          "A complete beginner safety kit — helmet, goggles, gloves, and boots — starts from approximately PKR 55,000 at Subhan Enterprises. Add body armor as your riding intensity increases.",
-          "Never borrow a helmet that does not fit properly — it will not protect you in a crash. Visit our Lahore showroom for proper fitting and expert advice on gear selection for your riding style.",
+          "Build a gear checklist around the rider, vehicle and terrain, then check current prices on each product page. Do not rely on an old package price or assume that separate products are compatible.",
+          "A helmet must fit correctly to work as intended. If you are unsure about fit, certification or suitability, ask the manufacturer or seller before riding.",
         ],
       },
     ],
@@ -211,17 +188,17 @@ const articleBodies: Record<string, ArticleBody> = {
       {
         question: "Is a bicycle helmet acceptable for ATV riding?",
         answer:
-          "No. Bicycle helmets are not designed for ATV impact speeds and lack the chin protection required for off-road riding. Always use a DOT-certified off-road or motocross helmet.",
+          "Use a helmet designed and approved for the type of motorized riding you plan to do. Check the manufacturer's recommendations and the helmet's certification label rather than assuming a bicycle helmet is suitable.",
       },
       {
         question: "What safety gear do I need as a beginner?",
         answer:
-          "Minimum: DOT helmet, goggles, gloves, and closed-toe boots. Recommended additions: chest protector and knee guards. Our team can assemble a complete starter kit within your budget.",
+          "Start with a correctly fitted helmet and suitable eye protection, gloves, clothing and footwear. Add other protective equipment based on the activity and manufacturer guidance.",
       },
       {
         question: "Does Subhan Enterprises sell safety gear separately?",
         answer:
-          "Yes. Our accessories range includes helmets, goggles, gloves, body armor, boots, and knee guards — all available individually with nationwide delivery.",
+          "The online accessories catalog shows currently listed products. Contact Subhan Enterprises to confirm an item's fit, stock and delivery options.",
       },
     ],
     cta: {
@@ -253,61 +230,49 @@ const remainingContent: Record<(typeof remainingSlugs)[number], ArticleBody> = {
   "choosing-first-quad-bike-pakistan": {
     sections: [
       {
-        heading: "Your First Quad Bike: An Exciting Decision",
+        heading: "Start with your use case and rider experience",
         paragraphs: [
-          "Buying your first ATV is one of the most exciting purchases you will make — but it can also feel overwhelming. Engine sizes range from 400cc to 700cc+, prices span from PKR 1.35 million to over PKR 3 million, and every brand claims to be the best.",
-          "At Subhan Enterprises, we guide first-time buyers through this decision every week. The right choice depends on three factors: your experience level, intended use, and budget. This guide breaks down each factor so you can buy with confidence.",
+          "Choosing a first quad bike in Pakistan is easier when you start with practical questions: who will ride it, where will it be used, how often will it be ridden, and what is your total budget? A model that suits an experienced adult may not be suitable for a new or younger rider.",
+          "Compare the manufacturer's instructions, intended rider category, controls, seat height, weight and safety requirements. Do not select a quad bike by engine size or price alone.",
         ],
       },
       {
-        heading: "Assess Your Experience Level",
+        heading: "Compare specifications, not just engine size",
         paragraphs: [
-          "If you have never ridden an ATV before, start with a manageable engine size. Machines above 650cc deliver power that can surprise inexperienced riders, leading to accidental wheelies, loss of control, and crashes. The Linhai LH 400 and Honda TRX420 Rancher are ideal first machines.",
-          "Experienced motorcycle or dirt bike riders can step up to 520–650cc models like the CFMOTO 520L or Can-Am Outlander. These offer more capability without the extreme power delivery of sport-focused 700cc machines like the Raptor 700R.",
+          "Check the exact engine size, drive system, transmission, braking system, dimensions and maintenance schedule on the individual listing and manufacturer's documentation. Product names and broad category labels are not enough to confirm a model's capabilities.",
+          "The current [ATV listings](/products?category=atv) include several styles and engine sizes. Ask the seller to confirm the exact specification, intended rider suitability and availability for the model you are considering.",
         ],
       },
       {
-        heading: "Define Your Primary Use",
+        heading: "Calculate the total ownership cost",
         paragraphs: [
-          "Farm and utility use demands reliable low-end torque, cargo racks, and towing capability. The Honda TRX420, Polaris Sportsman 570, and CFMOTO 520L excel here. Recreational trail riding prioritises suspension comfort and handling — consider the Can-Am Outlander or Suzuki KingQuad 500.",
-          "Pure sport and dune riding calls for lightweight, high-power machines. The Yamaha Raptor 700R and Kawasaki Brute Force 750 dominate this category. Be honest about how you will actually use your ATV — most first-time buyers overestimate their need for sport performance.",
+          "Budget for more than the quad bike itself. Ask for the current written quote and check whether delivery, protective equipment, maintenance items, registration or other charges are included or separate.",
+          "Do not assume financing, trade-ins, test rides or specific payment options are available. Confirm any offer and its terms directly with the seller before making a decision.",
         ],
       },
       {
-        heading: "Set a Realistic Budget",
+        heading: "Check safety, service and delivery details",
         paragraphs: [
-          "Entry-level 400cc models start at PKR 1,350,000. Mid-range 520–650cc machines range from PKR 1,780,000 to PKR 2,450,000. Premium 700cc+ sport and utility models reach PKR 2,650,000–2,850,000. Factor in safety gear (PKR 50,000+), registration, and insurance.",
-          "Subhan Enterprises offers financing and installment plans to spread the cost. Trade-in options are available if you are upgrading from an older machine. Request a quote and our team will present options matching your financial situation.",
-        ],
-      },
-      {
-        heading: "Test Before You Buy",
-        paragraphs: [
-          "Visit our Lahore showroom to see models in person, sit on different machines, and discuss your needs with our sales team. We can arrange test rides for serious buyers on approved terrain.",
-          "Ask about warranty coverage, parts availability, and after-sales service. Subhan Enterprises offers nationwide delivery and a 7-day engine warranty for eligible smoke or engine blow concerns reported after delivery.",
+          "Use a correctly fitted helmet and protective gear, read the owner's manual, and learn the controls in a legal, controlled area. Follow the manufacturer's passenger and load limits.",
+          "Before ordering, confirm stock, delivery options, after-sales support and the written warranty terms. The [7-day engine warranty details](/warranty) explain the limited cover offered by Subhan Enterprises.",
         ],
       },
     ],
     faqs: [
       {
-        question: "What is the best first ATV under PKR 2 million?",
-        answer:
-          "The CFMOTO 520L at PKR 1,950,000 offers the best combination of capability, features, and value for most first-time buyers. The Linhai LH 400 at PKR 1,350,000 is ideal for tighter budgets.",
-      },
-      {
         question: "Do I need a license to ride an ATV in Pakistan?",
         answer:
-          "Regulations vary by province. We recommend checking local traffic laws. Regardless of legal requirements, we strongly encourage professional training before riding on public or shared trails.",
+          "Rules depend on where and how the ATV is used. Check current local regulations and obtain permission before riding on public roads, private land or managed trails.",
       },
       {
-        question: "Can I upgrade later?",
+        question: "What should I ask before ordering a quad bike?",
         answer:
-          "Yes. Subhan Enterprises offers exchange and trade-in programs. Many customers start with a 400cc model and upgrade to 520–700cc after gaining experience.",
+          "Ask the seller to confirm the exact model and specification, current price, availability, delivery charges, parts support and written warranty terms.",
       },
     ],
     cta: {
       heading: "Find Your Perfect First ATV",
-      text: "Visit Subhan Enterprises for expert guidance, competitive pricing, and Pakistan's best selection of beginner-friendly quad bikes.",
+      text: "Compare the current quad bike listings and contact Subhan Enterprises to confirm model details and a current quote.",
       buttonLabel: "View Beginner Models",
       href: "/products?category=atv",
     },
@@ -316,63 +281,47 @@ const remainingContent: Record<(typeof remainingSlugs)[number], ArticleBody> = {
   "cfmoto-vs-can-am-comparison": {
     sections: [
       {
-        heading: "Two Giants, Two Philosophies",
+        heading: "Start with the exact models being compared",
         paragraphs: [
-          "CFMOTO and Can-Am represent two of the most popular ATV brands among Pakistani riders. Both offer genuine imported machines with 4x4 capability, but they target different priorities: CFMOTO emphasises value and feature density, while Can-Am focuses on premium refinement and brand heritage.",
-          "At Subhan Enterprises, we stock both brands because neither is universally better — the right choice depends on your priorities. This detailed comparison helps you decide.",
+          "CFMOTO and Can-Am make a range of ATVs, but a useful comparison needs two specific model years and configurations. Engine size, drive system, equipment and warranty can differ between models, so a brand-level claim alone is not enough to decide which quad bike is right for you.",
+          "Subhan Enterprises' current online catalog does not list a verified CFMOTO or Can-Am model. This article therefore offers a buyer checklist rather than claiming either brand is in stock or making unsupported model-by-model performance and price comparisons.",
         ],
       },
       {
-        heading: "Price and Value",
+        heading: "Compare the total cost in Pakistan",
         paragraphs: [
-          "CFMOTO models consistently undercut Can-Am on price while offering comparable engine sizes. The CFMOTO 520L at PKR 1,950,000 delivers 520cc 4x4 capability that would cost significantly more from Can-Am. The CFMOTO CForce 625 at PKR 2,150,000 sits well below equivalent Can-Am displacement classes.",
-          "Can-Am's Outlander 650 at PKR 2,450,000 commands a premium for brand reputation, refined ergonomics, and proven resale value. If budget is your primary constraint, CFMOTO wins clearly. If you prioritise long-term brand prestige and slightly better fit-and-finish, Can-Am justifies its premium.",
+          "Compare current written quotes for equivalent models and confirm what each price includes. Consider delivery, parts availability, maintenance requirements and warranty terms alongside the purchase price. Do not rely on old online prices or assume that a model is currently available in Pakistan.",
         ],
       },
       {
-        heading: "Performance and Capability",
+        heading: "Compare specifications and after-sales support",
         paragraphs: [
-          "Both brands deliver reliable 4-stroke power suitable for Pakistani terrain. CFMOTO engines are responsive and well-suited to utility and recreational riding. Can-Am's V-twin configurations in higher models offer smoother power delivery and superior low-end torque for heavy towing.",
-          "Suspension tuning differs: Can-Am generally provides plusher ride quality over rough terrain, while CFMOTO suspension is firmer and more sport-oriented. For farm work and long comfort rides, Can-Am has an edge. For spirited trail riding, CFMOTO holds its own.",
-        ],
-      },
-      {
-        heading: "Parts, Warranty, and Support",
-        paragraphs: [
-          "Ask our team about warranty eligibility, parts availability, and after-sales support for the specific model you are considering.",
-          "Warranty terms vary by concern: our 7-day engine warranty is for reported engine smoke or engine blow issues and requires inspection. Contact us for model-specific support and delivery details.",
-        ],
-      },
-      {
-        heading: "Our Verdict",
-        paragraphs: [
-          "Choose CFMOTO if: budget matters most, you want maximum features per rupee, and you ride primarily for recreation and moderate utility.",
-          "Choose Can-Am if: you want premium refinement, plan heavy utility use with towing, and value brand reputation and resale strength.",
-          "Visit Subhan Enterprises to compare both brands side by side. Our team provides honest, unbiased advice based on your specific needs.",
+          "Use official specification sheets to compare displacement, transmission, drive modes, dimensions, brakes, tire sizes, load limits and scheduled maintenance. Ask which parts are locally available and who will provide service in your area.",
+          "If you are comparing other options, browse the [quad bikes currently listed](/products?category=atv) and confirm their current stock and specifications with the seller.",
         ],
       },
     ],
     faqs: [
       {
-        question: "Is CFMOTO reliable for long-term use?",
+        question: "Does Subhan Enterprises currently list CFMOTO or Can-Am ATVs?",
         answer:
-          "Yes. CFMOTO has earned strong reliability credentials globally. With proper maintenance using genuine parts from Subhan Enterprises, CFMOTO machines deliver years of dependable service.",
+          "Neither brand is shown in the current online ATV catalog. Contact the seller to ask about current availability; do not treat an older article or redirect as proof that a model is in stock.",
       },
       {
-        question: "Which brand has better resale value in Pakistan?",
+        question: "How do I compare a CFMOTO and Can-Am ATV accurately?",
         answer:
-          "Can-Am generally holds resale value better due to brand recognition. However, CFMOTO's lower initial price often results in similar percentage depreciation.",
+          "Compare the exact model year and configuration using manufacturer specifications, a current written quote, warranty coverage, parts support and expected maintenance costs.",
       },
       {
-        question: "Can I test ride both before deciding?",
+        question: "Where can I compare ATVs currently listed in Pakistan?",
         answer:
-          "Contact our sales team to arrange viewings at our Lahore showroom. Test rides can be arranged for qualified buyers on approved terrain.",
+          "Browse the current Subhan Enterprises ATV catalog and contact the seller to confirm the details and availability of each listing.",
       },
     ],
     cta: {
-      heading: "Compare Models in Person",
-      text: "See CFMOTO and Can-Am side by side at our Lahore showroom. Get expert advice and competitive quotes on both brands.",
-      buttonLabel: "View CFMOTO & Can-Am",
+      heading: "Compare Current ATV Listings",
+      text: "Review the models currently listed by Subhan Enterprises and ask for confirmed specifications, availability and a current quote.",
+      buttonLabel: "Browse Quad Bikes",
       href: "/products?category=atv",
     },
   },
@@ -380,62 +329,47 @@ const remainingContent: Record<(typeof remainingSlugs)[number], ArticleBody> = {
   "atv-financing-options-pakistan": {
     sections: [
       {
-        heading: "Making Your Dream ATV Accessible",
+        heading: "Build a realistic quad bike budget",
         paragraphs: [
-          "A premium ATV represents a significant investment — but it should not remain out of reach. Subhan Enterprises offers flexible financing, installment plans, and trade-in options designed for Pakistani buyers who want to spread costs without compromising on quality.",
-          "This guide explains every payment option available at our dealership, helping you plan your purchase with clarity and confidence.",
+          "Before shopping for a quad bike in Pakistan, decide the maximum total amount you can spend. Keep a buffer for protective gear, scheduled maintenance, compatible replacement parts and delivery costs.",
+          "This is a budgeting guide, not an offer of credit. Subhan Enterprises' website does not publish financing, installment or trade-in terms. Confirm any payment arrangement directly with the seller and read all terms before paying.",
         ],
       },
       {
-        heading: "Installment Plans",
+        heading: "Ask for an itemised current quote",
         paragraphs: [
-          "We partner with selected financial institutions to offer structured installment plans on approved models. Typical terms range from 6 to 24 months, with down payments starting from 30% of the vehicle price. Interest rates depend on the financing partner and your credit profile.",
-          "Installment plans are available on models including the CFMOTO 520L, Can-Am Outlander, Polaris Sportsman 570, and Yamaha Raptor 700R. Contact our sales team with your preferred model and budget for a personalised payment schedule.",
+          "Request a written quote for the exact model and ask what the amount includes. Confirm the listed price, delivery charges, any included accessories, warranty coverage and the payment method accepted.",
         ],
       },
       {
-        heading: "Trade-In and Exchange",
+        heading: "Compare payment options carefully",
         paragraphs: [
-          "Already own an ATV or motorcycle? Our exchange program accepts qualifying vehicles as partial payment toward a new purchase. We assess trade-in value based on condition, model, and market demand — providing fair, transparent valuations.",
-          "Trade-ins simplify upgrading from an entry-level 400cc to a mid-range 520–650cc machine without managing private sales. Bring your current vehicle to our showroom for a no-obligation assessment.",
-        ],
-      },
-      {
-        heading: "Payment Methods",
-        paragraphs: [
-          "We accept bank transfers, cash at our Lahore showroom, and secure payment arrangements for out-of-city customers. For nationwide buyers, we coordinate payment verification before dispatching your ATV via insured transport.",
-          "All transactions include proper documentation, warranty registration, and delivery confirmation. There are no hidden fees — the quoted price plus agreed delivery charges is what you pay.",
-        ],
-      },
-      {
-        heading: "Planning Your Purchase",
-        paragraphs: [
-          "Before committing, calculate total ownership cost: purchase price, safety gear, insurance, registration, and annual maintenance. Our team provides transparent pricing on all models with no surprise charges.",
-          "Request a quote through our contact page or visit Main LOS Samnabad, Lahore. We respond within 24 hours with pricing, available financing options, and delivery timelines for your city.",
+          "If you are considering a bank or third-party installment plan, verify the provider, total repayment amount, fees, interest or markup, payment schedule and late-payment terms independently. Never assume a financing offer applies to a particular ATV until it is confirmed in writing.",
+          "Do not send a deposit until you have confirmed the seller, exact product, availability, delivery plan and payment terms.",
         ],
       },
     ],
     faqs: [
       {
-        question: "What down payment is required for installments?",
+        question: "Does Subhan Enterprises offer ATV installments?",
         answer:
-          "Down payments typically start from 30% of the vehicle price, though this varies by financing partner and model. Contact us for current terms.",
+          "The website does not publish installment terms. Contact Subhan Enterprises directly to confirm whether a payment option is currently available and request its full written terms.",
       },
       {
-        question: "Can I finance accessories with my ATV purchase?",
+        question: "What costs should I include in my ATV budget?",
         answer:
-          "Yes. Safety gear, winches, light bars, and other accessories can be included in your total package and financing arrangement.",
+          "Include the vehicle quote, delivery, correctly fitted protective equipment, maintenance supplies and any registration or other costs that apply to your intended use.",
       },
       {
-        question: "Is financing available outside Lahore?",
+        question: "How can I get a current quad bike quote?",
         answer:
-          "Yes. Financing and installment arrangements are available to buyers nationwide. We deliver to all major Pakistani cities after payment confirmation.",
+          "Use the contact page to ask about a specific listing, current availability, final price and delivery options.",
       },
     ],
     cta: {
-      heading: "Get a Personalised Quote",
-      text: "Tell us your preferred model and budget. We will prepare financing options tailored to your situation.",
-      buttonLabel: "Request a Quote",
+      heading: "Request a Current ATV Quote",
+      text: "Tell Subhan Enterprises which listed quad bike you are considering and ask for confirmed pricing, availability and delivery details.",
+      buttonLabel: "Contact Subhan Enterprises",
       href: "/contact",
     },
   },
@@ -443,38 +377,38 @@ const remainingContent: Record<(typeof remainingSlugs)[number], ArticleBody> = {
   "winter-atv-storage-guide": {
     sections: [
       {
-        heading: "Protecting Your Investment During Off-Season",
+        heading: "Prepare your ATV for a period of storage",
         paragraphs: [
-          "Pakistan's primary riding season runs from October through April, with extreme summer heat limiting comfortable riding from May to September. Proper off-season storage prevents the deterioration that turns a quick spring start into an expensive workshop visit.",
-          "Follow this comprehensive storage guide to ensure your quad bike fires up reliably when adventure season returns.",
+          "If your quad bike will be unused for an extended period, follow the storage instructions in its owner's manual. Preparation varies by fuel system, battery, engine and local climate, so avoid applying a generic procedure to every model.",
+          "Choose a clean, dry and secure storage location, keep the vehicle away from direct weather where possible, and note any steps that must be reversed before riding again.",
         ],
       },
       {
-        heading: "Fuel System Preparation",
+        heading: "Fuel and engine oil",
         paragraphs: [
-          "Stale fuel is the number one cause of post-storage starting problems. Add a quality fuel stabiliser to a full tank and run the engine for 5 minutes to circulate treated fuel through the carburettor or fuel injection system.",
-          "For storage exceeding 3 months, consider draining the carburettor bowl on carburetted models. Fuel-injected machines benefit from simply keeping the tank full with stabilised fuel to prevent condensation and rust.",
+          "Check the manual for fuel-storage instructions and use only products approved for the vehicle. Do not drain a fuel system, add stabiliser or leave the tank full or empty unless the manufacturer recommends that procedure.",
+          "Follow the manual's advice on oil changes before storage. Service intervals and storage recommendations differ by model and conditions.",
         ],
       },
       {
         heading: "Battery Maintenance",
         paragraphs: [
-          "Disconnect the negative terminal or use a maintainer/trickle charger to keep your 12V Powersports Battery charged. A battery left idle for months will sulfate and fail to hold charge. Monthly top-up charging prevents this entirely.",
-          "Store the battery in a cool, dry location if removing it from the machine. Clean terminals and apply dielectric grease before reconnecting in season.",
+          "Follow the ATV and battery manufacturer's instructions for charging, disconnection and storage. Use a compatible charger only where permitted, and avoid charging a damaged battery.",
+          "If removing the battery, use the manual's procedure and keep it in a safe, dry location. Reinstall and reconnect it as instructed before use.",
         ],
       },
       {
         heading: "Fluid and Mechanical Care",
         paragraphs: [
-          "Change engine oil before storage rather than after — old oil contains acids and contaminants that corrode internal components over months. Top up coolant to the maximum mark and verify it has adequate anti-freeze protection.",
-          "Inflate tires to maximum recommended pressure to prevent flat spots. Place the ATV on a stand if possible to relieve suspension and tire pressure. Lubricate drive chain, control cables, and exposed metal surfaces with appropriate protectants.",
+          "Check fluid levels and storage requirements in the owner's manual. Use only the specified fluids and procedures; do not overfill or substitute products.",
+          "Inspect tires and visible components before storage. Use the manufacturer's recommendations for tire pressure, stands and corrosion protection.",
         ],
       },
       {
         heading: "Cover and Location",
         paragraphs: [
-          "Store indoors in a ventilated, dry space away from direct sunlight and moisture. Use a breathable cover — not plastic that traps humidity. Block exhaust outlets and air intakes to prevent rodent nesting, but label them clearly for removal before starting.",
-          "Run the engine monthly for 5–10 minutes if storage extends beyond 60 days. This circulates oil, charges the battery, and prevents seal drying.",
+          "Store the ATV in a secure place protected from weather. Use a cover suitable for the vehicle and storage environment, and keep rodents and other pests away without blocking ventilation unsafely.",
+          "Do not start or idle a stored ATV on a fixed schedule unless the manufacturer instructs you to do so. Before riding again, remove any storage protection and complete the manual's return-to-service checks.",
         ],
       },
     ],
@@ -482,17 +416,17 @@ const remainingContent: Record<(typeof remainingSlugs)[number], ArticleBody> = {
       {
         question: "How long can an ATV sit without starting?",
         answer:
-          "With proper preparation (fuel stabiliser, battery maintainer, fresh oil), an ATV can sit 4–6 months safely. Without preparation, problems begin within 30–60 days.",
+          "There is no single safe storage duration for every ATV. Follow the manufacturer's storage schedule and check the battery, fuel and other systems before returning the vehicle to service.",
       },
       {
         question: "Should I remove the battery for storage?",
         answer:
-          "Recommended for storage longer than 2 months. Connect it to a trickle charger in a cool, dry place for best results.",
+          "Battery removal and charging recommendations vary. Follow the battery and vehicle manuals and use only a compatible charging method.",
       },
       {
         question: "Can Subhan Enterprises store my ATV?",
         answer:
-          "Contact our workshop team about seasonal storage and pre-season inspection services at our Lahore facility.",
+          "Contact Subhan Enterprises to confirm whether storage or inspection services are currently available.",
       },
     ],
     cta: {
@@ -506,56 +440,42 @@ const remainingContent: Record<(typeof remainingSlugs)[number], ArticleBody> = {
   "off-road-trails-northern-pakistan": {
     sections: [
       {
-        heading: "Northern Pakistan: Off-Road Paradise",
+        heading: "Research your route before taking an ATV north",
         paragraphs: [
-          "Northern Pakistan offers some of the most spectacular off-road terrain in South Asia. Pine forests, alpine meadows, river crossings, and mountain passes create an ATV playground that rivals international destinations — yet remains accessible to local riders.",
-          "This guide highlights the best trails and regions, with ATV recommendations for each terrain type. Always ride responsibly, respect local communities, and obtain necessary permissions before entering restricted areas.",
+          "Northern Pakistan has varied mountain environments, but a scenic destination is not automatically an ATV trail. Access, weather, road conditions and land-use rules can change. Confirm that motorized riding is permitted on your chosen route before travelling.",
+          "Ask local authorities or land managers about access restrictions, protected areas and seasonal closures. Do not ride on hiking paths, private land or sensitive terrain without permission.",
         ],
       },
       {
-        heading: "Murree and Galyat Region",
+        heading: "Check conditions for Murree, Galyat, Swat and Kaghan",
         paragraphs: [
-          "The Murree Hills and surrounding Galyat areas offer moderate trails through pine forest with stunning valley views. Trails range from beginner-friendly fire roads to intermediate single-track sections. The moderate altitude and established tourism infrastructure make this ideal for weekend trips from Lahore and Islamabad.",
-          "Recommended machines: CFMOTO 520L, Suzuki KingQuad 500, Honda TRX420. Ground clearance of 200mm+ handles rocky sections comfortably.",
+          "Before heading to a northern destination, check current weather, road and trail access, fuel availability, mobile coverage and local guidance. Snow, rain, landslides and river conditions can make routes unsafe or impassable.",
+          "Choose a vehicle only after checking its manual and specifications against the route. Do not assume a model is suitable for steep slopes, water crossings, high altitude or carrying passengers and cargo unless the manufacturer confirms it.",
         ],
       },
       {
-        heading: "Swat Valley",
+        heading: "Plan for safety and responsible riding",
         paragraphs: [
-          "Swat offers diverse terrain from riverside tracks to mountain trails with river crossings and steep inclines. The Swat River valley provides miles of scenic riding through one of Pakistan's most beautiful regions. Advanced trails near Kalam and Mahodand Lake demand experienced riders and well-maintained machines.",
-          "Recommended machines: Kawasaki Brute Force 750, Can-Am Outlander, Arctic Cat Alterra 700. Bring recovery gear — winches and tow straps — for remote sections.",
-        ],
-      },
-      {
-        heading: "Kaghan and Naran",
-        paragraphs: [
-          "The Kaghan Valley provides high-altitude riding with cooler temperatures and dramatic mountain scenery. Lake Saif ul Malook access trails and surrounding meadows offer memorable riding experiences. Altitude affects engine performance — choose 520cc+ for adequate power.",
-          "Plan fuel carefully as stations are sparse in remote sections. Carry extra water, food, and communication equipment. Check weather forecasts — mountain conditions change rapidly.",
-        ],
-      },
-      {
-        heading: "Trail Etiquette and Safety",
-        paragraphs: [
-          "Stay on established trails to prevent environmental damage. Yield to hikers and livestock. Reduce speed near villages and schools. Pack out all rubbish — leave no trace.",
-          "Equip your ATV with our LED Light Bar for visibility, carry a first aid kit, and ride with at least one companion. Inform someone of your route and expected return. Subhan Enterprises can recommend local guides for unfamiliar terrain.",
+          "Share your route and return time with someone, ride with a companion where possible, carry water and a first-aid kit, and have a communication and emergency plan. Respect residents, livestock, pedestrians and the environment.",
+          "Wear a correctly fitted helmet and protective gear. Inspect the quad bike before departure and follow the manufacturer's instructions and load limits.",
         ],
       },
     ],
     faqs: [
       {
-        question: "What ATV CC is needed for Swat trails?",
+        question: "Can I ride an ATV on trails in northern Pakistan?",
         answer:
-          "520cc minimum for most Swat trails. Steep sections and river crossings benefit from 650cc+ machines like the Can-Am Outlander or Kawasaki Brute Force 750.",
+          "Only where motorized riding is permitted. Check access rules, landowner permission and local conditions before setting out.",
       },
       {
-        question: "Are there guided ATV tours in northern Pakistan?",
+        question: "What should I check before an ATV trip in the north?",
         answer:
-          "Several operators offer guided tours. Contact Subhan Enterprises for recommendations and to ensure your machine is trail-ready before departure.",
+          "Check the route is open and legally accessible, review weather and terrain conditions, confirm your ATV's suitability in its manual, and plan communications, fuel, recovery and emergency support.",
       },
       {
-        question: "Best season for northern trail riding?",
+        question: "Can a quad bike cross a river or ride on a hiking trail?",
         answer:
-          "May through October offers the best conditions. Avoid monsoon season (July–August) due to landslide risk and river flooding.",
+          "Do not attempt a water crossing or use a hiking route unless the route is explicitly permitted and the vehicle manufacturer allows it. Water and terrain conditions can be hazardous.",
       },
     ],
     cta: {
@@ -585,29 +505,29 @@ const remainingContent: Record<(typeof remainingSlugs)[number], ArticleBody> = {
       {
         heading: "Synthetic vs Conventional",
         paragraphs: [
-          "Fully synthetic oil outperforms conventional oil in every metric relevant to ATV use: thermal stability, shear resistance, and drain interval longevity. In Pakistan's extreme heat, synthetic oil maintains protective film strength when conventional oil breaks down.",
-          "Our 4-Stroke Engine Oil 1L is fully synthetic 10W-40 formulated for powersports engines. At PKR 2,200 per litre, it is the most cost-effective engine protection available.",
+          "Oil type and viscosity must match the engine and clutch requirements in the owner's manual. Do not assume that synthetic oil, or any particular grade, is suitable for every ATV.",
+          "The [4-Stroke Engine Oil](/products/engine-oil) listing states its product specifications. Confirm that it matches your vehicle manufacturer's requirements before use.",
         ],
       },
       {
         heading: "Oil Change Procedure",
         paragraphs: [
-          "Warm the engine to operating temperature. Place the ATV on level ground. Remove the drain plug and allow complete drainage (15–20 minutes). Replace the drain plug washer, install a new oil filter, and refill to the specified capacity.",
-          "Run the engine for 30 seconds, shut off, wait 2 minutes, and check the dipstick level. Overfilling causes seal leaks and smoking; underfilling causes engine damage.",
+          "Use the oil-change procedure and capacity specified in the owner's manual. If you are unfamiliar with the process, ask a qualified technician; hot oil and incorrect service can cause injury or damage.",
+          "After servicing, check for leaks and confirm the oil level using the method in the manual. Dispose of used oil responsibly and record the service date and engine hours.",
         ],
         list: [
-          "Change oil every 25–40 hours or 3 months",
-          "Replace filter with every oil change",
-          "Check oil level before every ride",
-          "Never mix different oil brands mid-cycle",
-          "Dispose of used oil at approved recycling centres",
+          "Use the oil grade and specification required by the manufacturer",
+          "Follow the model-specific oil and filter service intervals",
+          "Check the oil level using the manual's recommended method",
+          "Do not mix oils unless the vehicle or oil manufacturer permits it",
+          "Collect and dispose of used oil through an appropriate service",
         ],
       },
       {
         heading: "Other Essential Fluids",
         paragraphs: [
-          "Coolant: Use our Premium ATV Coolant 1L for liquid-cooled engines. Check level weekly and replace every 2 years. Brake fluid: DOT 4 for most ATVs, replaced every 12 months. Diff oil: check your manual for 4x4 front diff service intervals.",
-          "Subhan Enterprises stocks all fluids and filters for every model we sell. Order online with nationwide delivery or visit our Lahore parts counter.",
+          "Coolant, brake fluid and differential oil requirements vary by model. Check the manual for the correct fluid type, inspection method and replacement interval; never assume one fluid fits all ATVs.",
+          "Browse the [parts catalog](/products?category=parts) and confirm product compatibility, stock and delivery options with Subhan Enterprises.",
         ],
       },
     ],
@@ -615,7 +535,7 @@ const remainingContent: Record<(typeof remainingSlugs)[number], ArticleBody> = {
       {
         question: "How much oil does my ATV need?",
         answer:
-          "Most 400–520cc ATVs require 2–2.5 litres with filter change. 650–750cc models may require 2.5–3 litres. Check your owner's manual for exact capacity.",
+          "Oil capacity varies by model and whether the filter is changed. Use the capacity and checking procedure in your owner's manual.",
       },
       {
         question: "What happens if I skip an oil change?",
@@ -625,7 +545,7 @@ const remainingContent: Record<(typeof remainingSlugs)[number], ArticleBody> = {
       {
         question: "Can I buy oil in bulk from Subhan Enterprises?",
         answer:
-          "Yes. Contact us for multi-litre pricing and regular maintenance packages for fleet and farm operators.",
+          "Check the current product listing and contact Subhan Enterprises to confirm available sizes, stock and pricing.",
       },
     ],
     cta: {
@@ -654,22 +574,19 @@ const remainingContent: Record<(typeof remainingSlugs)[number], ArticleBody> = {
       {
         heading: "What Is Not Covered",
         paragraphs: [
-          "Normal wear items — brake pads, tires, filters, fluids — are owner maintenance responsibility. Damage from accidents, misuse, racing, flooding, or unauthorised modifications voids warranty coverage.",
-          "Failure to follow recommended maintenance schedules (oil changes, filter cleaning) may void engine-related claims. Keep records of all maintenance performed.",
+          "The published engine warranty is limited to eligible smoke or engine blow issues reported within seven days of delivery and confirmed after inspection. Review the [warranty page](/warranty) for the current terms and exclusions.",
         ],
       },
       {
         heading: "Making a Warranty Claim",
         paragraphs: [
-          "Contact us immediately if you discover a defect. Do not attempt major repairs yourself — unauthorised work may void coverage. Our team will diagnose the issue and determine warranty eligibility.",
-          "For out-of-city customers, contact us by phone or WhatsApp. We coordinate repair arrangements and can advise on approved local mechanics for minor warranty work where appropriate.",
+          "If an eligible issue occurs, contact Subhan Enterprises and report it within the seven-day period. Keep your order details available and follow the instructions on the warranty page; inspection is required to determine eligibility.",
         ],
       },
       {
         heading: "Beyond Warranty: After-Sales Support",
         paragraphs: [
-          "Subhan Enterprises support extends beyond warranty expiration. Our workshop provides paid servicing, genuine parts, and technical advice for the life of your machine. We maintain parts stock for all models we sell.",
-          "Visit our warranty page for full terms and conditions, or contact us with specific questions about your coverage.",
+          "For questions about service or parts after the warranty period, contact Subhan Enterprises to confirm current support and availability.",
         ],
       },
     ],
@@ -677,7 +594,7 @@ const remainingContent: Record<(typeof remainingSlugs)[number], ArticleBody> = {
       {
         question: "Does warranty cover delivery damage?",
         answer:
-          "Inspect your ATV upon delivery and report any transport damage within 24 hours. We arrange repair or replacement for damage occurring during insured shipping.",
+          "Ask the seller how to inspect the unit at handover and how to report any delivery concern. Confirm the applicable process before dispatch.",
       },
       {
         question: "Can I service my ATV elsewhere without voiding warranty?",
@@ -687,7 +604,7 @@ const remainingContent: Record<(typeof remainingSlugs)[number], ArticleBody> = {
       {
         question: "Is extended warranty available?",
         answer:
-          "Contact our sales team about extended coverage options for select models at time of purchase.",
+          "The website publishes a 7-day engine warranty. Contact Subhan Enterprises to ask about any additional coverage and request its terms in writing.",
       },
     ],
     cta: {
@@ -701,38 +618,29 @@ const remainingContent: Record<(typeof remainingSlugs)[number], ArticleBody> = {
   "farm-atv-vs-sport-atv": {
     sections: [
       {
-        heading: "Two Machines, Two Missions",
+        heading: "Start with the work or riding you need to do",
         paragraphs: [
-          "The ATV market divides broadly into utility (farm/work) machines and sport (recreation/performance) models. Understanding this distinction prevents buying a Raptor 700R when you need a Honda Rancher — or vice versa.",
-          "Pakistani buyers use ATVs for farm patrol, livestock management, crop transport, recreational trail riding, and desert sport. This guide matches machine type to mission.",
+          "A quad bike intended for recreation may not have the equipment or load rating needed for farm work. Before buying, list the tasks you expect it to do, the terrain, expected hours of use, number of riders and any cargo or towing needs.",
+          "Use the manufacturer's specifications and owner manual to verify that a specific model supports your planned use. Never assume that all ATVs include racks, hitches, four-wheel drive or passenger seating.",
         ],
       },
       {
-        heading: "Utility ATV Characteristics",
+        heading: "Check the details that matter for farm use",
         paragraphs: [
-          "Utility ATVs prioritise low-end torque, towing capacity, cargo racks, and comfortable ergonomics for all-day use. They feature automatic transmissions, softer suspension, and practical accessories like hitch receivers and winch mounts.",
-          "Top utility picks at Subhan Enterprises: Honda TRX420 Rancher (PKR 1,780,000), Polaris Sportsman 570 (PKR 2,250,000), CFMOTO 520L (PKR 1,950,000). These handle farm tracks, cargo hauling, and moderate trail riding equally well.",
+          "For work around a farm, check the exact model's rated towing and carrying capacity, available mounting points, tire compatibility, ground clearance, service schedule and parts support. Confirm that the vehicle can safely handle the load and surfaces on your property.",
+          "Subhan Enterprises' [current ATV listings](/products?category=atv) show the models currently in the catalog. Contact the seller to confirm a model's specifications and availability; the catalog does not claim that every listing is designed for agricultural work.",
         ],
       },
       {
-        heading: "Sport ATV Characteristics",
+        heading: "Check fit and safety for recreational riding",
         paragraphs: [
-          "Sport ATVs prioritise power-to-weight ratio, aggressive suspension, and responsive handling. They sacrifice cargo capacity and towing for speed and agility on trails, dunes, and open terrain.",
-          "Top sport picks: Yamaha Raptor 700R (PKR 2,850,000), Kawasaki Brute Force 750 (PKR 2,650,000). These excel on recreational trails but are impractical for daily farm work.",
+          "For trail or recreational use, compare the rider category, controls, braking system, dimensions, tires and safety instructions. Make sure the intended rider can control the vehicle and wear suitable protective equipment.",
         ],
       },
       {
-        heading: "Hybrid Options",
+        heading: "Confirm compatibility before buying accessories",
         paragraphs: [
-          "Many riders need both capability and fun. Mid-range models like the Can-Am Outlander 650 and Arctic Cat Alterra 700 bridge utility and recreation effectively. They tow, carry cargo, and handle spirited trail riding without the extreme temperament of pure sport machines.",
-          "If you can only own one ATV, a versatile 520–650cc utility-recreation model serves both roles better than a pure sport machine.",
-        ],
-      },
-      {
-        heading: "Accessories by Use Case",
-        paragraphs: [
-          "Farm users should add: Heavy Duty Cargo Rack, Electric Winch, LED Light Bar for early morning farm rounds. Sport riders should invest in: safety gear, performance tires, and handlebar grips.",
-          "Subhan Enterprises assembles complete packages tailored to your primary use. Request a quote specifying your application for personalised recommendations.",
+          "Accessories and parts must fit the exact make and model. Check the [parts and gear catalog](/products?category=parts) and [riding accessories](/products?category=accessories), then confirm compatibility and stock before ordering.",
         ],
       },
     ],
@@ -740,22 +648,22 @@ const remainingContent: Record<(typeof remainingSlugs)[number], ArticleBody> = {
       {
         question: "Can a sport ATV be used on a farm?",
         answer:
-          "Technically yes, but sport ATVs lack cargo racks, have limited towing capacity, and their stiff suspension is uncomfortable during long work sessions. A utility model is the practical choice.",
+          "It depends on the exact model and task. Check the manufacturer's cargo, towing and usage ratings rather than relying on a sport or utility label.",
       },
       {
         question: "Best farm ATV under PKR 2 million?",
         answer:
-          "The CFMOTO 520L at PKR 1,950,000 offers the best utility capability in this price range with 4x4, automatic transmission, and excellent reliability.",
+          "There is no single best farm ATV for every property. Confirm the vehicle's rated capacity, specifications, current price, parts support and suitability for your work before buying.",
       },
       {
         question: "Do utility ATVs come with racks and hitches?",
         answer:
-          "Most include front and rear racks. Hitch receivers and winch mounts vary by model — ask our team about standard and optional equipment for each unit.",
+          "Equipment varies by model. Check the product details and owner's manual, and ask the seller to confirm which racks, hitches or mounts are included.",
       },
     ],
     cta: {
       heading: "Find Your Perfect Match",
-      text: "Whether you need a farm workhorse or a trail machine, we have the right ATV for your application.",
+      text: "Compare current ATV listings and confirm model specifications, fit and availability for your intended use.",
       buttonLabel: "Compare All Models",
       href: "/products?category=atv",
     },
@@ -780,22 +688,22 @@ const remainingContent: Record<(typeof remainingSlugs)[number], ArticleBody> = {
       {
         heading: "Sizing and Fitment",
         paragraphs: [
-          "ATV tire sizes appear as three numbers: overall diameter, tread width, and rim diameter (e.g., 25x8-12). Your owner's manual specifies compatible sizes. Deviating significantly affects speedometer accuracy, gearing, and clearance.",
-          "Our 25-inch Knobby Off-Road Tires fit most 400–700cc ATVs with 12-inch rims. Verify your rim size before ordering.",
+          "Tire markings identify dimensions such as tire diameter, width and rim size. Use the sizes approved in your owner's manual and check the exact wheel and tire fitment before ordering a replacement.",
+          "The [Knobby Off-Road Tire](/products/off-road-tire) listing includes its stated size. Confirm that the size and load rating are compatible with your ATV.",
         ],
       },
       {
         heading: "Pressure and Maintenance",
         paragraphs: [
-          "Off-road pressure typically ranges 4–7 PSI. Lower pressure increases traction but risks debeading on hard cornering. Higher pressure improves fuel economy but reduces grip. Check pressure cold before every ride.",
-          "Rotate tires every 50 hours to even wear. Inspect for cuts, embedded rocks, and sidewall cracking. Replace when tread depth falls below 3mm or after 2–3 seasons of heavy use.",
+          "Use the cold tire pressure and maintenance instructions specified by the ATV and tire manufacturers. Pressure requirements differ by model, tire, load and conditions; do not rely on a generic PSI range.",
+          "Inspect tires regularly for cuts, bulges, cracking, punctures and unusual wear. Replace damaged or worn tires according to the manufacturer's guidance.",
         ],
       },
       {
         heading: "When to Replace",
         paragraphs: [
           "Signs you need new tires: visible cord, sidewall cracks, punctures that cannot be repaired, rounded tread blocks, or consistent loss of traction on familiar terrain.",
-          "Subhan Enterprises offers tire supply and fitting at our Lahore workshop. Order online for delivery nationwide.",
+          "Contact the seller to confirm current stock, compatibility and available delivery or fitting options.",
         ],
       },
     ],
@@ -803,17 +711,17 @@ const remainingContent: Record<(typeof remainingSlugs)[number], ArticleBody> = {
       {
         question: "Can I use road tires on my ATV?",
         answer:
-          "Road-oriented tires lack off-road traction and are unsafe on trails. Use knobby or all-terrain tires for any off-road riding in Pakistan.",
+          "Use only tire types approved for your vehicle and intended riding surface. Check the owner's manual and tire manufacturer recommendations.",
       },
       {
         question: "How long do ATV tires last?",
         answer:
-          "With moderate use, 2–3 seasons or 100–150 hours. Heavy use on abrasive rocky terrain may require replacement within one season.",
+          "Tire life depends on the tire, surface, load, storage and maintenance. Inspect condition regularly and follow the manufacturer's replacement guidance.",
       },
       {
         question: "Do you offer tire fitting?",
         answer:
-          "Yes, at our Lahore workshop. Contact us to schedule fitting or for mail-order tire delivery.",
+          "Contact Subhan Enterprises to ask whether fitting is currently available and confirm delivery options.",
       },
     ],
     cta: {
@@ -829,36 +737,36 @@ const remainingContent: Record<(typeof remainingSlugs)[number], ArticleBody> = {
       {
         heading: "Riding After Dark Requires Preparation",
         paragraphs: [
-          "Dawn and dusk rides, winter afternoon sessions, and planned night adventures demand proper lighting. Stock ATV headlights illuminate directly ahead but fail to reveal trail obstacles, washouts, and branches at the periphery.",
-          "A proper LED light setup transforms night riding from dangerous to exhilarating. This guide covers equipment selection, mounting, wiring, and safety practices.",
+          "Reduced visibility increases risk for riders and other trail users. Avoid riding in darkness or poor weather unless the route is legal, conditions allow it, and the vehicle has lighting approved for that use.",
+          "Check local rules and your ATV manual before adding auxiliary lights. This guide covers compatibility and basic safety points, not a substitute for professional electrical installation.",
         ],
       },
       {
         heading: "Choosing a Light Bar",
         paragraphs: [
-          "LED light bars provide wide, bright illumination that stock headlights cannot match. Our LED Light Bar 20 inch delivers 10,000 lumens with a combination beam pattern — flood for peripheral visibility and spot for distance.",
-          "At PKR 15,500, it is the highest-impact safety accessory for any ATV used in low-light conditions. Waterproof IP67 rating handles river crossings and monsoon riding.",
+          "The [LED Light Bar](/products/led-light-bar) listing states its size and rated output. Confirm that the electrical requirements, mounting location and beam pattern are compatible with your exact vehicle and intended use.",
+          "Check the latest product page for current price and specifications. Do not assume a light bar is waterproof for immersion or suitable for every ATV unless the product documentation specifically confirms it.",
         ],
       },
       {
         heading: "Mounting and Wiring",
         paragraphs: [
-          "Mount the light bar above or below the front rack, centred for balanced illumination. Use supplied brackets or universal clamp mounts. Route wiring along the frame, protected from heat and moving parts.",
-          "Connect through a relay and switch — never directly to the battery without a fuse. A dedicated switch lets you control the light bar independently from the headlight. Consider a wiring harness with relay for plug-and-play installation.",
+          "Mounting and wiring requirements depend on the light bar and ATV. Follow both manufacturers' instructions and use a qualified installer if you are unfamiliar with vehicle electrical systems.",
+          "Protect wiring from heat, abrasion, water and moving parts. Do not modify the vehicle in a way that compromises its safety systems or warranty.",
         ],
       },
       {
         heading: "Safety Considerations",
         paragraphs: [
-          "Night riding demands reduced speed — your stopping distance exceeds your visible range at high speed. Ride with a companion always. Wear reflective elements and ensure tail/brake lights function.",
-          "Inform someone of your route and carry a backup light source (headlamp). Avoid riding on public roads at night without proper registration and lighting compliance.",
+          "Reduce speed to match visibility, keep a safe stopping distance and make sure other riders can see you. Share your route and expected return time and carry a backup light source.",
+          "Check road and trail rules before riding after dark. Auxiliary lights do not make an otherwise restricted or unsafe route suitable for riding.",
         ],
       },
       {
         heading: "Complete Night Riding Kit",
         paragraphs: [
-          "Essential kit: LED light bar, backup headlamp, reflective vest, fully charged phone, first aid kit. Recommended: auxiliary rear light, GPS tracker, and emergency whistle.",
-          "Subhan Enterprises assembles night riding packages including light bars, wiring harnesses, and mounting hardware. Contact us for installation at our Lahore workshop.",
+          "Plan for visibility, communication and emergencies: use required vehicle lights, carry a charged phone where coverage is available, and bring appropriate first-aid and backup lighting.",
+          "Contact Subhan Enterprises to confirm current availability, fitment and any installation support for the listed light bar.",
         ],
       },
     ],
@@ -890,38 +798,38 @@ const remainingContent: Record<(typeof remainingSlugs)[number], ArticleBody> = {
   "atv-break-in-period-guide": {
     sections: [
       {
-        heading: "The First 20 Hours Are Critical",
+        heading: "Check whether your ATV has a break-in period",
         paragraphs: [
-          "Your new ATV's engine, transmission, and brakes require a careful break-in period to seat rings, establish oil films, and wear mating surfaces correctly. Ignoring break-in procedures causes accelerated wear, oil consumption, and reduced engine life.",
-          "Every new ATV from Subhan Enterprises includes break-in guidelines in the owner's manual. This guide summarises the essential steps.",
+          "Break-in requirements vary by ATV make, model and engine. Before riding a new quad bike, read the owner's manual for any initial-use limits, inspection requirements or service intervals.",
+          "This general checklist is not a substitute for model-specific instructions. If the manual is missing or unclear, ask the seller or manufacturer before using the vehicle.",
         ],
       },
       {
-        heading: "Engine Break-In (First 20 Hours)",
+        heading: "Follow the manual's engine instructions",
         paragraphs: [
-          "Vary engine speed constantly — avoid sustained high RPM or idling for extended periods. First 2 hours: keep below 50% throttle, no full acceleration. Hours 2–10: gradually increase to 75% throttle maximum. Hours 10–20: occasional full throttle bursts allowed, but avoid sustained WOT.",
-          "Change engine oil and filter at 10 hours and again at 20 hours. Metal particles from initial wear contaminate early oil changes — removing them protects your engine.",
+          "Do not apply a generic throttle limit or break-in schedule to every quad bike. Follow the exact speed, load and engine-use instructions provided by the manufacturer for your model.",
+          "Use only the oil type and service interval specified by the manufacturer. Record the initial service requirements and arrange maintenance when the manual says it is due.",
         ],
       },
       {
         heading: "Brake and Drivetrain Break-In",
         paragraphs: [
-          "Apply brakes gently for the first 50 km to seat pad material against rotors. Avoid hard emergency stops unless necessary for safety. Check brake fluid level after the first 10 hours.",
-          "For belt-driven CVT transmissions, avoid sustained low-speed crawling that generates belt heat. For chain-drive models, check chain tension after 5 hours and lubricate regularly.",
+          "Follow the manual's instructions for brakes and drivetrain components. Test the brakes at low speed in a safe area before normal use, and stop if they feel abnormal.",
+          "Transmission and chain procedures vary by design. Use the specified inspection, adjustment and lubrication schedule for your ATV.",
         ],
       },
       {
         heading: "What to Avoid During Break-In",
         paragraphs: [
-          "Do not: tow heavy loads, install performance modifications, ride in deep mud for extended periods, or ignore the first scheduled oil change. Do not let the engine overheat — monitor temperature gauges and take breaks.",
-          "Use only the recommended break-in oil if specified by the manufacturer. Our 4-Stroke Engine Oil 10W-40 fully synthetic is suitable for all break-in and regular service intervals.",
+          "Do not exceed the manufacturer's speed, load or operating limits during any stated break-in period. Avoid modifications that conflict with the manual or warranty terms.",
+          "Choose engine oil by the vehicle manufacturer's specification. The [4-Stroke Engine Oil listing](/products/engine-oil) shows the product details; confirm compatibility before use.",
         ],
       },
       {
         heading: "After Break-In",
         paragraphs: [
-          "After 20 hours, transition to regular maintenance schedule: oil changes every 25–40 hours, filter inspection after dusty rides, and full service at 100 hours.",
-          "Schedule your 20-hour inspection at Subhan Enterprises workshop. Our technicians verify valve clearances, fastener torque, and fluid levels to ensure your machine is ready for years of adventure.",
+          "Once any break-in requirements are complete, continue with the normal service schedule in the owner's manual and keep records of work performed.",
+          "Contact the seller to ask whether inspection or servicing is available for your model and what it includes.",
         ],
       },
     ],
@@ -929,22 +837,22 @@ const remainingContent: Record<(typeof remainingSlugs)[number], ArticleBody> = {
       {
         question: "What happens if I skip break-in?",
         answer:
-          "Skipping break-in causes improper ring seating, increased oil consumption, reduced power, and potentially premature engine failure. The 20 hours of careful riding protects a multi-million rupee investment.",
+          "Skipping a manufacturer-required break-in procedure may affect performance or warranty eligibility. Follow the manual for your exact model and contact the seller if you need clarification.",
       },
       {
         question: "Can I ride normally after 20 hours?",
         answer:
-          "Yes. After the 20-hour service, ride normally within the machine's designed capabilities. Continue following regular maintenance schedules.",
+          "Follow the break-in instructions and service milestones in your owner's manual. Do not assume every ATV uses the same number of hours or procedure.",
       },
       {
         question: "Does Subhan Enterprises perform break-in service?",
         answer:
-          "Yes. Bring your new ATV for 10-hour and 20-hour inspections at our Lahore workshop. We handle oil changes, inspections, and adjustments.",
+          "Contact Subhan Enterprises to confirm current service availability, the models supported and any inspection charges.",
       },
     ],
     cta: {
       heading: "New ATV Owner?",
-      text: "Book your break-in service and stock up on engine oil and filters for the first 20 hours.",
+      text: "Check the manufacturer's break-in and maintenance requirements, then contact the seller about service availability.",
       buttonLabel: "Shop Break-In Essentials",
       href: "/products?category=parts",
     },
@@ -953,68 +861,60 @@ const remainingContent: Record<(typeof remainingSlugs)[number], ArticleBody> = {
   "subhan-enterprises-buying-guide": {
     sections: [
       {
-        heading: "Welcome to Subhan Enterprises",
+        heading: "Buying a quad bike from Subhan Enterprises",
         paragraphs: [
-          "Subhan Enterprises is Pakistan's premium dealer for ATVs and quad bikes, serving riders nationwide from our Lahore showroom. Since establishment, we have delivered hundreds of machines to satisfied customers across every major city.",
-          "This 2025 buying guide covers everything you need to know — our model range, pricing, delivery, warranty, financing, and after-sales support — in one comprehensive resource.",
+          "Subhan Enterprises is a Lahore-based seller of quad bikes, dirt bikes, riding accessories and parts. Use this guide to review the online catalog and the details to confirm before ordering.",
+          "Catalog listings and availability can change. A product page is a starting point for comparison, not confirmation that an item is currently in stock or that every specification applies to every model.",
         ],
       },
       {
-        heading: "Our ATV Range",
+        heading: "Browse current vehicles, accessories and parts",
         paragraphs: [
-          "Browse eight distinct ATV and quad-bike models featured on Subhan Enterprises' official TikTok, with engine sizes shown from 70cc to 250cc. Model names follow the posts; a manufacturer is not named unless verified.",
-          "The TikTok posts do not list prices or confirm current stock. Product pages retain their existing listed prices; contact Subhan Enterprises to confirm a current quote, model availability, nationwide delivery, and the 7-day engine warranty for eligible issues.",
+          "Explore the [ATV and quad bike catalog](/products?category=atv), [dirt bikes](/products?category=dirt_bike), [riding accessories](/products?category=accessories), or [parts and gear](/products?category=parts). Check each product page for the listed price and details.",
+          "Some listings use descriptive styling names. Do not assume a vehicle is manufactured by a similarly named brand unless the product information confirms it.",
         ],
       },
       {
-        heading: "Accessories and Parts",
+        heading: "Confirm the details before paying",
         paragraphs: [
-          "Beyond quad bikes, we stock premium riding gear (helmets, gloves, goggles, body armor, boots), accessories (LED light bars, winches, cargo racks), and genuine parts (tires, batteries, oil, filters, brake pads, spark plugs).",
-          "Subhan Gear and Subhan Parts are our in-house brands offering quality products at competitive prices. All items are available with nationwide delivery.",
+          "Ask for the exact model and specification, current stock status, final price, delivery availability and charges, accepted payment method, and written warranty terms. Confirm that parts or accessories fit the exact make and model.",
+          "Do not assume installments, financing, exchanges, test rides or a fixed delivery time are available unless the seller confirms the offer and its terms in writing.",
         ],
       },
       {
-        heading: "How to Buy",
+        heading: "Understand the warranty and delivery terms",
         paragraphs: [
-          "Step 1: Browse our products online or visit our showroom at Shop #36, New Islamia Park, Main LOS Samnabad, Lahore. Step 2: Request a quote via phone (+92 332 4350140), WhatsApp, or our contact form. Step 3: Confirm your order and arrange payment or financing.",
-          "Step 4: We deliver nationwide within 3–7 working days via insured transport. Step 5: Register your warranty and schedule your first service at 10 hours.",
+          "Read the [7-day engine warranty information](/warranty) before ordering. The published warranty is limited to eligible engine smoke or engine blow issues reported within seven days of delivery and confirmed after inspection.",
+          "For shipping, check the [delivery information](/shipping) and contact Subhan Enterprises to confirm service, timing and charges for your destination.",
         ],
       },
       {
-        heading: "Why Choose Subhan Enterprises",
+        heading: "Contact the Lahore seller",
         paragraphs: [
-          "Explore available ATVs from trusted brands, ask for a clear quote, and arrange delivery across Pakistan. A 7-day engine warranty covers eligible smoke or engine blow issues reported within the warranty period, subject to inspection.",
-          "With 18+ years of experience and more than 10,000 riders served across Pakistan, Subhan Enterprises helps buyers compare quad bikes and get after-sales guidance.",
-        ],
-      },
-      {
-        heading: "Contact and Visit",
-        paragraphs: [
-          "Showroom: Shop #36, New Islamia Park, Main LOS Samnabad, Lahore. Phone: +92 332 4350140. Email: naeem.majeed101@gmail.com. Hours: Monday–Saturday 10AM–8PM, Sunday by appointment.",
-          "Follow us on Facebook, Instagram, and YouTube for new arrivals, riding tips, and customer stories. We look forward to helping you find your perfect quad bike.",
+          "Visit the [contact page](/contact) for current showroom and contact details. Share the product name or URL when asking about a quote so the seller can confirm the exact listing.",
         ],
       },
     ],
     faqs: [
       {
-        question: "Does Subhan Enterprises deliver to Karachi?",
+        question: "How do I confirm a quad bike is available?",
         answer:
-          "Yes. We deliver to Karachi, Islamabad, Faisalabad, Peshawar, Multan, and all major cities with fully insured shipping. Delivery typically takes 3–7 working days.",
+          "Contact Subhan Enterprises with the exact product name or link and ask for current stock, price and delivery options for your location.",
       },
       {
-        question: "What warranty comes with every ATV?",
+        question: "What does the Subhan Enterprises engine warranty cover?",
         answer:
-          "Our 7-day engine warranty covers reported engine smoke or engine blow concerns. We inspect the ATV first; eligible engine maintenance is free. Other components are not included.",
+          "The published 7-day engine warranty applies to eligible smoke or engine blow issues reported within seven days of delivery. The ATV is inspected first; see the warranty page for details and exclusions.",
       },
       {
-        question: "Can I visit without an appointment?",
+        question: "Can I pay by installment or finance my purchase?",
         answer:
-          "Absolutely. Walk in during business hours (10AM–8PM, Monday–Saturday). For test ride arrangements, calling ahead is recommended.",
+          "The website does not publish financing or installment terms. Contact the seller directly and request any payment offer and terms in writing.",
       },
     ],
     cta: {
       heading: "Start Your ATV Journey Today",
-      text: "Explore available ATV models and request a quote from a dealer with 18+ years of experience and 10,000+ riders served across Pakistan.",
+      text: "Browse current product listings and ask Subhan Enterprises to confirm price, availability, delivery and warranty terms.",
       buttonLabel: "Explore Products",
       href: "/products",
     },
@@ -1025,29 +925,16 @@ const seoArticleBodies: Record<string, ArticleBody> = {
   "atv-price-guide-pakistan-2025": {
     sections: [
       {
-        heading: "Understanding ATV & Quad Bike Prices in Pakistan",
+        heading: "Current listed ATV and quad bike prices",
         paragraphs: [
-          "Quad-bike prices depend on the exact model and the seller's current availability. The official Subhan Enterprises TikTok posts show eight distinct models from 70cc to 250cc, but do not publish prices or confirm current stock.",
-          "Product pages retain their existing listed prices. Contact Subhan Enterprises to confirm the current price, availability, and specifications before ordering; no manufacturer is named unless verified.",
-          "Use the model names and engine sizes shown in the listings to compare options, then request a current quote for the specific quad bike you are considering.",
+          "The prices below are taken directly from the current Subhan Enterprises ATV catalog. Listings and stock can change, so contact the seller to confirm the current price, specifications and availability before ordering.",
         ],
       },
       {
-        heading: "Kids and Mini Quad Bikes (70cc–124cc)",
+        heading: "What changes the final quad bike price?",
         paragraphs: [
-          "The listed kids and mini options include the [70cc Mini Kids ATV](/products/70cc-mini-kids-atv) and the [124cc Sports Mini Raptor ATV](/products/124cc-mini-raptor). Confirm age suitability, safety equipment, exact specifications, and availability with the seller.",
-        ],
-      },
-      {
-        heading: "Sports and Jeep-Style Models (124cc–125cc)",
-        paragraphs: [
-          "The 124cc–125cc listings include the [125cc Sports Raptor ATV](/products/125cc-sports-raptor), [124cc Six Plus Sports Jeep](/products/124cc-six-plus-sports-jeep), [125cc Sports Hummer Jeep](/products/125cc-sports-hummer-jeep), and [125cc Shikari Jeep](/products/125cc-shikari-jeep). The model descriptions follow Subhan Enterprises' official TikTok posts.",
-        ],
-      },
-      {
-        heading: "150cc and 250cc ATV Models",
-        paragraphs: [
-          "The TikTok catalog also features a [150cc Audi-style ATV](/products/150cc-audi-style-atv) and a [250cc Monster ATV](/products/250cc-monster-atv). The styling name does not indicate an Audi-manufactured vehicle. Contact Subhan Enterprises to confirm current price, availability, and details.",
+          "A quad bike's listed price is only one part of the purchase decision. Confirm the exact model and specification, whether delivery is included, what accessories come with it, and which warranty terms apply.",
+          "Check the product page and manufacturer information for fit, intended rider category and maintenance requirements. Ask the seller for a final written quote so you can compare like-for-like offers.",
         ],
       },
     ],
@@ -1060,7 +947,7 @@ const seoArticleBodies: Record<string, ArticleBody> = {
       {
         question: "Are quad bike prices inclusive of delivery in Pakistan?",
         answer:
-          "We offer transparent pricing and insured nationwide shipping to Lahore, Karachi, Islamabad, Peshawar, and all other major cities.",
+          "Delivery availability and charges depend on the destination and order. Contact Subhan Enterprises to confirm the current delivery option and cost for your location.",
       },
       {
         question: "Does Subhan Enterprises offer warranty with quad bikes?",
@@ -1088,21 +975,21 @@ const seoArticleBodies: Record<string, ArticleBody> = {
       {
         heading: "Stability, Safety, and Learning Curve",
         paragraphs: [
-          "The single largest advantage of an ATV quad bike over a dirt bike is 4-wheel stability. Quad bikes remain upright at a standstill, making them far safer and easier for beginners, families, and riders of all age groups.",
-          "Dirt bikes require significant balance, coordination, and physical stamina — especially on rocky Pakistani mountain tracks. For entry-level riders, a quad bike like the [Linhai LH 400](/products/linhai-lh400) provides confidence from day one.",
+          "A dirt bike and an ATV have different handling, balance and control requirements. Neither is automatically safer for every rider; training, fit, age, terrain and safe riding practices matter.",
+          "Compare the manufacturer's intended rider category and instructions before buying. The current [quad bike catalog](/products?category=atv) lists the available ATV options; check each product page and confirm details with the seller.",
         ],
       },
       {
         heading: "Terrain Suitability Across Pakistani Landscapes",
         paragraphs: [
-          "On open sand dunes in Cholistan or loose riverbeds in Swat, four wide knobby tires give ATVs vastly superior flotation and traction compared to narrow dirt bike tires.",
-          "For high-speed sport riding, machines like the [Yamaha Raptor 700R](/products/raptor-700r) offer adrenaline-pumping performance without the constant risk of tip-overs associated with two-wheelers.",
+          "Both vehicle types have trade-offs that depend on the route and vehicle setup. Check tire type, ground clearance, drive system and the manufacturer's use guidance rather than assuming either vehicle can handle every surface.",
+          "Subhan Enterprises currently lists [dirt bikes](/products?category=dirt_bike) and [ATVs](/products?category=atv). Compare current specifications, prices and availability before choosing.",
         ],
       },
       {
         heading: "Utility and Towing Capacity",
         paragraphs: [
-          "A dirt bike is purely recreational. An ATV, however, is a multi-purpose workhorse. With front and rear steel racks and tow hitches, ATVs like the [CFMOTO 520L](/products/cfmoto-520l) can carry heavy cargo, haul equipment across farm fields, or carry camping gear for multi-day expeditions.",
+          "Some vehicles are designed for utility tasks, while others are intended mainly for recreation. Do not assume a quad bike has passenger, cargo or towing capacity unless the exact model's manual and specifications confirm it.",
         ],
       },
     ],
@@ -1110,12 +997,12 @@ const seoArticleBodies: Record<string, ArticleBody> = {
       {
         question: "Is an ATV safer than a dirt bike for beginners in Pakistan?",
         answer:
-          "Yes. Four wheels provide immediate stability on uneven ground, reducing low-speed tip-overs and rider fatigue.",
+          "Not necessarily. Risk depends on the rider, vehicle, terrain and conditions. Use age-appropriate equipment and training, follow the owner's manual, and never treat four wheels as a substitute for safe riding.",
       },
       {
         question: "Can an ATV carry passenger or cargo unlike a dirt bike?",
         answer:
-          "Absolutely. Many 2-up ATV models are built for two passengers, and all utility quad bikes include heavy-duty cargo racks.",
+          "Only if the specific model is designed and approved for a passenger or cargo. Check its manual and load limits before carrying another person or equipment.",
       },
       {
         question: "Where can I view ATV quad bikes in Lahore?",
@@ -1125,7 +1012,7 @@ const seoArticleBodies: Record<string, ArticleBody> = {
     ],
     cta: {
       heading: "Explore Stable, High-Performance Quad Bikes",
-      text: "Check out our range of 4x4 utility and sport ATVs built for Pakistani off-road adventures.",
+      text: "Browse the current dirt bike and ATV listings, and confirm the exact specification and availability before buying.",
       buttonLabel: "Browse ATV Quad Bikes",
       href: "/products?category=atv",
     },
@@ -1143,15 +1030,15 @@ const seoArticleBodies: Record<string, ArticleBody> = {
       {
         heading: "What Makes a Great Trail Riding Machine?",
         paragraphs: [
-          "True trail riding requires reliable liquid cooling, long-travel independent suspension, and high ground clearance to glide over rocks, roots, and rutted tracks.",
-          "Models like the [CFMOTO 520L](/products/cfmoto-520l) and [Kawasaki Brute Force 750](/products/kawasaki-brute-force) excel on Pakistani trails thanks to selectable 2WD/4WD modes and differential locks for extreme inclines.",
+          "The right trail vehicle depends on route difficulty, rider experience and the specific vehicle. Compare its tire type, ground clearance, drive system, suspension, maintenance needs and manufacturer-rated limits before you ride.",
+          "Subhan Enterprises' [current ATV listings](/products?category=atv) show the models currently in the catalog. Check the product details and contact the seller to verify specifications and availability.",
         ],
       },
       {
         heading: "Top Trail Destinations in Pakistan",
         paragraphs: [
-          "Popular routes include the Galyat region trails, Kala Chitta mountain tracks in Attock, and the highland meadows of Gilgit-Baltistan.",
-          "Heavy-duty machines like the [Arctic Cat Alterra 600](/products/arctic-cat-alterra) provide the fuel capacity and luggage space necessary for long-distance remote mountain trail expeditions.",
+          "Before choosing a route in places such as Galyat, Attock or Gilgit-Baltistan, confirm that motorized riding is permitted and that access is currently open. Conditions, protected-area rules and landowner permissions can change.",
+          "Plan for the route length and remoteness, carry appropriate recovery and communication equipment, and share your itinerary. Do not attempt a remote route without the skills, vehicle and support it requires.",
         ],
       },
     ],
@@ -1159,7 +1046,7 @@ const seoArticleBodies: Record<string, ArticleBody> = {
       {
         question: "Do I need a 4x4 vehicle for trail riding in northern Pakistan?",
         answer:
-          "We strongly recommend 4x4 capability for northern mountain trails due to steep loose gravel and mud.",
+          "It depends on the route and conditions. Check the vehicle's actual drive system and the route requirements; ask an experienced local guide when conditions are uncertain.",
       },
       {
         question: "What protective gear should I wear on trail rides?",
@@ -1169,7 +1056,7 @@ const seoArticleBodies: Record<string, ArticleBody> = {
     ],
     cta: {
       heading: "Gear Up for Your Next Trail Expedition",
-      text: "Browse our lineup of trail-ready 4x4 quad bikes with nationwide delivery across Pakistan.",
+      text:       "Browse current ATV listings and contact Subhan Enterprises to confirm model details and delivery options.",
       buttonLabel: "Explore Trail Machines",
       href: "/products?category=atv",
     },
@@ -1186,13 +1073,13 @@ const seoArticleBodies: Record<string, ArticleBody> = {
       {
         heading: "Choosing Your First Beginner Machine",
         paragraphs: [
-          "For beginners, predictable throttle response and easy automatic CVT controls are essential. The [Linhai LH 400](/products/linhai-lh400) is widely regarded as one of the best starter quad bikes in Pakistan.",
+          "Look for a vehicle whose controls, size and intended rider category suit your experience. Read the owner's manual and arrange qualified instruction before riding. Compare the [quad bikes currently listed](/products?category=atv) and ask the seller to confirm each model's specifications.",
         ],
       },
       {
         heading: "Mandatory Rider Safety Equipment",
         paragraphs: [
-          "Never ride without essential safety gear. Subhan Enterprises stocks genuine protective equipment including the [Off-Road Riding Helmet](/products/off-road-helmet), [Body Armor Chest Protector](/products/chest-protector), and [Anti-Fog Riding Goggles](/products/riding-goggles).",
+          "Wear a correctly fitted helmet and suitable protective gear for the activity. Subhan Enterprises lists an [off-road helmet](/products/off-road-helmet), [chest protector](/products/chest-protector), and [riding goggles](/products/riding-goggles); confirm sizing and current availability before ordering.",
         ],
       },
     ],
@@ -1200,12 +1087,12 @@ const seoArticleBodies: Record<string, ArticleBody> = {
       {
         question: "What is the easiest off-road vehicle to learn on?",
         answer:
-          "Automatic 4x4 ATVs are the easiest and safest off-road vehicles for new riders in Pakistan.",
+          "There is no universally easiest or safest vehicle. Choose one that matches the rider's size and experience, follow its operating instructions, and get appropriate training.",
       },
       {
         question: "Where can I get riding gear in Lahore?",
         answer:
-          "Subhan Enterprises carries a complete range of helmets, goggles, and body armor at our Lahore showroom and online.",
+          "Check the online accessories catalog for listed protective gear, then contact the seller to confirm sizing, fit and availability.",
       },
     ],
     cta: {
@@ -1219,17 +1106,16 @@ const seoArticleBodies: Record<string, ArticleBody> = {
   "quad-bike-price-pakistan": {
     sections: [
       {
-        heading: "Quad Bike Price in Pakistan 2025 — All Models Compared",
+        heading: "Why quad bike quotes differ",
         paragraphs: [
-          "Searching for exact quad bike prices in Pakistan? Subhan Enterprises provides full pricing clarity across all major brands and engine sizes available in the market today.",
+          "A quad bike price in Pakistan depends on the exact model and what is included in the offer. Product listings show current catalog prices, but stock, delivery charges, included equipment and final quotes can change.",
         ],
       },
       {
-        heading: "Price Breakdown by Engine Size",
+        heading: "What to confirm before comparing prices",
         paragraphs: [
-          "400cc Quad Bikes: PKR 1,350,000 – PKR 1,600,000 (e.g. [Linhai LH 400](/products/linhai-lh400))",
-          "500cc–600cc Quad Bikes: PKR 1,950,000 – PKR 2,350,000 (e.g. [CFMOTO 520L](/products/cfmoto-520l), [Honda TRX420](/products/honda-trx420))",
-          "700cc+ Sport & Heavy Quad Bikes: PKR 2,650,000 – PKR 2,850,000 (e.g. [Yamaha Raptor 700R](/products/raptor-700r), [Can-Am Outlander](/products/can-am-outlander), [Kawasaki Brute Force 750](/products/kawasaki-brute-force))",
+          "Compare the same model and specification, ask whether delivery and accessories are included, and verify warranty and payment terms in writing. Check the [current ATV catalog](/products?category=atv) and contact the seller for an up-to-date quote.",
+          "Avoid relying on old price lists, broad engine-size ranges or a different model's price. Reconfirm the listing and availability before making a payment.",
         ],
       },
     ],
@@ -1237,12 +1123,12 @@ const seoArticleBodies: Record<string, ArticleBody> = {
       {
         question: "Why do quad bike prices vary so much in Pakistan?",
         answer:
-          "Prices vary based on engine cc, brand origin, suspension technology, electronic power steering, and import duties.",
+          "Prices can vary with the exact model, specifications, included equipment, import and supply costs, delivery and seller terms. Request a current quote for the specific ATV.",
       },
       {
         question: "How can I place an order for a quad bike in Pakistan?",
         answer:
-          "Call us at +92 332 4350140 or visit our Lahore showroom. We ship nationwide with fully insured transport.",
+          "Use the contact page to request a quote and confirm the available payment and delivery options for your location.",
       },
     ],
     cta: {
@@ -1258,13 +1144,14 @@ const seoArticleBodies: Record<string, ArticleBody> = {
       {
         heading: "Best Off-Road Bikes in Pakistan — Dirt Bikes, Trail Bikes & ATVs",
         paragraphs: [
-          "Pakistani off-road enthusiasts frequently search for the best off-road bikes to explore mountain trails and desert tracks. While 2-stroke and 4-stroke dirt bikes have a dedicated track following, many riders discover that 4-wheel ATVs offer greater versatility.",
+          "The best off-road bike or ATV depends on the rider, terrain, budget and intended use. Dirt bikes and quad bikes handle differently and have different safety, maintenance and transport requirements; neither is the right choice for everyone.",
         ],
       },
       {
-        heading: "Why Four-Wheelers Win for Most Pakistani Off-Roaders",
+        heading: "Compare current dirt bike and ATV listings",
         paragraphs: [
-          "Unless you are competing on dedicated motocross tracks, 4-wheel ATVs like the [Yamaha Raptor 700R](/products/raptor-700r) or [CFMOTO 520L](/products/cfmoto-520l) handle rocks, sand, and mud with vastly superior stability and luggage capacity.",
+          "Subhan Enterprises currently lists [dirt bikes](/products?category=dirt_bike) and [ATVs](/products?category=atv). Compare each model's listed specifications and price, then confirm current availability, intended rider category and warranty terms with the seller.",
+          "Read the manufacturer's documentation and check that the vehicle suits the route and the rider's experience. Use protective equipment and ride only where motorized access is permitted.",
         ],
       },
     ],
@@ -1272,7 +1159,7 @@ const seoArticleBodies: Record<string, ArticleBody> = {
       {
         question: "Can an ATV handle the same mountain trails as a dirt bike?",
         answer:
-          "Yes, 4x4 ATVs handle mountain trails effortlessly, with added stability and cargo carrying ability.",
+          "Not automatically. Suitability depends on the exact vehicle, route, conditions and rider. Check the owner's manual and local route-access rules before riding.",
       },
     ],
     cta: {
@@ -1294,7 +1181,8 @@ const seoArticleBodies: Record<string, ArticleBody> = {
       {
         heading: "Stability and Safety Controls",
         paragraphs: [
-          "ATVs provide 4-wheel stability that prevents tipping over when stopping or maneuvering at low speeds. Equipping kids with proper gear like an [Off-Road Riding Helmet](/products/off-road-helmet) and [Chest Protector](/products/chest-protector) ensures maximum protection.",
+          "A quad bike's four wheels do not prevent rollovers or make it automatically safe for children. Check the manufacturer's minimum age and rider requirements, use direct adult supervision, and choose a vehicle the child can safely control.",
+          "Use appropriately sized protective gear, including a correctly fitted [off-road helmet](/products/off-road-helmet) and [chest protector](/products/chest-protector). Gear reduces some risks but cannot eliminate injury.",
         ],
       },
     ],
@@ -1302,7 +1190,7 @@ const seoArticleBodies: Record<string, ArticleBody> = {
       {
         question: "Is a quad bike safer for kids than a 2-wheel bike?",
         answer:
-          "Four wheels provide immediate balance, significantly reducing low-speed falls for young riders.",
+          "Neither vehicle type is automatically safer for every child. Follow the manufacturer's age and size guidance, use direct supervision and proper training, and select equipment that fits the young rider.",
       },
     ],
     cta: {
@@ -1316,21 +1204,21 @@ const seoArticleBodies: Record<string, ArticleBody> = {
   "trail-riding-spots-pakistan": {
     sections: [
       {
-        heading: "Best Trail Riding Spots in Pakistan for ATV & Off-Road Adventures",
+        heading: "Research off-road riding locations in Pakistan",
         paragraphs: [
-          "Pakistan features incredible terrain for trail riding. Here are the top locations for your next off-road adventure.",
+          "Pakistan has a wide range of landscapes, but not every scenic road or hiking trail is open to motorized vehicles. Before planning an ATV trip, check current access rules, landowner permission, weather and local advice for the specific route.",
         ],
       },
       {
-        heading: "1. Murree, Galyat & Patriata Trails",
+        heading: "Plan for Murree, Galyat, Swat or other destinations",
         paragraphs: [
-          "Pine forest tracks with cool weather, perfect for mid-size 4x4 quad bikes like the [CFMOTO 520L](/products/cfmoto-520l).",
+          "Do not assume that a route in Murree, Galyat, Swat or another northern area permits ATV use. Confirm that motorized access is allowed, check closures and conditions, and avoid protected or private areas without permission.",
         ],
       },
       {
-        heading: "2. Swat Valley & Kalam Off-Road Trails",
+        heading: "Prepare your rider, route and vehicle",
         paragraphs: [
-          "Rugged mountain trails requiring heavy-duty power from machines like the [Kawasaki Brute Force 750](/products/kawasaki-brute-force).",
+          "Use the ATV's owner's manual to check the vehicle's limits and pre-ride inspection requirements. Carry suitable safety and recovery equipment, share your itinerary, and do not attempt terrain beyond the rider's experience or the vehicle's capabilities.",
         ],
       },
     ],
@@ -1338,12 +1226,12 @@ const seoArticleBodies: Record<string, ArticleBody> = {
       {
         question: "Can Subhan Enterprises ship ATVs directly to northern cities?",
         answer:
-          "Yes, we deliver ATVs fully assembled and ready to ride to Islamabad, Abbottabad, Swat, and all surrounding areas.",
+          "Contact Subhan Enterprises to confirm whether delivery is available to your destination, along with current charges and timing.",
       },
     ],
     cta: {
       heading: "Prepare Your ATV for Mountain Trails",
-      text: "Get your machine serviced or buy a new trail-ready 4x4 quad bike today.",
+      text: "Compare current ATV listings and confirm suitability, availability and delivery before planning your trip.",
       buttonLabel: "View Trail ATVs",
       href: "/products?category=atv",
     },
@@ -1354,13 +1242,14 @@ const seoArticleBodies: Record<string, ArticleBody> = {
       {
         heading: "Farm ATV in Pakistan — Best Utility Quad Bikes for Agriculture",
         paragraphs: [
-          "Pakistani agricultural estate managers and farmers are increasingly replacing or supplementing traditional tractors with versatile 4x4 utility ATVs.",
+          "An ATV may be useful for some farm tasks, but it is not automatically a substitute for a tractor or purpose-built utility vehicle. Suitability depends on the job, terrain, load and the exact vehicle's rated capacity.",
         ],
       },
       {
-        heading: "Towing & Estate Maintenance Capabilities",
+        heading: "Check capacity, fitment and operating costs",
         paragraphs: [
-          "Utility ATVs like the [Honda TRX420](/products/honda-trx420) and [Polaris Sportsman 570](/products/polaris-sportsman-570) easily tow sprayers, feed trailers, and inspect remote irrigation channels with low fuel consumption.",
+          "Before using an ATV for farm work, verify its rated towing and cargo limits, compatible attachments, ground clearance, tire requirements, service schedule and parts availability. Never exceed the manufacturer's limits or attach equipment that has not been approved for the model.",
+          "Review the [ATVs currently listed](/products?category=atv), but confirm with the seller and manufacturer whether a particular model is appropriate for your task. Do not infer towing or utility capability from a product name.",
         ],
       },
     ],
@@ -1368,12 +1257,12 @@ const seoArticleBodies: Record<string, ArticleBody> = {
       {
         question: "What is the best ATV model for farm work in Pakistan?",
         answer:
-          "The Honda TRX420 and CFMOTO 520L are our top recommendations for durability and towing on Pakistani farms.",
+          "There is no one-size-fits-all recommendation. Match the ATV's documented capacity and attachments to the work, and compare the total ownership cost with equipment designed specifically for agriculture.",
       },
     ],
     cta: {
       heading: "Upgrade Your Farm Efficiency",
-      text: "Contact Subhan Enterprises for agricultural quad bike quotes and commercial delivery.",
+      text: "Contact Subhan Enterprises to ask about current ATV specifications, availability and a quote for your intended use.",
       buttonLabel: "Contact Commercial Sales",
       href: "/contact",
     },
@@ -1382,19 +1271,19 @@ const seoArticleBodies: Record<string, ArticleBody> = {
   "atv-accessories-must-have-pakistan": {
     sections: [
       {
-        heading: "Top 10 Must-Have ATV Accessories for Pakistani Riders",
+        heading: "Useful ATV accessories for riding and maintenance",
         paragraphs: [
-          "Enhance your quad bike's safety, performance, and utility with essential accessories built for Pakistani riding conditions.",
+          "Choose ATV accessories based on your riding conditions, safety needs and vehicle compatibility. Check the product details and ask the seller to confirm fit and current availability.",
         ],
       },
       {
-        heading: "Top Recommendations",
+        heading: "Five categories to consider",
         paragraphs: [
-          "1. [Off-Road Riding Helmet](/products/off-road-helmet) — Essential safety protection.",
-          "2. [LED Light Bar Kit](/products/led-light-bar) — High-intensity lighting for night riding.",
-          "3. [Knobby Off-Road Tires](/products/off-road-tire) — Maximum mud and sand traction.",
-          "4. [Anti-Fog Riding Goggles](/products/riding-goggles) — Dust protection for eyes.",
-          "5. [Body Armor Chest Protector](/products/chest-protector) — Impact absorbing protection.",
+          "1. [Off-Road Riding Helmet](/products/off-road-helmet) — Check certification, condition and fit.",
+          "2. [LED Light Bar](/products/led-light-bar) — Confirm electrical and mounting compatibility.",
+          "3. [Knobby Off-Road Tire](/products/off-road-tire) — Verify tire size and load rating.",
+          "4. [Anti-Fog Riding Goggles](/products/riding-goggles) — Check fit with your helmet.",
+          "5. [Body Armor Chest Protector](/products/chest-protector) — Review sizing and product instructions.",
         ],
       },
     ],
@@ -1402,7 +1291,7 @@ const seoArticleBodies: Record<string, ArticleBody> = {
       {
         question: "Do you ship accessories across Pakistan?",
         answer:
-          "Yes! All ATV accessories and gear can be ordered online for fast nationwide courier delivery.",
+          "Contact Subhan Enterprises to confirm whether an item can be delivered to your location and ask about current charges and timing.",
       },
     ],
     cta: {
@@ -1421,9 +1310,33 @@ export function getBlogPost(slug: string): BlogPost | undefined {
   const body = articleBodies[slug]
   if (!meta || !body) return undefined
 
+  const sections =
+    slug === "atv-price-guide-pakistan-2025"
+      ? body.sections.map((section) =>
+          section.heading === "Current listed ATV and quad bike prices"
+            ? {
+                ...section,
+                paragraphs: [
+                  ...section.paragraphs,
+                  ...products
+                    .filter((product) => product.category === "atv" && product.isCatalogVisible !== false)
+                    .sort((a, b) => a.price - b.price)
+                    .map(
+                      (product) =>
+                        `[${product.name}](/products/${product.slug}) — ${formatPrice(product.price)}. ${
+                          product.specs.length ? `Listed specification: ${product.specs.join(", ")}.` : ""
+                        } Confirm current availability and your final quote before ordering.`,
+                    ),
+                ],
+              }
+            : section,
+        )
+      : body.sections
+
   return {
     ...meta,
     ...body,
+    sections,
     readTime: meta.readTime,
   }
 }

@@ -254,6 +254,7 @@ export function generateArticleSchema({
   image,
   slug,
   publishedAt,
+  updatedAt,
   author,
 }: {
   title: string
@@ -261,6 +262,7 @@ export function generateArticleSchema({
   image: string
   slug: string
   publishedAt: string
+  updatedAt?: string
   author: string
 }) {
   const imageUrl = image.startsWith("http") ? image : `${siteUrl}${image}`
@@ -273,7 +275,7 @@ export function generateArticleSchema({
     image: imageUrl,
     url: articleUrl,
     datePublished: publishedAt,
-    dateModified: publishedAt,
+    dateModified: updatedAt ?? publishedAt,
     author: {
       "@type": "Organization",
       name: author,
