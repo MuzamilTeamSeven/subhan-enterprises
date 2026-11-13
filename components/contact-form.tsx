@@ -7,6 +7,7 @@ import { AlertCircle, Loader2, Send, ShieldCheck } from "lucide-react"
 import { usePathname } from "next/navigation"
 import { getAnalyticsPagePath, pushAnalyticsEvent } from "@/lib/analytics"
 import { products } from "@/lib/products"
+import { ThemedSelect } from "@/components/ui/themed-select"
 
 const subjects = ["Product Enquiry", "Request a Quote", "Warranty / Support", "Financing / Installments", "Other"]
 
@@ -143,29 +144,30 @@ export function ContactForm({ source = "/contact" }: ContactFormProps) {
           <label htmlFor="subject" className="text-xs font-medium text-muted-foreground">
             Subject
           </label>
-          <select id="subject" name="subject" required defaultValue="" className={inputClass}>
-            <option value="" disabled>
-              Select a subject
-            </option>
-            {subjects.map((s) => (
-              <option key={s} value={s} className="bg-card text-foreground">
-                {s}
-              </option>
-            ))}
-          </select>
+          <ThemedSelect
+            id="subject"
+            name="subject"
+            defaultValue=""
+            required
+            placeholder="Select a subject"
+            options={subjects.map((subject) => ({ value: subject, label: subject }))}
+            triggerClassName={inputClass}
+          />
         </div>
         <div className="flex flex-col gap-1.5">
           <label htmlFor="model" className="text-xs font-medium text-muted-foreground">
             Product of Interest
           </label>
-          <select id="model" name="model" defaultValue="" className={inputClass}>
-            <option value="">Not sure yet</option>
-            {products.map((p) => (
-              <option key={p.id} value={p.id} className="bg-card text-foreground">
-                {p.name}
-              </option>
-            ))}
-          </select>
+          <ThemedSelect
+            id="model"
+            name="model"
+            defaultValue=""
+            options={[
+              { value: "", label: "Not sure yet" },
+              ...products.map((product) => ({ value: product.id, label: product.name })),
+            ]}
+            triggerClassName={inputClass}
+          />
         </div>
       </div>
 
