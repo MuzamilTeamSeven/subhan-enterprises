@@ -50,7 +50,7 @@ const columns = [
       { label: "125cc Sports Raptor", href: "/products/125cc-sports-raptor" },
       { label: "250cc Monster ATV", href: "/products/250cc-monster-atv" },
       { label: "150cc Audi-Style ATV", href: "/products/150cc-audi-style-atv" },
-      { label: "70cc Mini Kids ATV", href: "/products/70cc-mini-kids-atv" },
+      { label: "124cc Six Plus Mini Sports Raptor", href: "/products/70cc-mini-kids-atv" },
       { label: "View All Models", href: "/products?category=atv" },
     ],
   },

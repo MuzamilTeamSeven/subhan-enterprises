@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react"
 import { Check, Search, SlidersHorizontal, X } from "lucide-react"
 import { ProductCard } from "@/components/product-card"
+import { ThemedSelect } from "@/components/ui/themed-select"
 import { pushAnalyticsEvent } from "@/lib/analytics"
 import { products, categoryLabels, type ProductCategory } from "@/lib/products"
 
@@ -152,7 +153,7 @@ export function ProductsCatalog({ initialCategory = "all" }: { initialCategory?:
             <button
               key={c.key}
               onClick={() => setCategory(c.key)}
-              className={`flex items-center justify-between rounded-lg px-3 py-2 text-left text-sm transition-all duration-300 ${
+              className={`flex cursor-pointer items-center justify-between rounded-lg px-3 py-2 text-left text-sm transition-all duration-300 ${
                 category === c.key
                   ? "bg-primary/20 border border-primary/20 font-bold text-primary shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]"
                   : "text-muted-foreground hover:bg-white/5 hover:text-foreground"
@@ -216,7 +217,7 @@ export function ProductsCatalog({ initialCategory = "all" }: { initialCategory?:
       {hasActiveFilters && (
         <button
           onClick={clearAll}
-          className="btn-glass flex items-center justify-center gap-2 rounded-xl px-3 py-2 text-sm font-medium"
+          className="btn-glass flex cursor-pointer items-center justify-center gap-2 rounded-xl px-3 py-2 text-sm font-medium"
         >
           <X className="h-4 w-4" /> Clear all filters
         </button>
@@ -257,26 +258,22 @@ export function ProductsCatalog({ initialCategory = "all" }: { initialCategory?:
           <div className="flex items-center gap-2">
             <button
               onClick={() => setFiltersOpen(true)}
-              className="btn-glass flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold lg:hidden"
+              className="btn-glass flex cursor-pointer items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold lg:hidden"
             >
               <SlidersHorizontal className="h-4 w-4 text-primary" /> Filters
             </button>
             <div className="glass focus-within:border-primary/40 transition-all duration-300 flex items-center gap-2 rounded-xl px-4 py-2.5">
-              <label htmlFor="sort" className="text-xs text-muted-foreground">
+              <span className="text-xs text-muted-foreground">
                 Sort
-              </label>
-              <select
+              </span>
+              <ThemedSelect
                 id="sort"
+                name="sort"
                 value={sort}
-                onChange={(e) => setSort(e.target.value as SortKey)}
-                className="bg-transparent text-sm font-semibold text-foreground focus:outline-none"
-              >
-                {sortOptions.map((o) => (
-                  <option key={o.key} value={o.key} className="bg-card text-foreground">
-                    {o.label}
-                  </option>
-                ))}
-              </select>
+                onValueChange={(value) => setSort(value as SortKey)}
+                options={sortOptions.map((option) => ({ value: option.key, label: option.label }))}
+                triggerClassName="min-h-0 w-auto border-0 bg-transparent px-0 py-0 font-semibold shadow-none"
+              />
             </div>
           </div>
         </div>
@@ -287,7 +284,7 @@ export function ProductsCatalog({ initialCategory = "all" }: { initialCategory?:
             <button
               key={c.key}
               onClick={() => setCategory(c.key)}
-              className={`rounded-full px-5 py-1.5 text-sm font-semibold transition-all duration-300 ${
+              className={`cursor-pointer rounded-full px-5 py-1.5 text-sm font-semibold transition-all duration-300 ${
                 category === c.key
                   ? "bg-primary text-primary-foreground shadow-lg shadow-primary/25 border border-primary/20"
                   : "glass text-muted-foreground hover:text-foreground hover:border-white/20"
@@ -316,7 +313,7 @@ export function ProductsCatalog({ initialCategory = "all" }: { initialCategory?:
                 <p className="mt-1 text-sm text-muted-foreground">Try adjusting your filters or search.</p>
                 <button
                   onClick={clearAll}
-                  className="btn-primary mt-4 rounded-xl px-5 py-2.5 text-sm font-semibold"
+                  className="btn-primary mt-4 cursor-pointer rounded-xl px-5 py-2.5 text-sm font-semibold"
                 >
                   Clear filters
                 </button>
@@ -341,7 +338,7 @@ export function ProductsCatalog({ initialCategory = "all" }: { initialCategory?:
               <h2 className="text-lg font-bold text-foreground">Filters</h2>
               <button
                 onClick={() => setFiltersOpen(false)}
-                className="btn-glass flex h-9 w-9 items-center justify-center rounded-lg"
+                className="btn-glass flex h-9 w-9 cursor-pointer items-center justify-center rounded-lg"
                 aria-label="Close filters"
               >
                 <X className="h-5 w-5" />
@@ -350,7 +347,7 @@ export function ProductsCatalog({ initialCategory = "all" }: { initialCategory?:
             {FiltersPanel}
             <button
               onClick={() => setFiltersOpen(false)}
-              className="btn-primary mt-6 w-full rounded-xl py-3 text-sm font-semibold text-primary-foreground"
+              className="btn-primary mt-6 w-full cursor-pointer rounded-xl py-3 text-sm font-semibold text-primary-foreground"
             >
               View {filtered.length} results
             </button>

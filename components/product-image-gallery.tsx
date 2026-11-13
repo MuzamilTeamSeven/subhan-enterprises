@@ -31,7 +31,7 @@ export function ProductImageGallery({ productName, images, tag }: ProductImageGa
           priority
           sizes="(max-width: 1024px) 100vw, 50vw"
           wrapperClassName="relative z-0 flex min-h-0 w-full flex-1 items-center justify-center"
-          className="max-h-full w-full object-contain"
+          className="max-h-full w-full rounded-lg object-contain"
         />
       </div>
       {uniqueImages.length > 1 && (
@@ -53,7 +53,7 @@ export function ProductImageGallery({ productName, images, tag }: ProductImageGa
                 width={112}
                 height={80}
                 sizes="112px"
-                className="h-full w-full object-contain"
+                className="h-full w-full rounded-md object-contain"
               />
             </button>
           ))}

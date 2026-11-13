@@ -72,7 +72,7 @@ export const products: Product[] = [
   {
     id: "150cc-audi-style-atv",
     slug: "150cc-audi-style-atv",
-    name: "2026 150cc Audi-Style ATV",
+    name: "150cc Audi-Style ATV",
     category: "atv",
     image: "/atvs/audi-style/Green-Quad.png",
     images: [
@@ -127,7 +127,7 @@ export const products: Product[] = [
   {
     id: "70cc-mini-kids-atv",
     slug: "70cc-mini-kids-atv",
-    name: "70cc Mini Kids ATV",
+    name: "124cc Six Plus Mini Sports Raptor",
     category: "atv",
     image: "/atvs/70-cc/front-view.png",
     images: [
@@ -144,25 +144,34 @@ export const products: Product[] = [
   {
     id: "neon-green-dirt-bike",
     slug: "neon-green-dirt-bike",
-    name: "Neon Green Dirt Bike",
+    name: "124cc Special Edition Mini Mountain Dirt Bike",
     category: "dirt_bike",
-    image: "/atvs/Premium Neon-Green Dirt Bike 52.png",
-    price: 190000,
-    specs: [],
+    image: "/atvs/dirt-bikes/yellow-bike.png",
+    images: [
+      "/atvs/dirt-bikes/yellow-bike.png",
+      "/atvs/dirt-bikes/Red-bike.png",
+      "/atvs/dirt-bikes/Blue-bike.png",
+    ],
+    price: 2000000,
+    specs: ["124cc"],
     description:
-      "Explore the Neon Green Dirt Bike at Subhan Enterprises in Pakistan. Contact us to confirm specifications, current availability, and price.",
+      "Explore the 124cc Special Edition Mini Mountain Dirt Bike at Subhan Enterprises in Pakistan. Contact us to confirm specifications and current availability.",
   },
   {
-    id: "waypark-dirt-bike",
-    slug: "waypark-dirt-bike",
-    name: "Waypark Dirt Bike",
-    brand: "Waypark",
+    id: "124cc-sports-mini-dirt-bike",
+    slug: "124cc-sports-mini-dirt-bike",
+    name: "124cc Sports Mini Dirt Bike",
     category: "dirt_bike",
-    image: "/atvs/Yellow Waypark Dirt Bike Studio Render.png",
-    price: 220000,
-    specs: [],
+    image: "/atvs/dirt-bikes/simple-bike.png",
+    images: [
+      "/atvs/dirt-bikes/simple-bike.png",
+      "/atvs/dirt-bikes/simple-bike-1.png",
+      "/atvs/dirt-bikes/simple-bike-2.png",
+    ],
+    price: 180000,
+    specs: ["124cc", "Latest 2026 Model"],
     description:
-      "Explore the Waypark Dirt Bike at Subhan Enterprises in Pakistan. Contact us to confirm specifications, current availability, and price.",
+      "The 124cc Sports Mini Dirt Bike, latest 2026 model, listed at PKR 180,000. Contact Subhan Enterprises to confirm availability and specifications.",
   },
   {
     id: "off-road-helmet",
@@ -435,6 +444,7 @@ const legacyProductSlugs: Record<string, string> = {
   "cfmoto-520l": "124cc-mini-raptor",
   "can-am-outlander": "250cc-monster-atv",
   "linhai-lh400": "150cc-audi-style-atv",
+  "waypark-dirt-bike": "neon-green-dirt-bike",
   "polaris-sportsman-570": "125cc-sports-hummer-jeep",
   "honda-trx420": "124cc-six-plus-sports-jeep",
   "kawasaki-brute-force": "125cc-shikari-jeep",
@@ -466,11 +476,12 @@ export function getProductSeoTitle(product: Product): string {
 export function getProductSeoDescription(product: Product): string {
   const specs = product.specs.join(", ")
   const price = formatPrice(product.price)
+  const specificationSummary = specs ? `Specifications: ${specs}. ` : ""
   if (product.category === "atv") {
     return `Buy the ${product.name} quad bike in Pakistan from Subhan Enterprises. ${specs}. Price: ${price}. Nationwide delivery and a 7-day engine warranty. Contact us to confirm the current price and availability.`
   }
   if (product.category === "dirt_bike") {
-    return `Explore the ${product.name} dirt bike in Pakistan from Subhan Enterprises. Price: ${price}. Contact us to confirm specifications and availability.`
+    return `Explore the ${product.name} dirt bike in Pakistan from Subhan Enterprises. ${specificationSummary}Price: ${price}. Contact us to confirm availability.`
   }
   if (product.category === "accessories") {
     return `${product.name} by ${product.brand} — ${specs}. Premium ATV riding gear available in Pakistan at ${price}. Fast delivery from Subhan Enterprises.`
