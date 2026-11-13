@@ -72,7 +72,7 @@ export const products: Product[] = [
   {
     id: "150cc-audi-style-atv",
     slug: "150cc-audi-style-atv",
-    name: "150cc Audi-Style ATV",
+    name: "2026 150cc Audi-Style ATV",
     category: "atv",
     image: "/atvs/audi-style/Green-Quad.png",
     images: [
