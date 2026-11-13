@@ -35,7 +35,7 @@ export function ProductImageGallery({ productName, images, tag }: ProductImageGa
         />
       </div>
       {uniqueImages.length > 1 && (
-        <div className="mt-3 flex gap-3" aria-label={`${productName} image gallery`}>
+        <div className="mt-3 grid grid-cols-3 gap-2 sm:gap-3" aria-label={`${productName} image gallery`}>
           {uniqueImages.map((image, index) => (
             <button
               key={image}
@@ -43,7 +43,7 @@ export function ProductImageGallery({ productName, images, tag }: ProductImageGa
               onClick={() => setSelectedImage(index)}
               aria-label={`View ${productName} image ${index + 1}`}
               aria-pressed={selectedImage === index}
-              className={`glass relative flex h-20 w-24 items-center justify-center overflow-hidden rounded-xl border p-2 transition sm:h-24 sm:w-28 ${
+              className={`glass relative flex aspect-[7/5] min-w-0 items-center justify-center overflow-hidden rounded-xl border p-2 transition ${
                 selectedImage === index ? "border-primary ring-1 ring-primary/60" : "border-white/10 hover:border-primary/50"
               }`}
             >

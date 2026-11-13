@@ -72,15 +72,19 @@ export const products: Product[] = [
   {
     id: "150cc-audi-style-atv",
     slug: "150cc-audi-style-atv",
-    name: "150cc Audi-Style ATV",
+    name: "2026 150cc Audi-Style ATV",
     category: "atv",
-    image: "/atvs/Sporty Yellow ATV in Red Glow.png",
-    images: ["/atvs/Sporty Yellow ATV in Red Glow.png", "/atvs/Yellow Sports ATV Studio Showcase.png"],
-    price: 1350000,
-    specs: ["150cc"],
+    image: "/atvs/audi-style/Green-Quad.png",
+    images: [
+      "/atvs/audi-style/Green-Quad.png",
+      "/atvs/audi-style/Red-Quad.png",
+      "/atvs/audi-style/Side-View.png",
+    ],
+    price: 285000,
+    specs: ["150cc", "2026 Model"],
     tag: "New Arrival",
     description:
-      "A 150cc Audi-style ATV featured on Subhan Enterprises' official TikTok. The styling name does not indicate an Audi-manufactured vehicle. Contact us to confirm the current price, availability, and specifications.",
+      "A 2026 model 150cc Audi-style ATV listed by Subhan Enterprises. Audi-style describes the design; this is not an Audi-manufactured vehicle. Contact us to confirm availability and specifications.",
     sourceUrl: "https://www.tiktok.com/@subhan_enterprises/video/7701000678344346888",
   },
   {
@@ -125,13 +129,17 @@ export const products: Product[] = [
     slug: "70cc-mini-kids-atv",
     name: "70cc Mini Kids ATV",
     category: "atv",
-    image: "/atvs/subhan-70cc-mini-kids.avif",
-    price: 2100000,
+    image: "/atvs/70-cc/front-view.png",
+    images: [
+      "/atvs/70-cc/front-view.png",
+      "/atvs/70-cc/side-view.png",
+      "/atvs/70-cc/straight-view.png",
+    ],
+    price: 180000,
     specs: ["70cc"],
     description:
-      "A 70cc mini kids quad bike featured on Subhan Enterprises' official TikTok. Contact us to confirm the current price, availability, and specifications.",
+      "A 70cc mini kids quad bike listed by Subhan Enterprises for PKR 180,000. Contact us to confirm availability and specifications.",
     sourceUrl: "https://www.tiktok.com/@subhan_enterprises/video/7701366254572981512",
-    isCatalogVisible: false,
   },
   {
     id: "neon-green-dirt-bike",
