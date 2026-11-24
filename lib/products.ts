@@ -30,15 +30,20 @@ export const products: Product[] = [
   {
     id: "125cc-sports-raptor",
     slug: "125cc-sports-raptor",
-    name: "125cc Sports Raptor ATV",
+    name: "125cc Sports Raptor",
     category: "atv",
-    image: "/atvs/Aggressive Red-Black Camo ATV.png",
-    images: ["/atvs/Aggressive Red-Black Camo ATV.png", "/atvs/atv_side_view_separate.png"],
-    price: 2850000,
-    specs: ["125cc"],
+    image: "/atvs/sports-raptor/Electric Blue ATV Front View.png",
+    images: [
+      "/atvs/sports-raptor/Electric Blue ATV Front View.png",
+      "/atvs/sports-raptor/Glossy Blue Off-Road ATV Studio Shot.png",
+      "/atvs/sports-raptor/Blue 150cc ATV Studio Showcase.png",
+    ],
+    price: 225000,
+    specs: ["125CC", "Raptor"],
+    tag: "New Arrival",
+    inStock: true,
     description:
-      "A 125cc sports Raptor quad bike featured on Subhan Enterprises' official TikTok. Contact us to confirm the current price, availability, and specifications.",
-    sourceUrl: "https://www.tiktok.com/@subhan_enterprises/video/7705115028294257938",
+      "The 125cc Sports Raptor quad bike delivers agile off-road performance with aggressive racing ergonomics. Engineered with a responsive 125cc 4-stroke engine, electric start, automatic transmission, front and rear disc braking, and knobby all-terrain tires built for sand, mud, and Pakistani trails.",
   },
   {
     id: "124cc-mini-raptor",
@@ -46,11 +51,11 @@ export const products: Product[] = [
     name: "124cc Sports Mini Raptor ATV",
     category: "atv",
     image: "/atvs/subhan-124cc-mini-raptor.avif",
-    price: 1950000,
-    specs: ["124cc"],
+    price: 195000,
+    specs: ["124cc", "Mini Raptor"],
+    inStock: true,
     description:
-      "A 124cc mini Raptor quad bike for kids featured on Subhan Enterprises' official TikTok. Contact us to confirm the current price, availability, and specifications.",
-    sourceUrl: "https://www.tiktok.com/@subhan_enterprises/video/7704709234885168392",
+      "The 124cc Mini Raptor ATV is built for young riders and beginners, featuring safe throttle control, dependable 4-stroke power, electric start, and responsive brakes for off-road recreational fun.",
     isCatalogVisible: false,
   },
   {
@@ -64,10 +69,10 @@ export const products: Product[] = [
       "/atvs/Camouflaged ATV Side Profile Showcase.png",
     ],
     price: 2450000,
-    specs: ["250cc"],
+    specs: ["250cc", "Heavy Duty"],
+    inStock: true,
     description:
-      "A 250cc monster ATV featured on Subhan Enterprises' official TikTok. Contact us to confirm the current price, availability, and specifications.",
-    sourceUrl: "https://www.tiktok.com/@subhan_enterprises/video/7703968899854814471",
+      "The 250cc Monster ATV delivers superior torque and heavy-duty off-road capability across Pakistani terrain. Featuring a high-output 250cc 4-stroke engine, aggressive deep-lug tires, heavy-duty suspension, front and rear utility racks, and hydraulic disc braking.",
   },
   {
     id: "150cc-audi-style-atv",
@@ -83,9 +88,9 @@ export const products: Product[] = [
     price: 285000,
     specs: ["150cc", "2026 Model"],
     tag: "New Arrival",
+    inStock: true,
     description:
-      "A 2026 model 150cc Audi-style ATV listed by Subhan Enterprises. Audi-style describes the design; this is not an Audi-manufactured vehicle. Contact us to confirm availability and specifications.",
-    sourceUrl: "https://www.tiktok.com/@subhan_enterprises/video/7701000678344346888",
+      "The 2026 150cc Audi-Style ATV blends sleek aerodynamic sports styling with dependable 150cc 4-stroke power. Equipped with dual headlights, digital display, hydraulic disc brakes, and rugged off-road performance for enthusiasts across Pakistan.",
   },
   {
     id: "125cc-sports-hummer-jeep",
@@ -93,11 +98,30 @@ export const products: Product[] = [
     name: "125cc Sports Hummer Jeep",
     category: "atv",
     image: "/atvs/Front-Facing Red ATV Studio Render.png",
-    price: 2250000,
-    specs: ["125cc"],
+    price: 180000,
+    specs: ["125cc", "Hummer Style"],
+    tag: "Best Seller",
+    inStock: true,
     description:
-      "A 125cc Sports Hummer Jeep featured on Subhan Enterprises' official TikTok. Contact us to confirm the current price, availability, and specifications.",
-    sourceUrl: "https://www.tiktok.com/@subhan_enterprises/video/7686899707087539463",
+      "The 125cc Sports Hummer Jeep quad bike combines rugged military-inspired styling with dependable 4-stroke power. Equipped with heavy-duty front bull bars, rear utility rack, electric push-button start, automatic transmission, and high-traction off-road tires built for rough Pakistani trails and farm use.",
+  },
+  {
+    id: "125cc-spiderweb-sports-hummer-jeep",
+    slug: "125cc-spiderweb-sports-hummer-jeep",
+    name: "125cc Spiderweb Sports Hummer Jeep",
+    category: "atv",
+    image: "/atvs/sports-hummer-jeep/Black Spiderweb ATV Studio Showcase.png",
+    images: [
+      "/atvs/sports-hummer-jeep/Black Spiderweb ATV Studio Showcase.png",
+      "/atvs/sports-hummer-jeep/Dramatic Red-Black ATV Showcase.png",
+      "/atvs/sports-hummer-jeep/Symmetrical Spiderweb ATV Studio Shot.png",
+    ],
+    price: 250000,
+    specs: ["125cc", "Spiderweb Design"],
+    tag: "New Arrival",
+    inStock: true,
+    description:
+      "The 125cc Spiderweb Sports Hummer Jeep quad bike features aggressive custom spiderweb graphics, a reinforced chassis, automatic transmission, and an energetic 125cc 4-stroke engine engineered for durability and off-road excitement across Pakistan.",
   },
   {
     id: "124cc-six-plus-sports-jeep",
@@ -106,11 +130,11 @@ export const products: Product[] = [
     category: "atv",
     image: "/atvs/Rugged Camo ATV in Dramatic Studio Light.png",
     price: 1780000,
-    specs: ["124cc"],
+    specs: ["124cc", "Six Plus"],
     tag: "New Arrival",
+    inStock: true,
     description:
-      "A 124cc Six Plus Sports Jeep featured on Subhan Enterprises' official TikTok. Contact us to confirm the current price, availability, and specifications.",
-    sourceUrl: "https://www.tiktok.com/@subhan_enterprises/video/7699885257444674834",
+      "The 124cc Six Plus Sports Jeep quad bike offers an optimal balance of power, maneuverability, and durability. Built with a 124cc engine, dual front shocks, mono-shock rear suspension, and heavy-duty off-road tires.",
   },
   {
     id: "125cc-shikari-jeep",
@@ -119,15 +143,15 @@ export const products: Product[] = [
     category: "atv",
     image: "/atvs/Rugged LED ATV in Red Glow.png",
     price: 2650000,
-    specs: ["125cc"],
+    specs: ["125cc", "Shikari Edition"],
+    inStock: true,
     description:
-      "A 125cc Shikari Jeep featured on Subhan Enterprises' official TikTok. Contact us to confirm the current price, availability, and specifications.",
-    sourceUrl: "https://www.tiktok.com/@subhan_enterprises/video/7688012611526397191",
+      "The 125cc Shikari Jeep quad bike is tailored for outdoor expeditions and rough trails, featuring high ground clearance, auxiliary lighting, front and rear gear racks, and a robust 125cc 4-stroke engine.",
   },
   {
     id: "70cc-mini-kids-atv",
     slug: "70cc-mini-kids-atv",
-    name: "124cc Six Plus Mini Sports Raptor",
+    name: "70cc Mini Kids ATV",
     category: "atv",
     image: "/atvs/70-cc/front-view.png",
     images: [
@@ -136,10 +160,10 @@ export const products: Product[] = [
       "/atvs/70-cc/straight-view.png",
     ],
     price: 180000,
-    specs: ["70cc"],
+    specs: ["70cc", "Kids Edition"],
+    inStock: true,
     description:
-      "A 70cc mini kids quad bike listed by Subhan Enterprises for PKR 180,000. Contact us to confirm availability and specifications.",
-    sourceUrl: "https://www.tiktok.com/@subhan_enterprises/video/7701366254572981512",
+      "The 70cc Mini Kids ATV is the ideal starter quad bike for children, engineered with safety in mind. Features a smooth 70cc 4-stroke engine, speed governor, remote engine shutoff, and easy electric start.",
   },
   {
     id: "neon-green-dirt-bike",
@@ -152,10 +176,11 @@ export const products: Product[] = [
       "/atvs/dirt-bikes/Red-bike.png",
       "/atvs/dirt-bikes/Blue-bike.png",
     ],
-    price: 2000000,
-    specs: ["124cc"],
+    price: 200000,
+    specs: ["124cc", "Special Edition"],
+    inStock: true,
     description:
-      "Explore the 124cc Special Edition Mini Mountain Dirt Bike at Subhan Enterprises in Pakistan. Contact us to confirm specifications and current availability.",
+      "The 124cc Special Edition Mini Mountain Dirt Bike offers nimble off-road agility with high-travel suspension, durable spoke wheels, knobby dirt tires, and an efficient 124cc 4-stroke engine for aspiring motocross riders.",
   },
   {
     id: "124cc-sports-mini-dirt-bike",
@@ -170,8 +195,26 @@ export const products: Product[] = [
     ],
     price: 180000,
     specs: ["124cc", "Latest 2026 Model"],
+    inStock: true,
     description:
-      "The 124cc Sports Mini Dirt Bike, latest 2026 model, listed at PKR 180,000. Contact Subhan Enterprises to confirm availability and specifications.",
+      "The 124cc Sports Mini Dirt Bike 2026 Model delivers punchy acceleration, lightweight handling, and a reinforced frame built for trails, tracks, and off-road motocross training.",
+  },
+  {
+    id: "70cc-gorilla-mini-dirt-bike",
+    slug: "70cc-gorilla-mini-dirt-bike",
+    name: "70cc Gorilla Mini Dirt Bike 2026 Model",
+    category: "dirt_bike",
+    image: "/atvs/dirt-bikes/gorilla/front.png",
+    images: [
+      "/atvs/dirt-bikes/gorilla/front.png",
+      "/atvs/dirt-bikes/gorilla/side.png",
+      "/atvs/dirt-bikes/gorilla/back.png",
+    ],
+    price: 250000,
+    specs: ["70cc", "Latest 2026 Model"],
+    inStock: true,
+    description:
+      "The 70cc Gorilla Mini Dirt Bike 2026 Model features a rider-friendly low seat height, smooth automatic transmission, electric start, and rugged build quality for young off-road riders in Pakistan.",
   },
   {
     id: "off-road-helmet",
@@ -478,10 +521,10 @@ export function getProductSeoDescription(product: Product): string {
   const price = formatPrice(product.price)
   const specificationSummary = specs ? `Specifications: ${specs}. ` : ""
   if (product.category === "atv") {
-    return `Buy the ${product.name} quad bike in Pakistan from Subhan Enterprises. ${specs}. Price: ${price}. Nationwide delivery and a 7-day engine warranty. Contact us to confirm the current price and availability.`
+    return `Buy the ${product.name} quad bike in Pakistan from Subhan Enterprises. ${specs}. Price: ${price}. High performance, nationwide delivery across Pakistan, and guaranteed after-sales support.`
   }
   if (product.category === "dirt_bike") {
-    return `Explore the ${product.name} dirt bike in Pakistan from Subhan Enterprises. ${specificationSummary}Price: ${price}. Contact us to confirm availability.`
+    return `Explore the ${product.name} dirt bike in Pakistan from Subhan Enterprises. ${specificationSummary}Price: ${price}. Ready to ride with nationwide delivery.`
   }
   if (product.category === "accessories") {
     return `${product.name} by ${product.brand} — ${specs}. Premium ATV riding gear available in Pakistan at ${price}. Fast delivery from Subhan Enterprises.`
@@ -512,7 +555,10 @@ export function getProductDescription(product: Product): string {
   if (product.description) return product.description
   const specs = product.specs.join(", ")
   if (product.category === "atv") {
-    return `${product.name} is available from Subhan Enterprises in Pakistan. Listed specifications: ${specs}. Contact us to confirm current availability, price, and details.`
+    return `The ${product.name} quad bike is engineered for high performance and durability across Pakistani off-road trails. Featuring ${specs}, robust frame construction, and dependable all-terrain capability.`
+  }
+  if (product.category === "dirt_bike") {
+    return `The ${product.name} dirt bike is designed for adventurous off-road performance in Pakistan. Featuring ${specs}, responsive suspension, and dependable traction for trail riding.`
   }
   if (product.category === "accessories") {
     return `The ${product.name} from ${product.brand} is a rider essential engineered for safety and comfort on every ride. Featuring ${specs}, it is designed to keep you protected and confident whether you are on the trail or the track.`
