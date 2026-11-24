@@ -1,4 +1,4 @@
-import type { BlogPostMeta } from "./types"
+﻿import type { BlogPostMeta } from "./types"
 
 export const blogPostsMeta: BlogPostMeta[] = [
   {
@@ -275,7 +275,12 @@ export const blogPostsMeta: BlogPostMeta[] = [
     readTime: 11,
     author: "Subhan Enterprises Team",
     tags: ["dirt bike", "ATV", "comparison", "Pakistan"],
-    relatedProductSlugs: ["neon-green-dirt-bike", "124cc-sports-mini-dirt-bike", "125cc-sports-raptor"],
+    relatedProductSlugs: [
+      "neon-green-dirt-bike",
+      "124cc-sports-mini-dirt-bike",
+      "70cc-gorilla-mini-dirt-bike",
+      "125cc-sports-raptor",
+    ],
     relatedArticleSlugs: ["atv-price-guide-pakistan-2025", "farm-atv-pakistan-guide", "atv-vs-dirt-bike-kids-pakistan"],
   },
   {
@@ -347,7 +352,12 @@ export const blogPostsMeta: BlogPostMeta[] = [
     readTime: 10,
     author: "Subhan Enterprises Team",
     tags: ["dirt bike", "trail bike", "off-road bike", "Pakistan"],
-    relatedProductSlugs: ["neon-green-dirt-bike", "124cc-sports-mini-dirt-bike", "250cc-monster-atv"],
+    relatedProductSlugs: [
+      "neon-green-dirt-bike",
+      "124cc-sports-mini-dirt-bike",
+      "70cc-gorilla-mini-dirt-bike",
+      "250cc-monster-atv",
+    ],
     relatedArticleSlugs: ["dirt-bike-vs-atv-pakistan", "trail-bike-pakistan-guide", "best-atvs-off-road-adventures-pakistan"],
   },
   {

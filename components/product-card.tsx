@@ -54,7 +54,7 @@ export function ProductCard({
           height={180}
           priority={priority}
           sizes="(max-width: 640px) 100vw, 260px"
-          className="image-zoom max-h-full w-auto object-contain p-2"
+          className="image-zoom max-h-full w-auto rounded-lg object-contain p-2"
         />
       </Link>
       <span className="mt-4 text-[10px] font-extrabold uppercase tracking-widest text-primary/90">

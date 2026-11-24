@@ -182,31 +182,20 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
                 )}
               </div>
 
-              <div className="mt-3 flex items-center gap-2 text-sm">
-                {product.inStock === true ? (
-                  <span className="flex items-center gap-1.5 font-semibold text-primary">
-                    <Check className="h-4 w-4" /> In Stock — Ready to Deliver
-                  </span>
-                ) : product.inStock === false ? (
-                  <span className="flex items-center gap-1.5 font-semibold text-muted-foreground">
-                    <X className="h-4 w-4" /> Currently Out of Stock
+              <div className="mt-3 flex items-center gap-2">
+                {product.inStock === false ? (
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-destructive/10 border border-destructive/20 px-3 py-1 text-xs font-semibold text-destructive">
+                    <X className="h-3.5 w-3.5" /> Out of Stock
                   </span>
                 ) : (
-                  <span className="font-semibold text-muted-foreground">Contact us to confirm availability</span>
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 px-3 py-1 text-xs font-semibold text-emerald-400">
+                    <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+                    In Stock — Ready to Deliver
+                  </span>
                 )}
               </div>
 
               <p className="mt-5 text-sm leading-relaxed text-muted-foreground">{description}</p>
-              {product.sourceUrl && (
-                <a
-                  href={product.sourceUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="mt-3 w-fit text-sm font-medium text-primary underline-offset-4 hover:underline"
-                >
-                  View original Subhan Enterprises TikTok post
-                </a>
-              )}
 
               <div className="mt-6 flex flex-col gap-3 sm:flex-row">
                 <Link
