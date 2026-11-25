@@ -16,7 +16,7 @@ export function ProductImageGallery({ productName, images, tag }: ProductImageGa
 
   return (
     <div>
-      <div className="glass glass-card-hover relative flex aspect-square flex-col items-center justify-center overflow-hidden rounded-2xl p-4 sm:p-8">
+      <div className="glass glass-card-hover relative flex aspect-[4/3] flex-col items-center justify-center overflow-hidden rounded-2xl p-3 sm:p-4">
         {tag && (
           <span className="relative z-20 mb-2 self-start rounded-md bg-primary px-2.5 py-1 text-[11px] font-bold uppercase tracking-wide text-primary-foreground sm:absolute sm:left-5 sm:top-5 sm:mb-0">
             {tag}
@@ -27,7 +27,7 @@ export function ProductImageGallery({ productName, images, tag }: ProductImageGa
           src={currentImage}
           alt={`${productName} product image ${selectedImage + 1}`}
           width={520}
-          height={400}
+          height={390}
           priority
           sizes="(max-width: 1024px) 100vw, 50vw"
           wrapperClassName="relative z-0 flex min-h-0 w-full flex-1 items-center justify-center"

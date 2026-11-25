@@ -197,7 +197,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
 
               <p className="mt-5 text-sm leading-relaxed text-muted-foreground">{description}</p>
 
-              <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+              <div className="mt-6 grid grid-cols-2 gap-3">
                 <Link
                   href="/contact"
                   data-analytics-product-enquiry=""
@@ -206,7 +206,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
                   data-product-category={product.category}
                   data-product-url={`/products/${product.slug}`}
                   data-analytics-placement="product_detail"
-                  className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-bold text-primary-foreground shadow-lg shadow-primary/25 transition hover:brightness-110"
+                  className="flex items-center justify-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-bold text-primary-foreground shadow-lg shadow-primary/25 transition hover:brightness-110"
                 >
                   Enquire Now <ArrowRight className="h-4 w-4" />
                 </Link>
