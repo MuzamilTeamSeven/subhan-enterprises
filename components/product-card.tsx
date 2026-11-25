@@ -42,23 +42,22 @@ export function ProductCard({
           Out of Stock
         </span>
       )}
-      {/* Image — fixed 4/3 aspect ratio, clean contain layout */}
+      {/* Image — fixed 4/3 aspect ratio, rounded corners on both container and image */}
       <Link
         href={`/products/${product.slug}`}
         {...productAnalyticsAttributes}
-        className="image-zoom-wrap relative block w-full overflow-hidden rounded-xl bg-white/[0.02]"
+        className="image-zoom-wrap relative flex aspect-[4/3] w-full items-center justify-center overflow-hidden rounded-2xl bg-white/[0.02] p-2"
       >
-        <div className="relative w-full" style={{ paddingBottom: "75%" }}>
-          <OptimizedImage
-            src={product.image || "/placeholder.svg"}
-            alt={`${product.name} — ${categoryLabels[product.category]} sold by Subhan Enterprises`}
-            fill
-            priority={priority}
-            sizes="(max-width: 640px) 100vw, 260px"
-            wrapperClassName="absolute inset-0"
-            className="image-zoom object-contain p-2 transition-transform duration-300"
-          />
-        </div>
+        <OptimizedImage
+          src={product.image || "/placeholder.svg"}
+          alt={`${product.name} — ${categoryLabels[product.category]} sold by Subhan Enterprises`}
+          width={400}
+          height={300}
+          priority={priority}
+          sizes="(max-width: 640px) 100vw, 260px"
+          wrapperClassName="flex h-full w-full items-center justify-center rounded-2xl"
+          className="image-zoom max-h-full w-auto max-w-full rounded-2xl object-contain transition-transform duration-300"
+        />
       </Link>
 
       {/* Content — grows to fill remaining space so button always sticks to bottom */}
@@ -90,7 +89,7 @@ export function ProductCard({
         )}
 
         {product.specs.length > 0 && (
-          <div className="mt-2.5 flex flex-wrap gap-1.5">
+          <div className="mt-3 flex flex-wrap gap-1.5 pb-4">
             {product.specs.slice(0, 3).map((s) => (
               <span key={s} className="rounded-md bg-white/[0.04] border border-white/[0.05] px-2 py-0.5 text-[10px] font-medium text-muted-foreground">
                 {s}
@@ -99,8 +98,8 @@ export function ProductCard({
           </div>
         )}
 
-        {/* Price — pushed towards bottom via mt-auto spacer */}
-        <div className="mt-auto pt-4 border-t border-white/[0.05]">
+        {/* Price — pushed towards bottom via mt-auto spacer with equal top/bottom spacing around divider */}
+        <div className="mt-auto border-t border-white/[0.05] pt-4">
           <div className="flex flex-wrap items-baseline gap-2">
             <p className="text-xl font-extrabold text-primary">{formatPrice(product.price)}</p>
             {product.oldPrice != null && (
