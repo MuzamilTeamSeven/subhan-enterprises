@@ -43,17 +43,18 @@ export function ProductImageGallery({ productName, images, tag }: ProductImageGa
               onClick={() => setSelectedImage(index)}
               aria-label={`View ${productName} image ${index + 1}`}
               aria-pressed={selectedImage === index}
-              className={`glass relative flex aspect-[7/5] min-w-0 items-center justify-center overflow-hidden rounded-xl border p-2 transition ${
+              className={`glass relative flex aspect-[7/5] min-w-0 items-center justify-center overflow-hidden rounded-xl border p-2 sm:p-1.5 transition ${
                 selectedImage === index ? "border-primary ring-1 ring-primary/60" : "border-white/10 hover:border-primary/50"
               }`}
             >
               <OptimizedImage
                 src={image}
                 alt=""
-                width={112}
-                height={80}
-                sizes="112px"
-                className="h-full w-auto max-w-full rounded-xl object-contain"
+                width={240}
+                height={172}
+                sizes="(max-width: 640px) 112px, 240px"
+                wrapperClassName="flex h-full w-full items-center justify-center rounded-xl"
+                className="h-full w-auto max-w-full rounded-xl object-contain sm:w-full"
               />
             </button>
           ))}

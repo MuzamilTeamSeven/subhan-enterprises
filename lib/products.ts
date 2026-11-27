@@ -61,18 +61,19 @@ export const products: Product[] = [
   {
     id: "250cc-monster-atv",
     slug: "250cc-monster-atv",
-    name: "250cc Monster ATV",
+    name: "250CC Monster Jeep",
     category: "atv",
-    image: "/atvs/Camouflaged ATV Under Red Studio Glow.png",
+    image: "/atvs/250-cc/Extreme Red-and-Black ATV Product Display.png",
     images: [
-      "/atvs/Camouflaged ATV Under Red Studio Glow.png",
-      "/atvs/Camouflaged ATV Side Profile Showcase.png",
+      "/atvs/250-cc/Extreme Red-and-Black ATV Product Display.png",
+      "/atvs/250-cc/Red and Black Camo ATV Studio Shot.png",
+      "/atvs/250-cc/Rugged Red ATV Studio Showcase.png",
     ],
-    price: 2450000,
-    specs: ["250cc", "Heavy Duty"],
+    price: 600000,
+    specs: ["250CC", "Monster Jeep", "Heavy Duty"],
     inStock: true,
     description:
-      "The 250cc Monster ATV delivers superior torque and heavy-duty off-road capability across Pakistani terrain. Featuring a high-output 250cc 4-stroke engine, aggressive deep-lug tires, heavy-duty suspension, front and rear utility racks, and hydraulic disc braking.",
+      "The 250CC Monster Jeep delivers superior torque and heavy-duty off-road capability across Pakistani terrain. Featuring a high-output 250cc 4-stroke engine, aggressive deep-lug tires, heavy-duty suspension, front and rear utility racks, and hydraulic disc braking.",
   },
   {
     id: "150cc-audi-style-atv",
@@ -164,6 +165,24 @@ export const products: Product[] = [
     inStock: true,
     description:
       "The 70cc Mini Kids ATV is the ideal starter quad bike for children, engineered with safety in mind. Features a smooth 70cc 4-stroke engine, speed governor, remote engine shutoff, and easy electric start.",
+  },
+  {
+    id: "six-number-sports-raptor",
+    slug: "six-number-sports-raptor",
+    name: "Six # Sports Raptor",
+    category: "atv",
+    image: "/atvs/sports-raptor/six-number/Camo ATV Front View Spotlight.png",
+    images: [
+      "/atvs/sports-raptor/six-number/Camo ATV Front View Spotlight.png",
+      "/atvs/sports-raptor/six-number/Camouflage ATV Studio Showcase.png",
+      "/atvs/sports-raptor/six-number/Camouflaged ATV Rear Studio Showcase.png",
+    ],
+    price: 180000,
+    specs: ["Six #", "Sports Raptor", "For Kids 5 To 12"],
+    tag: "New Arrival",
+    inStock: true,
+    description:
+      "The Six # Sports Raptor is a safe and sporty kids quad bike built for young riders aged 5 to 12 in Pakistan. Featuring an easy electric start, automatic transmission, rugged camouflage styling, stable wide-stance all-terrain tires, and controlled power for backyard, farm, and off-road trail fun.",
   },
   {
     id: "neon-green-dirt-bike",
